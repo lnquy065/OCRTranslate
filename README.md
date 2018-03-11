@@ -1,5 +1,5 @@
 # OCRTranslate
-An Android appliacion using OCR API to translate screenshot
+An Android application using OCR API to translate screenshot
 
 The PTIT D14CQCP01 Android Team
 + Luong Ngoc Quy
