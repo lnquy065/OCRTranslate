@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate;
+package com.bitstudio.aztranslate.OCRLib;
 
 import android.graphics.Bitmap;
 import android.os.Environment;

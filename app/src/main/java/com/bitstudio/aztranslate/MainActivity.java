@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity implements SettingFragment.O
             btnHistory.setImageResource(R.drawable.toggle_history_enable);
         });
         btnFloat.setOnClickListener(v->{
-            startService(new Intent(MainActivity.this, FloatingWidgetService.class));
+//            startService(new Intent(MainActivity.this, FloatingWidgetService.class));
+            Intent intent = new Intent(MainActivity.this, FloatingActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             finish();
         });
     }
