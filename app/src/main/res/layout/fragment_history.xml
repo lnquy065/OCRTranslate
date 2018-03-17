@@ -6,9 +6,39 @@
     tools:context="com.bitstudio.aztranslate.LanguageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Translation History"
+            android:textSize="20dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/title"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:id="@+id/screenshotList">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/screenshotPreView"
+                android:src="@drawable/btn_float"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/infomationView"
+                android:text="26/01/2018"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkScreenshot"
+                android:layout_gravity="center"
+                android:layout_marginLeft="100dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
