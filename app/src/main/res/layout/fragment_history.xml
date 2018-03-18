@@ -20,25 +20,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
-            android:id="@+id/screenshotList">
-            <ImageView
-                android:layout_width="wrap_content"
+            android:id="@+id/mainLayout"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/screenshotPreView"
-                android:src="@drawable/btn_float"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/infomationView"
-                android:text="26/01/2018"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/checkScreenshot"
-                android:layout_gravity="center"
-                android:layout_marginLeft="100dp"/>
+                android:layout_below="@+id/mainLayout"
+                android:id="@+id/screenshotList">
+
+                <ImageView
+                    android:id="@+id/screenshotPreView"
+                    android:layout_width="81dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/btn_float" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/informationView"
+                    android:text="26/01/2018 English to Vietnamese"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkScreenshot"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"/>
+            </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
 </FrameLayout>
