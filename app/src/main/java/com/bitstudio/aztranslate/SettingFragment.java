@@ -1,12 +1,20 @@
 package com.bitstudio.aztranslate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.bitstudio.aztranslate.Adapter.SettingAdapter;
+import com.bitstudio.aztranslate.Model.SettingItem;
+
+import java.util.ArrayList;
 
 
 /**
@@ -64,7 +72,25 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+        View rootView=inflater.inflate(R.layout.fragment_setting, container, false);
+        ListView lvSetting=rootView.findViewById(R.id.idListView);
+        ArrayList<SettingItem> arrayList=new ArrayList<>();
+        SettingAdapter adapter=new SettingAdapter(getContext(),R.layout.setting_item_layout,arrayList);
+        arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language"));
+        arrayList.add(new SettingItem(R.drawable.ic_remove_red_eye_black_24dp,"Language Recognize"));
+        arrayList.add(new SettingItem(R.drawable.ic_create_black_24dp,"Language Translate"));
+        lvSetting.setAdapter(adapter);
+        lvSetting.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position!=0)
+                {
+                    Intent intent=new Intent(getContext(),SetLanguageActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

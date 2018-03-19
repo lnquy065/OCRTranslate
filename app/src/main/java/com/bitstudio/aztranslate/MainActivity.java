@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements
             addControls();
             addEvents();
             loadAnimations();
+            openFragment( new SettingFragment());
         }
     }
 
