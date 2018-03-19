@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/colorAccent"/>
+    <item
+        android:drawable="@color/colorPrimaryDark"
+        android:state_pressed="true"
+        android:state_enabled="true"/>
+
+
+    <!-- default -->
+    <item
+        android:state_pressed="false"
+        android:state_focused="false"
+        android:drawable="@color/colorPrimaryDark"
+        />
+
+    <!-- button pressed -->
+    <item
+        android:state_pressed="true"
+        android:state_focused="false"
+        android:drawable="@drawable/btn_scan_layerlist"
+        />
+</selector>

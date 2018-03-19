@@ -3,8 +3,13 @@ package com.bitstudio.aztranslate;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.Image;
@@ -24,8 +29,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.bitstudio.aztranslate.OCRLib.HOCR;
+import com.bitstudio.aztranslate.OCRLib.OcrManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,6 +66,7 @@ public class FloatingActivity extends AppCompatActivity {
     private static final String SCREENCAP_NAME = "screencap";
     private static final int VIRTUAL_DISPLAY_FLAGS = DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY | DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC;
     private static MediaProjection sMediaProjection;
+    private boolean canScreenshot = true;
 
     private MediaProjectionManager mProjectionManager;
     private ImageReader mImageReader;
@@ -66,6 +79,16 @@ public class FloatingActivity extends AppCompatActivity {
     private int mRotation;
     private OrientationChangeCallback mOrientationChangeCallback;
 
+    //ocr
+    private OcrManager ocrManager;
+    private HOCR hOcr;
+    private View mainView;
+
+
+    //anim
+    private Animation imvAnimation;
+    private Animation anim_btnfloating_touch;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -75,6 +98,9 @@ public class FloatingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_floating);
 
         //inflate giao dien
@@ -98,6 +124,7 @@ public class FloatingActivity extends AppCompatActivity {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(floatingView, floatingLayout);
 
+        loadAnimations();
         addControls();
         addEvents();
 
@@ -114,19 +141,33 @@ public class FloatingActivity extends AppCompatActivity {
             }
         }.start();
 
+        //init ocr
+        ocrManager = new OcrManager();
+        ocrManager.initAPI();
+        hOcr = new HOCR();
+
+        //thu nhỏ ứng dụng
         moveTaskToBack(true);
+
+    }
+
+    public void loadAnimations() {
+        imvAnimation = AnimationUtils.loadAnimation(this,R.anim.anim_btnfloating_appear);
+        anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
     }
 
     public void addControls() {
         btnFloatingWidgetClose = floatingView.findViewById(R.id.btnFloatingWidgetClose);
         imvFloatingWidgetIcon = floatingView.findViewById(R.id.imvFloatingWidgetIcon);
 
-
+        imvFloatingWidgetIcon.startAnimation(imvAnimation);
     }
 
     private void addEvents() {
         btnFloatingWidgetClose.setOnClickListener(v-> {
-//            stopSelf();
+                Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
         });
 
         imvFloatingWidgetIcon.setOnTouchListener(new View.OnTouchListener() {
@@ -138,6 +179,7 @@ public class FloatingActivity extends AppCompatActivity {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                imvFloatingWidgetIcon.startAnimation(anim_btnfloating_touch);
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
 
@@ -161,6 +203,12 @@ public class FloatingActivity extends AppCompatActivity {
                         {
                             if(duration<= MAX_DURATION)
                             {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mainView.setBackgroundResource(R.color.transparent);
+                                    }
+                                });
                                 startProjection();
                                 Log.d("Touch", "Double");
                             }
@@ -181,6 +229,23 @@ public class FloatingActivity extends AppCompatActivity {
                         return true;
                 }
                 return false;
+            }
+        });
+
+        mainView = findViewById(R.id.floatActivity);
+        mainView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int x = (int) motionEvent.getRawX();
+                int y = (int) motionEvent.getRawY();
+                Log.d("Touch", x+" "+y);
+                for (Rect r:hOcr.getData().keySet()) {
+                    if (r.left <= x && x <= r.right && r.top <= y && y <= r.bottom) {
+                        Log.d("Click on:", hOcr.getData().get(r));
+                    }
+                }
+
+                return true;
             }
         });
     }
@@ -206,7 +271,7 @@ public class FloatingActivity extends AppCompatActivity {
                 } else {
                     Log.e(TAG, "failed to create file storage directory, getExternalFilesDir is null.");
                     return;
-                }
+               }
 
                 // display metrics
                 DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -235,6 +300,7 @@ public class FloatingActivity extends AppCompatActivity {
 
     //******Projection's methods
     private void startProjection() {
+        canScreenshot = true;
         startActivityForResult(mProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
     }
 
@@ -270,7 +336,8 @@ public class FloatingActivity extends AppCompatActivity {
             Image image = null;
             FileOutputStream fos = null;
             Bitmap bitmap = null;
-
+            if (!canScreenshot) return;
+            canScreenshot = false;
             try {
                 image = reader.acquireLatestImage();
                 if (image != null) {
@@ -284,12 +351,16 @@ public class FloatingActivity extends AppCompatActivity {
                     bitmap = Bitmap.createBitmap(mWidth + rowPadding / pixelStride, mHeight, Bitmap.Config.ARGB_8888);
                     bitmap.copyPixelsFromBuffer(buffer);
 
-                    // write bitmap to a file
-                    fos = new FileOutputStream(STORE_DIRECTORY + "/test.png");
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    String recognizedText = ocrManager.startRecognize(bitmap, OcrManager.RETURN_HOCR);
+                    hOcr.processHTML(recognizedText);
+                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainView.setBackgroundDrawable(new BitmapDrawable(bitmapReco));
+                        }
+                    });
 
-                    IMAGES_PRODUCED++;
-                    Log.e(TAG, "captured image: " + IMAGES_PRODUCED);
                     stopProjection();
                 }
 
@@ -354,6 +425,26 @@ public class FloatingActivity extends AppCompatActivity {
                     sMediaProjection.unregisterCallback(MediaProjectionStopCallback.this);
                 }
             });
+        }
+    }
+
+
+    private void saveBitmapToFile(String filename, Bitmap bmp) {
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(filename);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+            // PNG is a lossless format, the compression factor (100) is ignored
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

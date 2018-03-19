@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -18,16 +19,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="60dp"
         android:background="@drawable/bottomtabhost"
-        android:elevation="10dp"
-        android:gravity="bottom"
+        android:elevation="0dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btnSetting"
             android:layout_width="102dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
@@ -37,37 +38,43 @@
 
         <ImageView
             android:layout_width="10dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:scaleX="0.5"
+            android:scaleX="0.25"
             android:scaleY="0.5"
             app:srcCompat="@drawable/btn_float_left" />
 
         <ImageButton
             android:id="@+id/btnFloat"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
+            android:adjustViewBounds="false"
+            android:background="@color/transparent"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:scaleType="fitXY"
+            android:scaleX="0.45"
+            android:scaleY="1"
+            android:shadowColor="#000"
             app:srcCompat="@drawable/btn_float" />
 
         <ImageView
             android:layout_width="10dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:scaleX="0.5"
+            android:scaleX="0.25"
             android:scaleY="0.5"
             app:srcCompat="@drawable/btn_float_right" />
 
         <ImageButton
             android:id="@+id/btnHistory"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
