@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate;
+package com.bitstudio.aztranslate.Adapter;
 
 import android.content.Context;
 import android.media.Image;
