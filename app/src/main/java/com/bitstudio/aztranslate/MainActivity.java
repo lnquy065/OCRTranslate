@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
-        LanguageFragment.OnFragmentInteractionListener {
+        HistoryFragment.OnFragmentInteractionListener {
 
     private static int MODE_SCREEN = 1;
     private static int MODE_CAMERA = 0;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
             btnHistory.setImageResource(R.drawable.toggle_history_disable);
         });
         btnHistory.setOnClickListener(v->{
-            openFragment( new LanguageFragment());
+            openFragment( new HistoryFragment());
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
             btnHistory.setImageResource(R.drawable.toggle_history_enable);
         });

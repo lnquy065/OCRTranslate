@@ -9,15 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LanguageFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LanguageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class LanguageFragment extends Fragment {
+public class HistoryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +21,7 @@ public class LanguageFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public LanguageFragment() {
+    public HistoryFragment() {
         // Required empty public constructor
     }
 
@@ -42,8 +34,8 @@ public class LanguageFragment extends Fragment {
      * @return A new instance of fragment LanguageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LanguageFragment newInstance(String param1, String param2) {
-        LanguageFragment fragment = new LanguageFragment();
+    public static HistoryFragment newInstance(String param1, String param2) {
+        HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
