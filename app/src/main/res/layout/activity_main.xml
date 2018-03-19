@@ -13,7 +13,7 @@
     <FrameLayout
         android:id="@+id/frmMainFrame"
         android:layout_width="match_parent"
-        android:layout_height="433dp">
+        android:layout_height="506dp">
 
     </FrameLayout>
 
