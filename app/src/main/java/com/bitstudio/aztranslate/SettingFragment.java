@@ -87,7 +87,11 @@ public class SettingFragment extends Fragment {
                 {
                     Intent intent=new Intent(getContext(),SetLanguageActivity.class);
                     startActivity(intent);
+                } else {
+                    Intent intent=new Intent(getContext(),LanguageSettingActivity.class);
+                    startActivity(intent);
                 }
+
             }
         });
         return rootView;
