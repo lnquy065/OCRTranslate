@@ -41,6 +41,7 @@ public class FloatingActivity extends AppCompatActivity {
     private ImageView imvFloatingWidgetIcon;
 
     //touchVar
+    String test;
     private  int clickCount = 0;
     private long startTime;
     private long duration;
