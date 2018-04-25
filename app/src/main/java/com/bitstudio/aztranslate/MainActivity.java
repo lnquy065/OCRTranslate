@@ -4,6 +4,7 @@ package com.bitstudio.aztranslate;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener {
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements
     private static int MODE_SCREEN = 1;
     private static int MODE_CAMERA = 0;
     private static int MODE_FILE = 2;
+
+    public static String CACHE = Environment.getExternalStorageDirectory().toString()+"/aztrans/";
 
     //Controls
     private ImageButton btnSetting;
@@ -57,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
         } else {
+
+
+
+            createDirs();
+
             addControls();
             addEvents();
             loadAnimations();
@@ -93,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements
         btnHistory = findViewById(R.id.btnHistory);
         btnFloat = findViewById(R.id.btnFloat);
         frmMainFrame = findViewById(R.id.frmMainFrame);
-
         gestureDetector = new GestureDetector(this, new BtnStartModeGesture());
 
     }
@@ -118,6 +127,23 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+
+    public void createDirs() {
+            File storeDirectory = new File(CACHE);
+            if (!storeDirectory.exists()) {
+                boolean success = storeDirectory.mkdirs();
+            }
+
+                File imgDirectory = new File(CACHE+"histories/img/");
+                if (!imgDirectory.exists()) imgDirectory.mkdirs();
+
+                File xmlDirectory = new File(CACHE+"histories/xml/");
+                if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
+
+                File datDirectory = new File(CACHE+"dat/");
+                if (!datDirectory.exists()) datDirectory.mkdirs();
     }
 
 
