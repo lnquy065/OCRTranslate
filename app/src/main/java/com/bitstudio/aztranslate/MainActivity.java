@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements
     //Animations
     private Animation anim_btnscan_changemode_fadein;
     private Animation anim_btnscan_changemode_fadeout;
+    private Animation anim_bounce, anim_zoomout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +77,13 @@ public class MainActivity extends AppCompatActivity implements
 
     private void addEvents() {
         btnSetting.setOnClickListener(v->{
+            btnSetting.startAnimation(anim_bounce);
             openFragment( new SettingFragment());
             btnSetting.setImageResource(R.drawable.toggle_setting_enable);
             btnHistory.setImageResource(R.drawable.toggle_history_disable);
         });
         btnHistory.setOnClickListener(v->{
+            btnHistory.startAnimation(anim_bounce);
             openFragment( new HistoryFragment());
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
             btnHistory.setImageResource(R.drawable.toggle_history_enable);
@@ -111,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements
     private void loadAnimations() {
         anim_btnscan_changemode_fadein = AnimationUtils.loadAnimation(this, R.anim.anim_btnscan_changemode_fadein);
         anim_btnscan_changemode_fadeout = AnimationUtils.loadAnimation(this, R.anim.anim_btnscan_changemode_fadeout);
-
+        anim_bounce = AnimationUtils.loadAnimation(this, R.anim.anim_bounce);
+        anim_zoomout = AnimationUtils.loadAnimation(this, R.anim.anim_zoomout);
     }
 
 
@@ -168,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
+            btnFloat.startAnimation(anim_zoomout);
                 Intent intent = new Intent(MainActivity.this, FloatingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
