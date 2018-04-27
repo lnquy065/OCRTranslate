@@ -1,4 +1,4 @@
-#Thu Apr 26 22:32:54 ICT 2018
+#Fri Apr 27 10:18:39 ICT 2018
 base.0=C\:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
 path.0=classes.dex
 renamed.0=classes.dex

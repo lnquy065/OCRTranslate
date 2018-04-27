@@ -50,6 +50,7 @@
             android:label="@string/title_activity_manage_language"
             android:theme="@style/AppTheme" />
         <activity android:name="com.bitstudio.aztranslate.SetRTActivity" />
+        <activity android:name="com.bitstudio.aztranslate.SystemSettingActivity" />
 
         <meta-data
             android:name="android.support.VERSION"

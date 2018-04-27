@@ -5,35 +5,36 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.0.1"
-    timestamp="1524756890904"
+    timestamp="1524800530845"
     token="7226289040549296059"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="22804" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="476" />
     <task
         name="verifier"
-        duration="0" />
+        duration="872" />
 
+    <artifact
+        location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
     <artifact
         location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\outputs\apk\debug\app-debug.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1524754488788"
+        timestamp="1524799959710"
         verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
-            type="SPLIT" />
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
@@ -41,10 +42,7 @@
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -53,16 +51,22 @@
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
+            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\outputs\apk\debug\app-debug.apk"
@@ -70,41 +74,12 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="CLASS_ADDED"
-        timestamp="1524756697358"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1524800530845"
         verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1524756890904"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\build\outputs\apk\debug\app-debug.apk"
             type="SPLIT_MAIN" />
