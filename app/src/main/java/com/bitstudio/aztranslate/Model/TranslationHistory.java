@@ -6,6 +6,7 @@ public class TranslationHistory
     private String translationSouceLanguage;
     private String translationDestinationLanguage;
     private String screenshotPath;
+    private String xmlDataPath;
 
     public TranslationHistory(String translationTime, String translationSouceLanguage, String getTranslationDestinationLanguage, String screenshotPath)
     {
@@ -53,5 +54,15 @@ public class TranslationHistory
     public void setScreenshotPath(String screenshotPath)
     {
         this.screenshotPath = screenshotPath;
+    }
+
+    public String getXmlDataPath()
+    {
+        return xmlDataPath;
+    }
+
+    public void setXmlDataPath(String xmlDataPath)
+    {
+        this.xmlDataPath = xmlDataPath;
     }
 }
