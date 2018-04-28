@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Pair;
 
 import com.bitstudio.aztranslate.Setting;
 
@@ -44,6 +46,19 @@ public class HOCR {
         }
     }
 
+    public Pair<Rect, String> getWordAt(Point p) {
+        for (Rect r:data.keySet()) {
+            if (r.left <= p.x && p.x <= r.right && r.top <= p.y && p.y <= r.bottom) {
+                return new Pair(r, data.get(r));
+            }
+        }
+        return null;
+    }
+
+
+
+
+
     private void extractWord(Element e) {
         String position = e.attr("title");
         String tmp[] = position.split(" ");
@@ -74,4 +89,7 @@ public class HOCR {
     private Rect paddingRect(Rect r, int width) {
         return new Rect(r.left+width, r.top+width, r.right+width, r.bottom+width);
     }
+
+
+
 }
