@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
 MERGED from [com.rmtheis:tess-two:6.3.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\tess-two-6.3.0.aar\3b01b46931c7bd5f69e2506ef6777644\AndroidManifest.xml:17:1-26:12
 MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\6a44b85defa086cb0a505f2ab7819144\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.firebase:firebase-database:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-12.0.1.aar\efda33630890b8cfc4e5ae50a67fe1ef\AndroidManifest.xml:2:1-8:12
@@ -37,20 +37,20 @@ MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\800a6987ad8cfa533a2979c0c7d90736\AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\a6e54a7af05f16a8fe7bdd43041a1da2\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\f1bec58d738cd09ad7f6d6140f21b531\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
 	package
 		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:3:5-40
 		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
 		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-41:12
 		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:11-69
@@ -63,7 +63,7 @@ ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\m
 	android:name
 		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:6:22-75
 application
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:8:5-34:19
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:8:5-39:19
 MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\6a44b85defa086cb0a505f2ab7819144\AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\6a44b85defa086cb0a505f2ab7819144\AndroidManifest.xml:5:5-20
 MERGED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\7d822f6448eed4839c6229ce3eaac242\AndroidManifest.xml:25:5-29:19
@@ -149,39 +149,41 @@ ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\m
 	android:name
 		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:17:13-45
 activity#com.bitstudio.aztranslate.SliderActivity
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:20:9-26:20
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:20:9-27:20
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:20:19-49
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:21:13-43
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:21:13-25:29
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:22:13-26:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:24:17-77
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:25:17-77
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:24:27-74
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:25:27-74
 activity#com.bitstudio.aztranslate.LanguageSettingActivity
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:27:9-61
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:28:9-61
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:27:19-58
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:28:19-58
 activity#com.bitstudio.aztranslate.ManageLanguageActivity
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:28:9-31:47
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:29:9-32:47
 	android:label
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:30:13-67
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:31:13-67
 	android:theme
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:31:13-44
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:32:13-44
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:29:13-51
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:30:13-51
 activity#com.bitstudio.aztranslate.SetRTActivity
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:32:9-51
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:33:9-51
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:32:19-48
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:33:19-48
 activity#com.bitstudio.aztranslate.SystemSettingActivity
-ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:33:9-68
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:34:9-38:20
+	android:theme
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:36:13-48
 	android:name
-		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:33:19-56
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:34:19-56
 uses-sdk
 INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml

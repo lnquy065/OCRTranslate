@@ -420,12 +420,12 @@
         "source": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\src\\main\\res\\anim\\anim_zoomout.xml"
     },
     {
-        "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
-        "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\140fa3e971dd6b0dc43558621742b91a\\res\\drawable-v21\\notification_action_background.xml"
-    },
-    {
         "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_avd_hide_password.xml.flat",
         "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\7d822f6448eed4839c6229ce3eaac242\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
+        "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\140fa3e971dd6b0dc43558621742b91a\\res\\drawable-v21\\notification_action_background.xml"
     },
     {
         "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -1254,6 +1254,10 @@
     {
         "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_view_list_nav_layout.xml.flat",
         "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\11ded348376313c56bcebe075838ad70\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_setcolor.xml.flat",
+        "source": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\src\\main\\res\\layout\\layout_setcolor.xml"
     },
     {
         "merged": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",

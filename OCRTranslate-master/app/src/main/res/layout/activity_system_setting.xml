@@ -21,12 +21,11 @@
             android:text="Notification" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/id_notice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="145dp"
-             />
+            android:layout_marginLeft="145dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -43,7 +42,7 @@
             android:text="Auto Delete" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/id_limit"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
@@ -66,11 +65,10 @@
             android:text="Border Color" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/id_color"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-             />
+            android:layout_marginLeft="120dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,10 +85,9 @@
             android:text="Border Shape" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/id_shape"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="112dp"
-             />
+            android:layout_marginLeft="112dp" />
     </LinearLayout>
 </LinearLayout>
