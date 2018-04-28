@@ -23,7 +23,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@drawable/bottomtabhost"
         android:elevation="0dp"
         android:gravity="center_vertical"
@@ -34,7 +34,7 @@
 
         <ImageButton
             android:id="@+id/btnSetting"
-            android:layout_width="102dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
@@ -43,18 +43,20 @@
             android:scaleY="0.5"
             app:srcCompat="@drawable/toggle_setting_disable" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/btnBook"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:scaleX="0.25"
+            android:scaleX="0.5"
             android:scaleY="0.5"
-            app:srcCompat="@drawable/btn_float_left" />
+            app:srcCompat="@drawable/toggle_book_disable" />
 
         <ImageButton
             android:id="@+id/btnFloat"
-            android:layout_width="100dp"
+            android:layout_width="130dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:adjustViewBounds="false"
@@ -69,14 +71,16 @@
             android:shadowColor="#000"
             app:srcCompat="@drawable/btn_float" />
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:scaleX="0.25"
+            android:scaleX="0.5"
             android:scaleY="0.5"
-            app:srcCompat="@drawable/btn_float_right" />
+            app:srcCompat="@drawable/toggle_favorite_disable" />
 
         <ImageButton
             android:id="@+id/btnHistory"

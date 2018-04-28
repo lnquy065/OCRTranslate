@@ -42,8 +42,8 @@ import java.nio.ByteBuffer;
 
 public class FloatingActivity extends AppCompatActivity {
     private WindowManager mWindowManager;
-    private View floatingView;
-    private  WindowManager.LayoutParams floatingLayout;
+    private View floatingView, translateView;
+    private  WindowManager.LayoutParams floatingLayout, translateLayout;
 
     private ImageView btnFloatingWidgetClose;
     private ImageView imvFloatingWidgetIcon;
@@ -99,8 +99,18 @@ public class FloatingActivity extends AppCompatActivity {
 
         //inflate giao dien
         floatingView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null);
+        translateView = LayoutInflater.from(this).inflate(R.layout.layout_floating_translate, null);
+
 
         //create service layout
+        translateLayout = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT
+        );
+
         floatingLayout = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -114,6 +124,15 @@ public class FloatingActivity extends AppCompatActivity {
         floatingLayout.x = 0;
         floatingLayout.y = 100;
 
+        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
+        floatingLayout.x = 0;
+        floatingLayout.y = 100;
+
+        //add to window
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mWindowManager.addView(floatingView, floatingLayout);
+        mWindowManager.addView(translateView, translateLayout);
+
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         mDensity = metrics.densityDpi;
         mDisplay = getWindowManager().getDefaultDisplay();
@@ -123,8 +142,7 @@ public class FloatingActivity extends AppCompatActivity {
         mHeight = size.y;
 
 
-        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        mWindowManager.addView(floatingView, floatingLayout);
+
 
         loadAnimations();
         addControls();
