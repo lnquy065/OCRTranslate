@@ -1,14 +1,44 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
-    tools:context="com.bitstudio.aztranslate.LanguageFragment">
+    android:background="@color/colorTranslationHistoryBackground"
+    tools:context="com.bitstudio.aztranslate.HistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Translation History"
+            android:textSize="20dp" />
+
+        <ListView
+            android:id="@+id/listViewHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"
+            android:layout_below="@+id/title">
+        </ListView>
+
+        <Button
+            android:id="@+id/buttonModifyHistory"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="44dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/history_button"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="X"
+            android:textColor="@color/colorPrimaryDark" />
+    </RelativeLayout>
 
 </FrameLayout>
