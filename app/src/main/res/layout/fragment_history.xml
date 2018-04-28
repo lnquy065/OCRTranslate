@@ -26,7 +26,6 @@
             android:choiceMode="singleChoice"
             android:layout_below="@+id/title">
         </ListView>
-
         <Button
             android:id="@+id/buttonModifyHistory"
             android:layout_width="50dp"
@@ -39,6 +38,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:text="X"
             android:textColor="@color/colorPrimaryDark" />
+            android:textColor="#fff" />
     </RelativeLayout>
 
 </FrameLayout>
