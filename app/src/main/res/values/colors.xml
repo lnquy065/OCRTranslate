@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff4081</color>
     <color name="colorTranslationHistoryBackground">#f0f8ff</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="transparent">#00ffffff</color>
 </resources>
