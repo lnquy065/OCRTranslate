@@ -34,7 +34,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,13 +42,9 @@ import com.bitstudio.aztranslate.OCRLib.HOCR;
 import com.bitstudio.aztranslate.OCRLib.OcrManager;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
-import org.w3c.dom.Text;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class FloatingActivity extends AppCompatActivity {
@@ -92,8 +87,9 @@ public class FloatingActivity extends AppCompatActivity {
 
 
     //anim
-    private Animation imvAnimation;
+    private Animation anim_btnfloating_appear;
     private Animation anim_btnfloating_touch;
+    private Animation anim_btnfloating_disappear;
 
     //translate form
     private EditText txtTranslateSource;
@@ -187,7 +183,7 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void loadAnimations() {
-        imvAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_appear);
+        anim_btnfloating_appear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_appear);
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
     }
 
@@ -200,7 +196,7 @@ public class FloatingActivity extends AppCompatActivity {
         btnFloatingWidgetClose = floatingView.findViewById(R.id.btnFloatingWidgetClose);
         imvFloatingWidgetIcon = floatingView.findViewById(R.id.imvFloatingWidgetIcon);
 
-        imvFloatingWidgetIcon.startAnimation(imvAnimation);
+        imvFloatingWidgetIcon.startAnimation(anim_btnfloating_appear);
     }
 
     private void addEvents() {
@@ -340,6 +336,10 @@ public class FloatingActivity extends AppCompatActivity {
 
     private void addWordToFavorites(String s) {
         
+    }
+
+    public void showFloatingWidget() {
+
     }
 
     public void hideTranslateDialog() {
