@@ -124,9 +124,8 @@ public class FloatingActivity extends AppCompatActivity {
         floatingLayout.x = 0;
         floatingLayout.y = 100;
 
-        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
-        floatingLayout.x = 0;
-        floatingLayout.y = 100;
+        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
+       // translateView.setVisibility(View.GONE);
 
         //add to window
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -269,7 +268,26 @@ public class FloatingActivity extends AppCompatActivity {
                 Log.d("Touch", x+" "+y);
                 for (Rect r:hOcr.getData().keySet()) {
                     if (r.left <= x && x <= r.right && r.top <= y && y <= r.bottom) {
-                        Log.d("Click on:", hOcr.getData().get(r));
+                        hOcr.getData().get(r);
+
+                        ValueAnimator va = ValueAnimator.ofFloat(0,100);
+
+                        translateView.setVisibility(View.VISIBLE);
+                        int mDuration = 1000;
+                        va.setDuration(mDuration);
+                        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+                            public void onAnimationUpdate(ValueAnimator animation) {
+                                int  i = Math.round((Float) animation.getAnimatedValue());
+                                translateLayout.y = i;
+                                translateLayout.alpha = (float)(i*0.1 / 100);
+                                translateLayout.height = i*mDensity;
+                                mWindowManager.updateViewLayout(translateView, translateLayout);
+                            }
+                        });
+                        va.start();
+
+
                     }
                 }
 
