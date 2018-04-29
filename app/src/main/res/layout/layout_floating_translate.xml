@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="80dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="300dp"
@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <com.sackcentury.shinebuttonlib.ShineButton
-                android:id="@+id/po_image1"
+                android:id="@+id/btnTranslateFavorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerInParent="true"
@@ -40,7 +40,7 @@
                 app:small_shine_offset_angle="20" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/txtTranslateSource"
                 android:layout_width="211dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -49,25 +49,26 @@
                 android:inputType="textPersonName"
                 android:text="Name"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/po_image1"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/btnTranslateFavorite"
+                app:layout_constraintStart_toEndOf="@+id/imTranslateSource"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/lbTranslateTarget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTranslateSource"
+                app:layout_constraintVertical_bias="0.052" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imTranslateSource"
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
