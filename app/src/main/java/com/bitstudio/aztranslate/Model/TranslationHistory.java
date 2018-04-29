@@ -1,5 +1,13 @@
 package com.bitstudio.aztranslate.Model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
+
+import com.bitstudio.aztranslate.R;
+
+import java.io.File;
+
 public class TranslationHistory
 {
     private String translationTime;
@@ -64,5 +72,19 @@ public class TranslationHistory
     public void setXmlDataPath(String xmlDataPath)
     {
         this.xmlDataPath = xmlDataPath;
+    }
+
+    public Bitmap getScreenshotBitmap()
+    {
+        File imgFile = new File(screenshotPath);
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            return myBitmap;
+
+        }
+        else
+            return null;
     }
 }
