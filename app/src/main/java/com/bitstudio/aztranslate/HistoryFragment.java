@@ -1,12 +1,16 @@
 package com.bitstudio.aztranslate;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 
 
 public class HistoryFragment extends Fragment {
@@ -20,6 +24,10 @@ public class HistoryFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    // historyDatabaseHelper takes responsibility for creating and managing our local database
+    private TranslationHistoryDatabaseHelper historyDatabaseHelper;
+    private SQLiteDatabase db;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -50,6 +58,12 @@ public class HistoryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        // Let create a database helper
+        historyDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
+        Toast toast = Toast.makeText(getActivity(), "Database" + db.getPath(), Toast.LENGTH_SHORT);
+        toast.show();
+
     }
 
     @Override
