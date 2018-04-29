@@ -36,12 +36,5 @@
                     android:gravity="center"
                     android:text="English to Vietnamese" />
             </RelativeLayout>
-
-            <CheckBox
-                android:id="@+id/checkScreenshot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.1" />
         </LinearLayout>
 </LinearLayout>
