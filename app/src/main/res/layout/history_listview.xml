@@ -11,15 +11,15 @@
 
             <ImageView
                 android:id="@+id/imgViewScreenshot"
-                android:layout_width="81dp"
-                android:layout_height="match_parent"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
                 android:layout_weight="0.2"
                 android:src="@drawable/btn_float_file" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6">
+                android:layout_weight="0.8">
 
                 <TextView
                     android:id="@+id/textViewTranslationTime"
