@@ -1,6 +1,7 @@
 package com.bitstudio.aztranslate;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,9 +9,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
+import com.bitstudio.aztranslate.Model.TranslationHistory;
+
+import java.util.ArrayList;
 
 
 public class HistoryFragment extends Fragment {
@@ -25,9 +30,10 @@ public class HistoryFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    // historyDatabaseHelper takes responsibility for creating and managing our local database
+    // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
     private TranslationHistoryDatabaseHelper historyDatabaseHelper;
-    private SQLiteDatabase db;
+    // Taking control of the History list view
+    private ListView listViewTranslationHistory;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -61,8 +67,16 @@ public class HistoryFragment extends Fragment {
 
         // Let create a database helper
         historyDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
-        Toast toast = Toast.makeText(getActivity(), "Database" + db.getPath(), Toast.LENGTH_SHORT);
+        Cursor cusor = historyDatabaseHelper.getReadableDatabase().query(TranslationHistoryDatabaseHelper.DB_TABLE_NAME_HISTORY, new String[]{TranslationHistoryDatabaseHelper.DB_KEY_SCREENSHOT}, null, null, null, null, null);
+        Toast toast = Toast.makeText(getActivity(), "GTK", Toast.LENGTH_SHORT);
         toast.show();
+        while (cusor.moveToNext())
+        {
+            String path = cusor.getString(0);
+            toast = Toast.makeText(getActivity(), path , Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
 
     }
 
@@ -110,5 +124,10 @@ public class HistoryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void mappingViewComponentsByID()
+    {
+        listViewTranslationHistory = getActivity().findViewById(R.id.listViewHistory);
     }
 }
