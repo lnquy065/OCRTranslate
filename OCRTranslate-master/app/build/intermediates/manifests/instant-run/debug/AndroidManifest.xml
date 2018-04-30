@@ -52,8 +52,7 @@
         <activity android:name="com.bitstudio.aztranslate.SetRTActivity" />
         <activity
             android:name="com.bitstudio.aztranslate.SystemSettingActivity"
-            android:theme="@style/SettingTheme" >
-        </activity>
+            android:theme="@style/SettingTheme" />
 
         <meta-data
             android:name="android.support.VERSION"

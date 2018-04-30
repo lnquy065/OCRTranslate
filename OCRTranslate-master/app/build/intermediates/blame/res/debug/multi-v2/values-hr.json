@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hr\\values-hr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\99b1ddf149d2b0edcbd5b94110b5f307\\res\\values-hr\\values.xml",
+                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-12.0.1.aar\\36ebf798512a90d2241c875a3740e5e9\\res\\values-hr\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\11ded348376313c56bcebe075838ad70\\res\\values-hr\\values-hr.xml",
+                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\a72c54b855a0fff391e40f52fc219fda\\res\\values-hr\\values-hr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
