@@ -17,7 +17,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "screenshotPath TEXT, " +
             "xmlPath TEXT," +
-            "time TEXT, " +
+            "addedtime TEXT, " +
             "srcLanguage TEXT, " +
             "dstLanguage TEXT); ";
     public static final String DB_TABLE_NAME_HISTORY = "HISTORY";
@@ -57,14 +57,16 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public long insertNewTranslationHis(String screenshotPath, String xmlPath, String addedTime, String srcLang, String dstLang)
     {
 
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues translationHistory = new ContentValues();
         translationHistory.put(DB_KEY_SCREENSHOT, screenshotPath);
         translationHistory.put(DB_KEY_XMLPATH, xmlPath);
         translationHistory.put(DB_KEY_HISTORY_TIME, addedTime);
         translationHistory.put(DB_KEY_SRCLANG, srcLang);
         translationHistory.put(DB_KEY_DSTLANG, dstLang);
-        return db.insert(DB_TABLE_NAME_HISTORY, null, translationHistory);
+        long newRow = db.insert(DB_TABLE_NAME_HISTORY, null, translationHistory);
+        Log.d("INSERT", String.valueOf(newRow) + "->");
+        return newRow;
     }
 
     public long deleteTranslationHis(String translationScreenshotPath)
