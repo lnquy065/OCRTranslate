@@ -7,31 +7,42 @@ import android.widget.ImageView;
 import com.bitstudio.aztranslate.R;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TranslationHistory
 {
-    private String translationTime;
+    private long translationUNIXTime;
     private String translationSouceLanguage;
     private String translationDestinationLanguage;
     private String screenshotPath;
     private String xmlDataPath;
 
-    public TranslationHistory(String translationTime, String translationSouceLanguage, String getTranslationDestinationLanguage, String screenshotPath)
+    public TranslationHistory(long translationUNIXTime, String translationSouceLanguage, String getTranslationDestinationLanguage, String screenshotPath)
     {
-        this.translationTime = translationTime;
+        this.translationUNIXTime = translationUNIXTime;
         this.translationSouceLanguage = translationSouceLanguage;
         this.translationDestinationLanguage = getTranslationDestinationLanguage;
         this.screenshotPath = screenshotPath;
     }
 
-    public String getTranslationTime()
+    public long getTranslationUNIXTime()
     {
-        return translationTime;
+        return translationUNIXTime;
     }
 
-    public void setTranslationTime(String translationTime)
+    public void setTranslationUNIXTime(long translationUNIXTime)
     {
-        this.translationTime = translationTime;
+        this.translationUNIXTime = translationUNIXTime;
+    }
+    public String getTranslationTime()
+    {
+        long timeStamp = translationUNIXTime * 1000L;
+        Date date = new Date(timeStamp);
+
+        // Datetime formatted string
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        return formatter.format(date);
     }
 
     public String getTranslationSouceLanguage()
