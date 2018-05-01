@@ -1,6 +1,7 @@
 package com.bitstudio.aztranslate.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,7 +37,7 @@ public class CustomTranslationHistoryAdapter extends ArrayAdapter<TranslationHis
         super(context, resource, objects);
         this.context = context;
         this.resouce = resource;
-        translationHistories = objects;
+        this.translationHistories = objects;
     }
 
     @NonNull
@@ -57,10 +58,12 @@ public class CustomTranslationHistoryAdapter extends ArrayAdapter<TranslationHis
         else
             viewHolder = (ViewHolder) convertView.getTag();
 
-        TranslationHistory newHistory = translationHistories.get(position);
-        viewHolder.textViewTranslationTime.setText(newHistory.getTranslationTime());
-        viewHolder.textViewTranslationTranslationLanguages.setText(newHistory.getTranslationSouceLanguage() + " to " + newHistory.getTranslationDestinationLanguage());
-        //viewHolder.imgViewScreenshot.setImageIcon(new Icon());
+        TranslationHistory translationHistory = translationHistories.get(position);
+        viewHolder.textViewTranslationTime.setText(translationHistory.getTranslationTime());
+        viewHolder.textViewTranslationTranslationLanguages.setText(translationHistory.getTranslationSouceLanguage() + " to " + translationHistory.getTranslationDestinationLanguage());
+        Bitmap screenshot = translationHistory.getScreenshotBitmap();
+        if (screenshot != null)
+            viewHolder.imgViewScreenshot.setImageBitmap(translationHistory.getScreenshotBitmap());
         return convertView;
     }
 }
