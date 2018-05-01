@@ -18,12 +18,13 @@ public class TranslationHistory
     private String screenshotPath;
     private String xmlDataPath;
 
-    public TranslationHistory(long translationUNIXTime, String translationSouceLanguage, String getTranslationDestinationLanguage, String screenshotPath)
+    public TranslationHistory(String screenshotPath, String xmlDataPath, long translationUNIXTime, String translationSouceLanguage, String getTranslationDestinationLanguage)
     {
         this.translationUNIXTime = translationUNIXTime;
         this.translationSouceLanguage = translationSouceLanguage;
         this.translationDestinationLanguage = getTranslationDestinationLanguage;
         this.screenshotPath = screenshotPath;
+        this.xmlDataPath = xmlDataPath;
     }
 
     public long getTranslationUNIXTime()
