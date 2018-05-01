@@ -37,7 +37,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
+import com.bitstudio.aztranslate.Model.TranslationHistory;
 import com.bitstudio.aztranslate.OCRLib.HOCR;
 import com.bitstudio.aztranslate.OCRLib.OcrManager;
 import com.sackcentury.shinebuttonlib.ShineButton;
@@ -45,6 +48,7 @@ import com.sackcentury.shinebuttonlib.ShineButton;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class FloatingActivity extends AppCompatActivity {
@@ -96,7 +100,8 @@ public class FloatingActivity extends AppCompatActivity {
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
     private ShineButton btnTranslateFavorite;
-
+    // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
+    private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     @Override
     protected void onStart() {
         super.onStart();
@@ -110,6 +115,8 @@ public class FloatingActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_floating);
+
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
 
         //inflate giao dien
         floatingView = LayoutInflater.from(this).inflate(R.layout.layout_floating_widget, null);
@@ -505,14 +512,20 @@ public class FloatingActivity extends AppCompatActivity {
 
 
                     //luu hinh anh
-                    fos = new FileOutputStream(MainActivity.CACHE + "histories/img/" + unixTime + ".jpg");
+                    String screenshotPath = MainActivity.CACHE + "histories/img/" + unixTime + ".jpg";
+                    fos = new FileOutputStream(screenshotPath);
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+
+
 
                     //nhan dien chu viet
                     String recognizedText = ocrManager.startRecognize(bitmap, OcrManager.RETURN_HOCR);
-                    fos = new FileOutputStream(MainActivity.CACHE + "histories/xml/" + unixTime + ".xml");
+                    String xmlPath = MainActivity.CACHE + "histories/xml/" + unixTime + ".xml";
+                    fos = new FileOutputStream(xmlPath);
                     fos.write(recognizedText.getBytes());
 
+                    // save screenshot information to local database
+                    translationHistoryDatabaseHelper.insertNewTranslationHis(screenshotPath,xmlPath, String.valueOf(unixTime), "English", "Vietnamese");
                     hOcr.processHTML(recognizedText);
                     Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight);
                     runOnUiThread(new Runnable() {
