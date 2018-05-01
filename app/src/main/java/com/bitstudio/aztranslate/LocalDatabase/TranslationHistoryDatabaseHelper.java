@@ -2,6 +2,7 @@ package com.bitstudio.aztranslate.LocalDatabase;
 
 import android.content.Context;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -89,4 +90,11 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = getReadableDatabase();
         return db.delete(DB_TABLE_NAME_FAVOURITE_WORD, DB_KEY_WORD + " = ?", new String[]{word});
     }
+
+    public Cursor queryAllTranslationHistory()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, null, null, null, null, DB_KEY_HISTORY_TIME + " DESC");
+    }
+
 }
