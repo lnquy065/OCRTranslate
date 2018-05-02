@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,13 +18,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
+
+import com.bitstudio.aztranslate.fragments.FavoritesFragment;
+import com.bitstudio.aztranslate.fragments.HistoryFragment;
+import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
-        HistoryFragment.OnFragmentInteractionListener {
+        HistoryFragment.OnFragmentInteractionListener,
+        FavoritesFragment.OnFragmentInteractionListener {
 
     private static int MODE_SCREEN = 1;
     private static int MODE_CAMERA = 0;
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements
         });
         btnBook.setOnClickListener(v-> {
             btnBook.startAnimation(anim_bounce);
+
             btnBook.setImageResource(R.drawable.toggle_book_enable);
 
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements
         });
         btnFavorite.setOnClickListener(v-> {
             btnFavorite.startAnimation(anim_bounce);
+            openFragment(new FavoritesFragment());
             btnFavorite.setImageResource(R.drawable.toggle_favorite_enable);
 
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
