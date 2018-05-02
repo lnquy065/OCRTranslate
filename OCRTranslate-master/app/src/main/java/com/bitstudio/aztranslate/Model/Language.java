@@ -6,12 +6,17 @@ public class Language {
     private String linkImage;
     private String subtitle;
     private int version;
+    private String linkDownLoad;
 
-    public Language(String name, String linkImage, String subtitle,int version) {
-        this.name = name+"( V "+version+")";
+    public Language() {
+    }
+
+    public Language(String name, String linkImage, String subtitle, int version, String url) {
+        this.name = name;
         this.linkImage = linkImage;
         this.subtitle = subtitle;
         this.version=version;
+        this.linkDownLoad=url;
     }
 
     public int getVersion() {
@@ -44,5 +49,13 @@ public class Language {
 
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
+    }
+
+    public String getLinkDownLoad() {
+        return linkDownLoad;
+    }
+
+    public void setLinkDownLoad(String linkDownLoad) {
+        this.linkDownLoad = linkDownLoad;
     }
 }

@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\Quoc Huy\\AndroidStudioProjects\\OCRTranslate-master\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\a72c54b855a0fff391e40f52fc219fda\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\6aae564eda628429ec0529e54e318c00\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\0ea81910e5c56def5838dbda655c1509\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Quoc Huy\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\087dfae17539c0347b368e2c4d05c042\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -42,7 +42,7 @@ public class LanguageAdapter extends ArrayAdapter<Language> {
             TextView tvSubtitle=v.findViewById(R.id.id_sub);
             ImageView imgFlag=v.findViewById(R.id.id_flag);
 
-            tvName.setText(p.getName().toString());
+            tvName.setText(p.getName().toString()+"("+p.getVersion()+")");
             tvSubtitle.setText(p.getSubtitle().toString());
         }
 
