@@ -23,7 +23,11 @@ import com.bitstudio.aztranslate.fragments.FavoritesFragment;
 import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
 
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
+import com.bitstudio.aztranslate.Model.TranslationHistory;
+
 import java.io.File;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
@@ -55,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements
     private Animation anim_btnscan_changemode_fadeout;
     private Animation anim_bounce, anim_zoomout;
 
+    // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
+    public TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
+    public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements
             loadAnimations();
             openFragment( new SettingFragment());
         }
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
 
     private void addEvents() {

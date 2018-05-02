@@ -1,29 +1,49 @@
 package com.bitstudio.aztranslate.Model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
+
+import com.bitstudio.aztranslate.R;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TranslationHistory
 {
-    private String translationTime;
+    private long translationUNIXTime;
     private String translationSouceLanguage;
     private String translationDestinationLanguage;
     private String screenshotPath;
     private String xmlDataPath;
 
-    public TranslationHistory(String translationTime, String translationSouceLanguage, String getTranslationDestinationLanguage, String screenshotPath)
+    public TranslationHistory(String screenshotPath, String xmlDataPath, long translationUNIXTime, String translationSouceLanguage, String getTranslationDestinationLanguage)
     {
-        this.translationTime = translationTime;
+        this.translationUNIXTime = translationUNIXTime;
         this.translationSouceLanguage = translationSouceLanguage;
         this.translationDestinationLanguage = getTranslationDestinationLanguage;
         this.screenshotPath = screenshotPath;
+        this.xmlDataPath = xmlDataPath;
     }
 
+    public long getTranslationUNIXTime()
+    {
+        return translationUNIXTime;
+    }
+
+    public void setTranslationUNIXTime(long translationUNIXTime)
+    {
+        this.translationUNIXTime = translationUNIXTime;
+    }
     public String getTranslationTime()
     {
-        return translationTime;
-    }
+        long timeStamp = translationUNIXTime * 1000L;
+        Date date = new Date(timeStamp);
 
-    public void setTranslationTime(String translationTime)
-    {
-        this.translationTime = translationTime;
+        // Datetime formatted string
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        return formatter.format(date);
     }
 
     public String getTranslationSouceLanguage()
@@ -64,5 +84,19 @@ public class TranslationHistory
     public void setXmlDataPath(String xmlDataPath)
     {
         this.xmlDataPath = xmlDataPath;
+    }
+
+    public Bitmap getScreenshotBitmap()
+    {
+        File imgFile = new File(screenshotPath);
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            return myBitmap;
+
+        }
+        else
+            return null;
     }
 }
