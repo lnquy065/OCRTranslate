@@ -1,40 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/screenshotList"
-            android:layout_width="match_parent"
+
+    <RelativeLayout
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_row_background">
+
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="@dimen/ic_delete"
+            android:layout_height="@dimen/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:src="@drawable/delete_momo" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:layout_toLeftOf="@id/delete_icon"
+            android:text="@string/deleteHistory"
+            android:textColor="#fff"
+            android:textSize="13dp" />
 
-            <ImageView
-                android:id="@+id/imgViewScreenshot"
-                android:layout_width="40dp"
-                android:layout_height="60dp"
-                android:layout_weight="0.2"
-                android:src="@drawable/btn_float_file" />
+    </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8">
+    <RelativeLayout
+        android:id="@+id/view_foreground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="@dimen/padd_10">
 
-                <TextView
-                    android:id="@+id/textViewTranslationTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="26/01/2018 14:35" />
+        <ImageView
+            android:id="@+id/imageViewScreenshot"
+            android:layout_width="@dimen/screenshot"
+            android:layout_height="@dimen/screenshot"
+            android:layout_marginRight="@dimen/activity_padding_horizontal"
+            android:scaleType="centerCrop" />
 
-                <TextView
-                    android:id="@+id/textViewTranslationLanguages"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textViewTranslationTime"
-                    android:gravity="center"
-                    android:text="English to Vietnamese" />
-            </RelativeLayout>
-        </LinearLayout>
-</LinearLayout>
+        <TextView
+            android:id="@+id/textViewScreenshotPath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageViewScreenshot"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textColor="@color/item_name"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/textViewTranslationTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewScreenshotPath"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/imageViewScreenshot"
+            android:textColor="@color/description"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/textViewTranslationLanguages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/imageViewScreenshot"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</FrameLayout>
