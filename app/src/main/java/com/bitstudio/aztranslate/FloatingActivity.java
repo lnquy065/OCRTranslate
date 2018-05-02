@@ -185,6 +185,41 @@ public class FloatingActivity extends AppCompatActivity {
     public void loadAnimations() {
         anim_btnfloating_appear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_appear);
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
+        anim_btnfloating_disappear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
+
+//        anim_btnfloating_appear.setAnimationListener(new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//                floatingView.setVisibility(View.VISIBLE);
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//
+//            }
+//        });
+
+       anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
+           @Override
+           public void onAnimationStart(Animation animation) {
+
+           }
+
+           @Override
+           public void onAnimationEnd(Animation animation) {
+                floatingView.setVisibility(View.GONE);
+           }
+
+           @Override
+           public void onAnimationRepeat(Animation animation) {
+
+           }
+       });
     }
 
     public void addControls() {
@@ -339,6 +374,14 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void showFloatingWidget() {
+        floatingView.setVisibility(View.VISIBLE);
+        imvFloatingWidgetIcon.startAnimation(anim_btnfloating_appear);
+
+    }
+
+    public void hideFloatingWidget() {
+
+        imvFloatingWidgetIcon.startAnimation(anim_btnfloating_disappear);
 
     }
 
@@ -361,14 +404,17 @@ public class FloatingActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 translateView.setVisibility(View.GONE);
+
                 super.onAnimationEnd(animation);
             }
         });
 
         va.start();
+        showFloatingWidget();
     }
 
     public void showTranslateDialog(String translateText) {
+        hideFloatingWidget();
         txtTranslateSource.setText(translateText);
         ValueAnimator va = ValueAnimator.ofFloat(0, 100);
         translateView.setVisibility(View.VISIBLE);
