@@ -1,31 +1,29 @@
-package com.bitstudio.aztranslate;
+package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
-import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.bitstudio.aztranslate.Adapter.SettingAdapter;
-import com.bitstudio.aztranslate.Model.SettingItem;
+import com.bitstudio.aztranslate.Adapter.CustomTranslationHistoryAdapter;
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
+import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.Model.TranslationHistory;
 
 import java.util.ArrayList;
 
+import com.bitstudio.aztranslate.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SettingFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SettingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SettingFragment extends Fragment {
+
+public class HistoryFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,7 +35,15 @@ public class SettingFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public SettingFragment() {
+    // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
+    private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
+
+    private CustomTranslationHistoryAdapter translationHistoryAdapter;
+    private View onView;
+    // Taking control of the History list view
+    private ListView listViewTranslationHistory;
+
+    public HistoryFragment() {
         // Required empty public constructor
     }
 
@@ -47,11 +53,11 @@ public class SettingFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingFragment.
+     * @return A new instance of fragment LanguageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SettingFragment newInstance(String param1, String param2) {
-        SettingFragment fragment = new SettingFragment();
+    public static HistoryFragment newInstance(String param1, String param2) {
+        HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,29 +78,36 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView=inflater.inflate(R.layout.fragment_setting, container, false);
-        ListView lvSetting=rootView.findViewById(R.id.idListView);
-        ArrayList<SettingItem> arrayList=new ArrayList<>();
-        SettingAdapter adapter=new SettingAdapter(getContext(),R.layout.setting_item_layout,arrayList);
-        arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language"));
-        arrayList.add(new SettingItem(R.drawable.ic_remove_red_eye_black_24dp,"Language Recognize"));
-        arrayList.add(new SettingItem(R.drawable.ic_create_black_24dp,"Language Translate"));
-        lvSetting.setAdapter(adapter);
-        lvSetting.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position!=0)
-                {
-                    Intent intent=new Intent(getContext(),SetLanguageActivity.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent=new Intent(getContext(),LanguageSettingActivity.class);
-                    startActivity(intent);
-                }
+        onView = inflater.inflate(R.layout.fragment_history, container, false);
+        return onView;
+    }
 
-            }
-        });
-        return rootView;
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        mappingViewComponentsByID();
+        // Let create a database helper
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
+        Cursor cursor = translationHistoryDatabaseHelper.queryAllTranslationHistory();
+        Toast toast = Toast.makeText(getActivity(), "Loading All Histories", Toast.LENGTH_SHORT);
+        toast.show();
+        MainActivity.translationHistories.clear();
+        // Loading all old histories and displaying
+        while (cursor.moveToNext())
+        {
+            String screenshotPath = cursor.getString(0);
+            String xmlPath = cursor.getString(1);
+            String addedTime = cursor.getString(2);
+            String srcLang = cursor.getString(3);
+            String dstLang = cursor.getString(4);
+
+            TranslationHistory translationHistory = new TranslationHistory(screenshotPath, xmlPath, Long.parseLong(addedTime), srcLang, dstLang);
+            MainActivity.translationHistories.add(translationHistory);
+        }
+
+        translationHistoryAdapter = new CustomTranslationHistoryAdapter(getActivity(), R.layout.history_listview, MainActivity.translationHistories);
+        listViewTranslationHistory.setAdapter(translationHistoryAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -134,5 +147,10 @@ public class SettingFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void mappingViewComponentsByID()
+    {
+        listViewTranslationHistory = getActivity().findViewById(R.id.listViewHistory);
     }
 }
