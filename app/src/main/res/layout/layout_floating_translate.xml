@@ -16,40 +16,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.sackcentury.shinebuttonlib.ShineButton
+            <ToggleButton
                 android:id="@+id/btnTranslateFavorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_centerInParent="true"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:src="@android:color/darker_gray"
-                app:allow_random_color="false"
-                app:big_shine_color="#FF6666"
-                app:btn_color="@android:color/darker_gray"
-                app:btn_fill_color="#FF6666"
-                app:click_animation_duration="200"
-                app:enable_flashing="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shine_animation_duration="1500"
-                app:shine_count="8"
-                app:shine_turn_angle="10"
-                app:siShape="@raw/heart"
-                app:small_shine_color="#CC9999"
-                app:small_shine_offset_angle="20" />
+                android:background="@drawable/btn_translate_favorite"
+                android:textOff=""
+                android:textOn=""/>
 
             <EditText
                 android:id="@+id/txtTranslateSource"
                 android:layout_width="211dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnTranslateFavorite"
                 app:layout_constraintStart_toEndOf="@+id/imTranslateSource"
                 app:layout_constraintTop_toTopOf="parent" />
 
