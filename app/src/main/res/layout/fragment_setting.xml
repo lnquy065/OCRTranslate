@@ -2,31 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    tools:context="com.bitstudio.aztranslate.SettingFragment">
+    android:background="@color/colorWhite"
+    tools:context="com.bitstudio.aztranslate.fragments.SettingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="match_parent"
 
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal">
+        android:background="@color/cardview_light_background"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="wrap_content"
-            android:layout_height="49dp"
-            android:layout_margin="10px"
-            android:layout_marginLeft="10px"
-            android:layout_weight="1"
-            android:background="@android:color/background_light"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+        <ListView
+            android:id="@+id/idListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/idListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </FrameLayout>
