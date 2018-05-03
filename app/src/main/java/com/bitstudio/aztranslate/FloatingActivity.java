@@ -34,10 +34,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.Model.TranslationHistory;
@@ -99,9 +102,11 @@ public class FloatingActivity extends AppCompatActivity {
     private EditText txtTranslateSource;
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
-    private ShineButton btnTranslateFavorite;
+    private ToggleButton btnTranslateFavorite;
     // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
     private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
+    private Animation anim_btn_translate_favorite;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -193,22 +198,7 @@ public class FloatingActivity extends AppCompatActivity {
         anim_btnfloating_appear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_appear);
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
         anim_btnfloating_disappear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
-
-//        anim_btnfloating_appear.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//                floatingView.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
+        anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
 //        });
 
        anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
@@ -242,16 +232,18 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
-        btnTranslateFavorite.setOnCheckStateChangeListener(new ShineButton.OnCheckedChangeListener() {
+        btnTranslateFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(View view, boolean checked) {
-                if (checked) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                btnTranslateFavorite.startAnimation(anim_btn_translate_favorite);
+                if (b) {
                     addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase());
                 } else {
                     removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase());
                 }
             }
         });
+
         
         btnFloatingWidgetClose.setOnClickListener(v -> {
             Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
