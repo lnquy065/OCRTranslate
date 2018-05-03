@@ -7,6 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bitstudio.aztranslate.Adapter.CustomTranslationHistoryAdapter;
+import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
+import com.bitstudio.aztranslate.Adapter.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.Model.TranslationHistory;
@@ -23,7 +30,7 @@ import java.util.ArrayList;
 import com.bitstudio.aztranslate.R;
 
 
-public class HistoryFragment extends Fragment
+public class HistoryFragment extends Fragment implements RecyclerTranslationHistoryTouchHelper.RecyclerTranslationHistoryTouchHelperListener
 {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,10 +46,10 @@ public class HistoryFragment extends Fragment
     // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
     private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
 
-    private CustomTranslationHistoryAdapter translationHistoryAdapter;
+    private TranslationHistoryAdapter translationHistoryAdapter;
     private View onView;
     // Taking control of the History list view
-    private ListView listViewTranslationHistory;
+    private RecyclerView listViewTranslationHistory;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -107,8 +114,7 @@ public class HistoryFragment extends Fragment
             MainActivity.translationHistories.add(translationHistory);
         }
 
-        translationHistoryAdapter = new CustomTranslationHistoryAdapter(getActivity(), R.layout.history_listview, MainActivity.translationHistories);
-        listViewTranslationHistory.setAdapter(translationHistoryAdapter);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -135,6 +141,12 @@ public class HistoryFragment extends Fragment
         mListener = null;
     }
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position)
+    {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -153,5 +165,21 @@ public class HistoryFragment extends Fragment
     public void mappingViewComponentsByID()
     {
         listViewTranslationHistory = getActivity().findViewById(R.id.listViewHistory);
+        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
+
+        listViewTranslationHistory.setLayoutManager(mLayoutmanager);
+        listViewTranslationHistory.setItemAnimator(new DefaultItemAnimator());
+        listViewTranslationHistory.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+
+        translationHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.translationHistories);
+        listViewTranslationHistory.setAdapter(translationHistoryAdapter);
+
+        // adding item touch helper
+        // only ItemTouchHelper.LEFT added to detect Right to Left swipe
+        // if you want both Right -> Left and Left -> Right
+        // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listViewTranslationHistory);
     }
 }
