@@ -46,6 +46,7 @@ import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.Model.TranslationHistory;
 import com.bitstudio.aztranslate.OCRLib.HOCR;
 import com.bitstudio.aztranslate.OCRLib.OcrManager;
+import com.loopj.android.http.RequestHandle;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.io.FileOutputStream;
@@ -54,6 +55,15 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
 public class FloatingActivity extends AppCompatActivity {
     private WindowManager mWindowManager;
     private View floatingView, translateView;
@@ -61,6 +71,13 @@ public class FloatingActivity extends AppCompatActivity {
 
     private ImageView btnFloatingWidgetClose;
     private ImageView imvFloatingWidgetIcon;
+
+
+    //
+    private static final String API = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
+    private static final String KEY = "trnsl.1.1.20180329T083614Z.2b685ad1b1385380.fdb64e113f85b99546bdafe847164fdaab069e97";
+    private static final String LANG = "en-vi";
+    String dataParse = "..Can't translate..";
 
     //touchVar
     private int clickCount = 0;
@@ -413,8 +430,39 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void showTranslateDialog(String translateText) {
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + LANG, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (responseBody != null) {
+
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(new String(responseBody));
+                        dataParse = jsonObject.get("text").toString();
+                        Log.d("ZZZZZZ", dataParse);
+                        lbTranslateTarget.setText(dataParse.substring(2, dataParse.length() - 2));
+                        //txtResponse.setText(dataParse.substring(2, dataParse.length() - 2));
+                    } catch (JSONException e) {
+                        System.out.println("ERRORRRR");
+                        e.printStackTrace();
+                    }
+
+                }
+                //view.setEnabled(true);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                //view.setEnabled(true);
+            }
+        });
+
+
         hideFloatingWidget();
         txtTranslateSource.setText(translateText);
+
         ValueAnimator va = ValueAnimator.ofFloat(0, 100);
         translateView.setVisibility(View.VISIBLE);
         int mDuration = 300;
