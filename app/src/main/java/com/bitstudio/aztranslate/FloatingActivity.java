@@ -85,7 +85,6 @@ public class FloatingActivity extends AppCompatActivity {
     //screenshot
     private static final String TAG = FloatingActivity.class.getName();
     private static final int REQUEST_CODE = 100;
-    private static final String SCREENCAP_NAME = "screencap";
     private static final int VIRTUAL_DISPLAY_FLAGS = DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY | DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC;
     private static MediaProjection sMediaProjection;
     private boolean canScreenshot = true;
@@ -601,9 +600,9 @@ public class FloatingActivity extends AppCompatActivity {
         mWidth = size.x;
         mHeight = size.y;
 
-        // start capture reader
+        // start capture readerit
         mImageReader = ImageReader.newInstance(mWidth, mHeight, PixelFormat.RGBA_8888, 2);
-        mVirtualDisplay = sMediaProjection.createVirtualDisplay(SCREENCAP_NAME, mWidth, mHeight, mDensity, VIRTUAL_DISPLAY_FLAGS, mImageReader.getSurface(), null, mHandler);
+        mVirtualDisplay = sMediaProjection.createVirtualDisplay("Screenshot", mWidth, mHeight, mDensity, VIRTUAL_DISPLAY_FLAGS, mImageReader.getSurface(), null, mHandler);
         mImageReader.setOnImageAvailableListener(new ImageAvailableListener(), mHandler);
     }
 
