@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.view.View;
 
+import com.bitstudio.aztranslate.MainActivity;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 /**
@@ -17,10 +18,9 @@ public class OcrManager {
 
 
     TessBaseAPI baseAPI = null;
-    public static String CACHE = Environment.getExternalStorageDirectory().toString()+"/aztrans/";
     public void initAPI() {
         baseAPI = new TessBaseAPI();
-        String dataPath = this.CACHE;
+        String dataPath = MainActivity.CACHE;
         baseAPI.init(dataPath, "vie");
     }
 
