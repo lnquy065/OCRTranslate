@@ -1,0 +1,457 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+MERGED from [com.rmtheis:tess-two:6.3.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\tess-two-6.3.0.aar\dcf4147693de3e606b1dcaf7053b754e\AndroidManifest.xml:17:1-26:12
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\9fa177f40691f8b00acf132d0ef28f20\AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.firebase:firebase-database:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-12.0.1.aar\70facdcc0b541658be6443a2fd578472\AndroidManifest.xml:2:1-8:12
+MERGED from [:boommenu] C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\boommenu\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-16:12
+MERGED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\bbc5eb7be5ba5b3c8d90742cef037e06\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:17:1-54:12
+MERGED from [com.google.firebase:firebase-database-connection:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-12.0.1.aar\d052edcaff9272454c556eb11e21f848\AndroidManifest.xml:2:1-8:12
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:17:1-59:12
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:2:1-15:12
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\ad5094e584c4a3c692ffd94c6b450bcf\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.firebase:firebase-database-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-license-12.0.1.aar\d7167c3a2ee64c4fb7a9b83b149246dc\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:17:1-31:12
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\44bd3b27ba995a12d94564068d69be73\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-database-connection-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-license-12.0.1.aar\03996677955fc3447f61c14931b2f0f9\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\f7c2260b12d03dcfcc4bbe2339d51937\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\cd19f9c21e3350fc98277cc2bd5a310c\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\65a242f703e75c06e559651202e36f7b\AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:17:1-30:12
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\e95cf7680f6534ade0ba8aae6001b29a\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\f86f429c6cb8b8862d2d9eb085bcc95b\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+	package
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:3:5-40
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:5:5-81
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:5:22-78
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:6:5-78
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:6:22-75
+application
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:8:5-36:19
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\9fa177f40691f8b00acf132d0ef28f20\AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\9fa177f40691f8b00acf132d0ef28f20\AndroidManifest.xml:5:5-20
+MERGED from [:boommenu] C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\boommenu\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-14:19
+MERGED from [:boommenu] C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\boommenu\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-14:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\bbc5eb7be5ba5b3c8d90742cef037e06\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\bbc5eb7be5ba5b3c8d90742cef037e06\AndroidManifest.xml:9:5-20
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:27:5-52:19
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:27:5-52:19
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:27:5-38:19
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:27:5-38:19
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:34:5-57:19
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:34:5-57:19
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:7:5-13:19
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:7:5-13:19
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\ad5094e584c4a3c692ffd94c6b450bcf\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\ad5094e584c4a3c692ffd94c6b450bcf\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.firebase:firebase-database-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-license-12.0.1.aar\d7167c3a2ee64c4fb7a9b83b149246dc\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-database-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-license-12.0.1.aar\d7167c3a2ee64c4fb7a9b83b149246dc\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:25:5-29:19
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\44bd3b27ba995a12d94564068d69be73\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\44bd3b27ba995a12d94564068d69be73\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-database-connection-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-license-12.0.1.aar\03996677955fc3447f61c14931b2f0f9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-database-connection-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-license-12.0.1.aar\03996677955fc3447f61c14931b2f0f9\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\f7c2260b12d03dcfcc4bbe2339d51937\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\f7c2260b12d03dcfcc4bbe2339d51937\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\cd19f9c21e3350fc98277cc2bd5a310c\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\cd19f9c21e3350fc98277cc2bd5a310c\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\65a242f703e75c06e559651202e36f7b\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\65a242f703e75c06e559651202e36f7b\AndroidManifest.xml:22:5-20
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\e95cf7680f6534ade0ba8aae6001b29a\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\e95cf7680f6534ade0ba8aae6001b29a\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\f86f429c6cb8b8862d2d9eb085bcc95b\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\f86f429c6cb8b8862d2d9eb085bcc95b\AndroidManifest.xml:22:5-20
+	android:supportsRtl
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:14:9-40
+activity#com.bitstudio.aztranslate.MainActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:15:9-50
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:15:19-47
+activity#com.bitstudio.aztranslate.FloatingActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:16:9-19:53
+	android:label
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:18:13-45
+	android:theme
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:19:13-50
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:17:13-45
+activity#com.bitstudio.aztranslate.SliderActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:20:9-26:20
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:20:19-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:21:13-25:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:24:17-77
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:24:27-74
+activity#com.bitstudio.aztranslate.LanguageSettingActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:27:9-61
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:27:19-58
+activity#com.bitstudio.aztranslate.ManageLanguageActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:28:9-31:47
+	android:label
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:30:13-67
+	android:theme
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:31:13-44
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:29:13-51
+activity#com.bitstudio.aztranslate.SetRTActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:32:9-51
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:32:19-48
+activity#com.bitstudio.aztranslate.SystemSettingActivity
+ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:33:9-35:60
+	android:theme
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:35:13-48
+	android:name
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml:34:13-50
+uses-sdk
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+MERGED from [com.rmtheis:tess-two:6.3.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\tess-two-6.3.0.aar\dcf4147693de3e606b1dcaf7053b754e\AndroidManifest.xml:22:5-24:41
+MERGED from [com.rmtheis:tess-two:6.3.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\tess-two-6.3.0.aar\dcf4147693de3e606b1dcaf7053b754e\AndroidManifest.xml:22:5-24:41
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\9fa177f40691f8b00acf132d0ef28f20\AndroidManifest.xml:4:5-43
+MERGED from [com.google.firebase:firebase-core:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-core-12.0.1.aar\9fa177f40691f8b00acf132d0ef28f20\AndroidManifest.xml:4:5-43
+MERGED from [com.google.firebase:firebase-database:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-12.0.1.aar\70facdcc0b541658be6443a2fd578472\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-database:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-12.0.1.aar\70facdcc0b541658be6443a2fd578472\AndroidManifest.xml:6:5-44
+MERGED from [:boommenu] C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\boommenu\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:boommenu] C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\boommenu\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\bbc5eb7be5ba5b3c8d90742cef037e06\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\bbc5eb7be5ba5b3c8d90742cef037e06\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-database-connection:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-12.0.1.aar\d052edcaff9272454c556eb11e21f848\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-database-connection:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-12.0.1.aar\d052edcaff9272454c556eb11e21f848\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\ad5094e584c4a3c692ffd94c6b450bcf\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-12.0.1.aar\ad5094e584c4a3c692ffd94c6b450bcf\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-database-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-license-12.0.1.aar\d7167c3a2ee64c4fb7a9b83b149246dc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-database-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-license-12.0.1.aar\d7167c3a2ee64c4fb7a9b83b149246dc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:21:5-23:58
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\44bd3b27ba995a12d94564068d69be73\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-license-12.0.1.aar\44bd3b27ba995a12d94564068d69be73\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-database-connection-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-license-12.0.1.aar\03996677955fc3447f61c14931b2f0f9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-database-connection-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-license-12.0.1.aar\03996677955fc3447f61c14931b2f0f9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\f7c2260b12d03dcfcc4bbe2339d51937\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-license-12.0.1.aar\f7c2260b12d03dcfcc4bbe2339d51937\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\cd19f9c21e3350fc98277cc2bd5a310c\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-license-12.0.1.aar\cd19f9c21e3350fc98277cc2bd5a310c\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\65a242f703e75c06e559651202e36f7b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-license-12.0.1.aar\65a242f703e75c06e559651202e36f7b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\e95cf7680f6534ade0ba8aae6001b29a\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-analytics-impl-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-license-12.0.1.aar\e95cf7680f6534ade0ba8aae6001b29a\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\f86f429c6cb8b8862d2d9eb085bcc95b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-license:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-license-12.0.1.aar\f86f429c6cb8b8862d2d9eb085bcc95b\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Quoc Huy\AndroidStudioProjects\OCRTranslate-master\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6aae564eda628429ec0529e54e318c00\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\049870895bc80a11c5c7883ab427ffe3\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\1facbfb766da3076b70c3ea2f6051bb3\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\efbec6940c893bdec9521528c58bb8a8\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\3c306f3e5f02d1c9e39636945e6942ac\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\66bdb1d3dbf2e7eba26b5938512abc06\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\087dfae17539c0347b368e2c4d05c042\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1225821320c14da9e6140143b750e5fd\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\30ed632c5925e259e2f4072187a704db\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\8df01f37c56577253a91230a7a2db122\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\815a6cb27326d7f61bad4a3ae41a4598\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\6229e72061824a182fa469b05f7ca597\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.1.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\f019177fe7e0c6f000d3b5e0f3fa6d69\AndroidManifest.xml:27:13-51
+uses-permission#android.permission.INTERNET
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:23:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:22:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:24:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:25:5-68
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:25:22-65
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:28:9-32:20
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:28:9-32:20
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:28:9-32:20
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:30:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:29:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:33:9-41:20
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:35:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:36:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:37:13-69
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:34:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:38:13-40:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:39:17-79
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:39:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:43:9-46:40
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:34:9-37:40
+MERGED from [com.google.firebase:firebase-analytics-impl:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-12.0.1.aar\27dfd410cacddca836d134789e73e7b2\AndroidManifest.xml:34:9-37:40
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:45:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:44:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:47:9-51:72
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:49:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:50:13-37
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:51:13-69
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-analytics-12.0.1.aar\54c11e4c21b9bd2087997f895feb23ba\AndroidManifest.xml:48:13-87
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:26:22-79
+permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:28:5-30:47
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:30:9-44
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:29:9-63
+permission#com.bitstudio.aztranslate.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:28:5-30:47
+	android:protectionLevel
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:30:9-44
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:29:9-63
+uses-permission#${applicationId}.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:32:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:32:22-76
+uses-permission#com.bitstudio.aztranslate.permission.C2D_MESSAGE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:32:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:32:22-76
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:35:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:38:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:36:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE+category:name:${applicationId}
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:39:13-43:29
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE+category:name:com.bitstudio.aztranslate
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:39:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:40:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:40:25-78
+category#${applicationId}
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:42:17-61
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:42:27-58
+category#com.bitstudio.aztranslate
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:42:17-61
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:42:27-58
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:50:9-56:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:52:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:51:13-77
+intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:53:13-55:29
+	android:priority
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:53:28-51
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:54:17-80
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-iid-12.0.1.aar\474ea3a8fa73b14098d4ebcfa8b190b6\AndroidManifest.xml:54:25-77
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:8:9-12:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:10:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:11:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:12:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\firebase-common-12.0.1.aar\0958fa8520b12a783c932b125465cc42\AndroidManifest.xml:9:13-77
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:12.0.1] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\play-services-basement-12.0.1.aar\750ba359eb55af672e60ade8d12d2a03\AndroidManifest.xml:24:13-58
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Quoc Huy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ffbbb74913322ef76a5b43cc20cddf35\AndroidManifest.xml:26:13-58
