@@ -113,4 +113,10 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, DB_KEY_FAVOURITE + " = ?", new String[] {"0"}, null, null, DB_KEY_HISTORY_TIME + " DESC");
     }
 
+    public Cursor queryAllFavouriteTranslationHistory()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, DB_KEY_FAVOURITE + " = ?", new String[] {"1"}, null, null, DB_KEY_HISTORY_TIME + " DESC");
+    }
+
 }
