@@ -2,7 +2,6 @@ package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,17 +18,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bitstudio.aztranslate.Adapter.CustomTranslationHistoryAdapter;
 import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
 import com.bitstudio.aztranslate.Adapter.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.Model.TranslationHistory;
-
-import java.util.ArrayList;
 
 import com.bitstudio.aztranslate.R;
 
@@ -53,7 +48,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     private TranslationHistoryAdapter translationHistoryAdapter;
     private View onView;
     // Taking control of the History list view
-    private RecyclerView listViewTranslationHistory;
+    private RecyclerView translationHistoryRecyclerView;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -224,15 +219,15 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
     public void mappingViewComponentsByID()
     {
-        listViewTranslationHistory = getActivity().findViewById(R.id.listViewHistory);
+        translationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
 
-        listViewTranslationHistory.setLayoutManager(mLayoutmanager);
-        listViewTranslationHistory.setItemAnimator(new DefaultItemAnimator());
-        listViewTranslationHistory.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        translationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
+        translationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        translationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         translationHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.translationHistories);
-        listViewTranslationHistory.setAdapter(translationHistoryAdapter);
+        translationHistoryRecyclerView.setAdapter(translationHistoryAdapter);
 
         // adding item touch helper
         // only ItemTouchHelper.LEFT added to detect Right to Left swipe
@@ -240,6 +235,6 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listViewTranslationHistory);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(translationHistoryRecyclerView);
     }
 }
