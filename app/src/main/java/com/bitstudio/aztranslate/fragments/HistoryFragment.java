@@ -154,7 +154,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position)
     {
-        if (viewHolder instanceof  TranslationHistoryAdapter.MyViewHolder && direction == ItemTouchHelper.LEFT)
+        if (viewHolder instanceof  TranslationHistoryAdapter.MyViewHolder)
         {
             // get the removed item name to display it in snack bar
             String screenshotFileName = MainActivity.translationHistories.get(viewHolder.getAdapterPosition()).getScreenshotFileName();
@@ -162,25 +162,48 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             // make a backup version of removed item for undo purpose
             final TranslationHistory deletedTranslationHistory = MainActivity.translationHistories.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
-
-            // remove the translation history from recycler view
-            translationHistoryAdapter.removeTranslationHistory(deletedIndex);
-            translationHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
-            // showing snack bar with undo option
-            Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Histories", Snackbar.LENGTH_LONG);
-            snackbarUndo.setAction("UNDO", new View.OnClickListener()
+            if (direction == ItemTouchHelper.LEFT)
             {
-
-                @Override
-                public void onClick(View view)
+                // remove the translation history from recycler view
+                translationHistoryAdapter.removeTranslationHistory(deletedIndex);
+                translationHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+                // showing snack bar with undo option
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Histories", Snackbar.LENGTH_LONG);
+                snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
-                    // undo is selected, let's restore the deleted item
-                    translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
-                    translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
-                }
-            });
-            snackbarUndo.setActionTextColor(Color.GREEN);
-            snackbarUndo.show();
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        // undo is selected, let's restore the deleted item
+                        translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
+                        translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                    }
+                });
+                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.show();
+            }
+            else if (direction == ItemTouchHelper.RIGHT)
+            {
+                // remove the translation history from recycler view
+                translationHistoryAdapter.removeTranslationHistory(deletedIndex);
+                translationHistoryDatabaseHelper.makeTranslationHisAsFavourite(screenshotPath);
+                // showing snack bar with undo option
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was moved to Favourite Histories", Snackbar.LENGTH_LONG);
+                snackbarUndo.setAction("UNDO", new View.OnClickListener()
+                {
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        // undo is selected, let's restore the deleted item
+                        translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
+                        translationHistoryDatabaseHelper.unmakeTranslationHisAsFavourite(screenshotPath);
+                    }
+                });
+                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.show();
+            }
         }
     }
 
