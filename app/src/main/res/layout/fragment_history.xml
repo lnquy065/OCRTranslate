@@ -19,13 +19,13 @@
             android:text="Translation History"
             android:textSize="20dp" />
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewHistory"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:choiceMode="singleChoice"
             android:layout_below="@+id/title">
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
         <Button
             android:id="@+id/buttonModifyHistory"
             android:layout_width="50dp"
