@@ -3,9 +3,11 @@ package com.bitstudio.aztranslate.fragments;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -13,6 +15,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -142,9 +146,42 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position)
     {
+        if (viewHolder instanceof  TranslationHistoryAdapter.MyViewHolder && direction == ItemTouchHelper.LEFT)
+        {
+            // get the removed item name to display it in snack bar
+            String screenshotFileName = MainActivity.translationHistories.get(viewHolder.getAdapterPosition()).getScreenshotFileName();
+            String screenshotPath = MainActivity.translationHistories.get(viewHolder.getAdapterPosition()).getScreenshotPath();
+            // make a backup version of removed item for undo purpose
+            final TranslationHistory deletedTranslationHistory = MainActivity.translationHistories.get(viewHolder.getAdapterPosition());
+            final int deletedIndex = viewHolder.getAdapterPosition();
 
+            // remove the translation history from recycler view
+            translationHistoryAdapter.removeTranslationHistory(deletedIndex);
+            translationHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+            // showing snack bar with undo option
+            Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Histories", Snackbar.LENGTH_LONG);
+            snackbarUndo.setAction("UNDO", new View.OnClickListener()
+            {
+
+                @Override
+                public void onClick(View view)
+                {
+                    // undo is selected, let's restore the deleted item
+                    translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
+                    translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                }
+            });
+            snackbarUndo.setActionTextColor(Color.GREEN);
+            snackbarUndo.show();
+        }
     }
 
     /**
@@ -179,7 +216,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
         // if you want both Right -> Left and Left -> Right
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
 
-        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT, this);
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listViewTranslationHistory);
     }
 }
