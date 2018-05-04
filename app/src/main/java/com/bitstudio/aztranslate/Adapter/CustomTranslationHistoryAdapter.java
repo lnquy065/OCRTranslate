@@ -49,7 +49,7 @@ public class CustomTranslationHistoryAdapter extends ArrayAdapter<TranslationHis
         {
             convertView = LayoutInflater.from(context).inflate(R.layout.history_listview, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.imgViewScreenshot = convertView.findViewById(R.id.imgViewScreenshot);
+            viewHolder.imgViewScreenshot = convertView.findViewById(R.id.imageViewScreenshot);
             viewHolder.textViewTranslationTime = convertView.findViewById(R.id.textViewTranslationTime);
             viewHolder.textViewTranslationTranslationLanguages = convertView.findViewById(R.id.textViewTranslationLanguages);
 
