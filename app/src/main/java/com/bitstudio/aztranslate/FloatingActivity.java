@@ -74,7 +74,7 @@ public class FloatingActivity extends AppCompatActivity {
     private WindowManager.LayoutParams floatingLayout, translateLayout;
 
     private ImageView btnFloatingWidgetClose;
-    private ImageView imvFloatingWidgetIcon;
+    private GifView imvFloatingWidgetIcon;
 
     //touchVar
     private int clickCount = 0;
@@ -247,7 +247,8 @@ public class FloatingActivity extends AppCompatActivity {
 
         btnFloatingWidgetClose = floatingView.findViewById(R.id.btnFloatingWidgetClose);
         imvFloatingWidgetIcon = floatingView.findViewById(R.id.imvFloatingWidgetIcon);
-
+        imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
+        imvFloatingWidgetIcon.play();
         imvFloatingWidgetIcon.startAnimation(anim_btnfloating_appear);
     }
 
@@ -532,11 +533,14 @@ public class FloatingActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
                 mainView.setBackgroundResource(R.color.transparent);
             }
         });
         startProjection();
         imvFloatingWidgetIcon.startAnimation(anim_btnfloating_touch);
+        imvFloatingWidgetIcon.setGifResource(R.drawable.scanning);
+        imvFloatingWidgetIcon.play();
     }
 
     @Override
@@ -573,7 +577,8 @@ public class FloatingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        if (translateView.getVisibility() == View.VISIBLE) hideTranslateDialog();
+        else moveTaskToBack(true);
     }
 
     //******Projection's methods
@@ -654,6 +659,8 @@ public class FloatingActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             mainView.setBackgroundDrawable(new BitmapDrawable(bitmapReco));
+                            imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
+                            imvFloatingWidgetIcon.play();
                         }
                     });
 
