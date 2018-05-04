@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <bitmap android:src="@drawable/toggle_setting_enable"
+        android:gravity="center_vertical|left" />
+    </item>
+
+    <item>
+        <bitmap android:src="@drawable/toggle_setting_disable"
+            android:gravity="center_vertical|left"/>
+    </item>
+</selector>
