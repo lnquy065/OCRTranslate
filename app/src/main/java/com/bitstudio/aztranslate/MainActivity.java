@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements
     // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
     public TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
+    public static ArrayList<TranslationHistory> favouriteHistories = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
