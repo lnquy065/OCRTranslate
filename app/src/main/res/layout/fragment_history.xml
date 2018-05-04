@@ -27,7 +27,6 @@
             android:gravity="center_vertical|center_horizontal"
             android:text="X"
             android:textColor="@color/colorPrimaryDark" />
-        android:textColor="#fff" />
     </RelativeLayout>
 
 </FrameLayout>
