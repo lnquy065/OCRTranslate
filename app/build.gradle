@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     compile 'com.sackcentury:shinebutton:0.2.0'
+    compile 'com.github.Cutta:GifView:1.1'
 }

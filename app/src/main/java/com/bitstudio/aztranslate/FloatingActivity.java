@@ -25,6 +25,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -46,6 +47,7 @@ import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.Model.TranslationHistory;
 import com.bitstudio.aztranslate.OCRLib.HOCR;
 import com.bitstudio.aztranslate.OCRLib.OcrManager;
+import com.cunoraz.gifview.library.GifView;
 import com.loopj.android.http.RequestHandle;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
@@ -109,6 +111,8 @@ public class FloatingActivity extends AppCompatActivity {
     private Animation anim_btnfloating_appear;
     private Animation anim_btnfloating_touch;
     private Animation anim_btnfloating_disappear;
+    private Animation anim_general_fadeout;
+    private Animation anim_general_fadein;
 
     //translate form
     private EditText txtTranslateSource;
@@ -118,6 +122,8 @@ public class FloatingActivity extends AppCompatActivity {
     // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
     private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     private Animation anim_btn_translate_favorite;
+    private GifView imTranslateLoading;
+
 
     @Override
     protected void onStart() {
@@ -207,11 +213,13 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void loadAnimations() {
+        anim_general_fadeout = AnimationUtils.loadAnimation(this, R.anim.anim_general_fadeout);
+        anim_general_fadein = AnimationUtils.loadAnimation(this, R.anim.anim_general_fadein);
         anim_btnfloating_appear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_appear);
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
         anim_btnfloating_disappear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
         anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
-//        });
+
 
        anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
            @Override
@@ -232,6 +240,7 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void addControls() {
+        imTranslateLoading = translateView.findViewById(R.id.imTranslateLoading);
         txtTranslateSource = translateView.findViewById(R.id.txtTranslateSource);
         lbTranslateTarget = translateView.findViewById(R.id.lbTranslateTarget);
         imTranslateSource = translateView.findViewById(R.id.imTranslateSource);
@@ -244,6 +253,23 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
+        translateView.setOnTouchListener(new View.OnTouchListener() {
+            private GestureDetector gestureDetector = new GestureDetector(FloatingActivity.this, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onDoubleTap(MotionEvent e) {
+                    hideTranslateDialog();
+                    return super.onDoubleTap(e);
+                }
+            });
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                gestureDetector.onTouchEvent(motionEvent);
+                return false;
+            }
+        });
+
+
         btnTranslateFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -358,7 +384,7 @@ public class FloatingActivity extends AppCompatActivity {
                             showTranslateDialog(finalText);
                             finalText = "";
                             translateMap.clear();
-                        } else {
+                        } else if (floatingView.getVisibility() == View.GONE) {
                             hideTranslateDialog();
                         }
                         break;
@@ -425,37 +451,10 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void showTranslateDialog(String translateText) {
-        AsyncHttpClient client = new AsyncHttpClient();
-        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + LANG, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (responseBody != null) {
 
-                    JSONObject jsonObject = null;
-                    try {
-                        jsonObject = new JSONObject(new String(responseBody));
-                        String dataParse = jsonObject.get("text").toString();
-                        Log.d("ZZZZZZ", dataParse);
-                        lbTranslateTarget.setText(dataParse.substring(2, dataParse.length() - 2));
-                        //txtResponse.setText(dataParse.substring(2, dataParse.length() - 2));
-                    } catch (JSONException e) {
-                        System.out.println("ERRORRRR");
-                        e.printStackTrace();
-                    }
+        translateYandexAPI(translateText);
 
-                }
-                //view.setEnabled(true);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                //view.setEnabled(true);
-            }
-        });
-        hideFloatingWidget();
-        txtTranslateSource.setText(translateText);
         ValueAnimator va = ValueAnimator.ofFloat(0, 100);
-        translateView.setVisibility(View.VISIBLE);
         int mDuration = 300;
         va.setDuration(mDuration);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -468,7 +467,54 @@ public class FloatingActivity extends AppCompatActivity {
                 mWindowManager.updateViewLayout(translateView, translateLayout);
             }
         });
+
+        hideFloatingWidget();
+        txtTranslateSource.setText(translateText);
+        translateView.setVisibility(View.VISIBLE);
+
         va.start();
+    }
+
+
+    public void translateYandexAPI(String translateText) {
+        imTranslateLoading.setGifResource(R.drawable.translate_loading);
+        imTranslateLoading.setVisibility(View.VISIBLE);
+        imTranslateLoading.setAlpha(1f);
+        imTranslateLoading.play();
+        lbTranslateTarget.setVisibility(View.GONE);
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + LANG, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (responseBody != null) {
+
+                    JSONObject jsonObject = null;
+                    try {
+                        imTranslateLoading.animate().alpha(0).setDuration(100).withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                imTranslateLoading.setVisibility(View.GONE);
+                            }
+                        });
+
+                        lbTranslateTarget.startAnimation(anim_general_fadein);
+                        lbTranslateTarget.setVisibility(View.VISIBLE);
+                        jsonObject = new JSONObject(new String(responseBody));
+                        String dataParse = jsonObject.get("text").toString();
+                        lbTranslateTarget.setText(dataParse.substring(2, dataParse.length() - 2));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            }
+        });
+
     }
 
     public static int convertDpToPixel(float dp, Context context) {
@@ -698,4 +744,8 @@ public class FloatingActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+
 }

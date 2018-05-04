@@ -140,6 +140,7 @@
     <orderEntry type="library" name="com.android.support:animated-vector-drawable-26.1.0" level="project" />
     <orderEntry type="library" name="com.loopj.android:android-async-http:1.4.9@jar" level="project" />
     <orderEntry type="library" name="com.rmtheis:tess-two-6.3.0" level="project" />
+    <orderEntry type="library" name="com.github.Cutta:GifView-1.1" level="project" />
     <orderEntry type="library" name="com.android.support:design-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:transition-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:cardview-v7-26.1.0" level="project" />
