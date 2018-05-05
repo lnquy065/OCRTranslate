@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bitstudio.aztranslate">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".FloatingActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppNoneDisplay" />
+        <activity android:name=".SliderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LanguageSettingActivity" />
+        <activity
+            android:name=".ManageLanguageActivity"
+            android:label="@string/title_activity_manage_language"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SetRTActivity" />
+        <activity
+            android:name=".SystemSettingActivity"
+            android:theme="@style/SettingTheme"></activity>
+    </application>
+
+</manifest>
