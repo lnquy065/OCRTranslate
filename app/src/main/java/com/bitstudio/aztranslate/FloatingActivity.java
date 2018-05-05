@@ -135,7 +135,7 @@ public class FloatingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+      //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_floating);
 
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
@@ -654,7 +654,8 @@ public class FloatingActivity extends AppCompatActivity {
                     // save screenshot information to local database
                     translationHistoryDatabaseHelper.insertNewTranslationHis(screenshotPath,xmlPath, String.valueOf(unixTime), "English", "Vietnamese");
                     hOcr.processHTML(recognizedText);
-                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight);
+                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight - Setting.STATUSBAR_HEIGHT);
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
