@@ -175,7 +175,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                         translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
                     }
                 });
-                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.setActionTextColor(Color.RED);
                 snackbarUndo.show();
             }
             else if (direction == ItemTouchHelper.RIGHT)
