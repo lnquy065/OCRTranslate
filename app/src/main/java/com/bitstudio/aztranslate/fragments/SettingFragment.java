@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate;
+package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +12,24 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bitstudio.aztranslate.Adapter.SettingAdapter;
+import com.bitstudio.aztranslate.LanguageSettingActivity;
 import com.bitstudio.aztranslate.Model.SettingItem;
+import com.bitstudio.aztranslate.R;
+import com.bitstudio.aztranslate.SetLanguageActivity;
 
 import java.util.ArrayList;
 
-public class SettingFragment extends Fragment {
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link SettingFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link SettingFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SettingFragment extends Fragment
+{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,6 +45,14 @@ public class SettingFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment SettingFragment.
+     */
     // TODO: Rename and change types and number of parameters
     public static SettingFragment newInstance(String param1, String param2) {
         SettingFragment fragment = new SettingFragment();
@@ -59,33 +80,22 @@ public class SettingFragment extends Fragment {
         ListView lvSetting=rootView.findViewById(R.id.idListView);
         ArrayList<SettingItem> arrayList=new ArrayList<>();
         SettingAdapter adapter=new SettingAdapter(getContext(),R.layout.setting_item_layout,arrayList);
-        arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language","Install or Remove Language"));
-        arrayList.add(new SettingItem(R.drawable.ic_remove_red_eye_black_24dp,"Recognize/Translate",
-                "Set language to regconize or translate"));
-        arrayList.add(new SettingItem(R.drawable.ic_settings_black_24dp,"Setting",
-                "Notification, sound, auto update "
-                ));
+        arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language"));
+        arrayList.add(new SettingItem(R.drawable.ic_remove_red_eye_black_24dp,"Language Recognize"));
+        arrayList.add(new SettingItem(R.drawable.ic_create_black_24dp,"Language Translate"));
         lvSetting.setAdapter(adapter);
         lvSetting.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position)
+                if(position!=0)
                 {
-                    case 0:{
-                        Intent intent=new Intent(getContext(),ManageLanguageActivity.class);
-                        startActivity(intent);
-                    }break;
-
-                    case 1:{
-                        Intent intent=new Intent(getContext(),SetRTActivity.class);
-                        startActivity(intent);
-                    }break;
-
-                    case 2:{
-                        Intent intent=new Intent(getContext(),SystemSettingActivity.class);
-                        startActivity(intent);
-                    }break;
+                    Intent intent=new Intent(getContext(),SetLanguageActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent=new Intent(getContext(),LanguageSettingActivity.class);
+                    startActivity(intent);
                 }
+
             }
         });
         return rootView;
@@ -115,7 +125,16 @@ public class SettingFragment extends Fragment {
         mListener = null;
     }
 
-
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

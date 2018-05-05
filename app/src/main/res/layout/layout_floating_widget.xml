@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="65dp"
@@ -14,9 +14,7 @@
         android:layout_marginLeft="40dp"
         android:elevation="10dp"
         android:src="@android:drawable/btn_dialog"
-        tools:ignore="ContentDescription"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imvFloatingWidgetIcon"
@@ -25,8 +23,6 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/float_widget"
         android:translationZ="5dp"
-        tools:ignore="ContentDescription"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:ignore="ContentDescription" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

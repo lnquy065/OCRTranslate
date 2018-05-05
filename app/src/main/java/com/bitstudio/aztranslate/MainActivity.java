@@ -4,14 +4,13 @@ package com.bitstudio.aztranslate;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +18,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.io.File;
 
@@ -34,10 +32,9 @@ public class MainActivity extends AppCompatActivity implements
     public static String CACHE = Environment.getExternalStorageDirectory().toString()+"/aztrans/";
 
     //Controls
-    private ImageButton btnSetting, btnBook, btnFavorite;
+    private ImageButton btnSetting;
     private ImageButton btnHistory;
     private ImageButton btnFloat;
-    private ImageButton btnTabList[] = new ImageButton[4];
     private FrameLayout frmMainFrame;
 
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
@@ -77,42 +74,17 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addEvents() {
-        btnFavorite.setOnClickListener(v-> {
-
-        });
         btnSetting.setOnClickListener(v->{
             btnSetting.startAnimation(anim_bounce);
             openFragment( new SettingFragment());
             btnSetting.setImageResource(R.drawable.toggle_setting_enable);
-
             btnHistory.setImageResource(R.drawable.toggle_history_disable);
-            btnFavorite.setImageResource(R.drawable.toggle_favorite_disable);
-            btnBook.setImageResource(R.drawable.toggle_book_disable);
         });
         btnHistory.setOnClickListener(v->{
             btnHistory.startAnimation(anim_bounce);
             openFragment( new HistoryFragment());
+            btnSetting.setImageResource(R.drawable.toggle_setting_disable);
             btnHistory.setImageResource(R.drawable.toggle_history_enable);
-
-            btnSetting.setImageResource(R.drawable.toggle_setting_disable);
-            btnFavorite.setImageResource(R.drawable.toggle_favorite_disable);
-            btnBook.setImageResource(R.drawable.toggle_book_disable);
-        });
-        btnBook.setOnClickListener(v-> {
-            btnBook.startAnimation(anim_bounce);
-            btnBook.setImageResource(R.drawable.toggle_book_enable);
-
-            btnSetting.setImageResource(R.drawable.toggle_setting_disable);
-            btnFavorite.setImageResource(R.drawable.toggle_favorite_disable);
-            btnHistory.setImageResource(R.drawable.toggle_history_disable);
-        });
-        btnFavorite.setOnClickListener(v-> {
-            btnFavorite.startAnimation(anim_bounce);
-            btnFavorite.setImageResource(R.drawable.toggle_favorite_enable);
-
-            btnSetting.setImageResource(R.drawable.toggle_setting_disable);
-            btnHistory.setImageResource(R.drawable.toggle_history_disable);
-            btnBook.setImageResource(R.drawable.toggle_book_disable);
         });
 
 
@@ -131,12 +103,11 @@ public class MainActivity extends AppCompatActivity implements
         btnSetting = findViewById(R.id.btnSetting);
         btnHistory = findViewById(R.id.btnHistory);
         btnFloat = findViewById(R.id.btnFloat);
-        btnBook = findViewById(R.id.btnBook);
-        btnFavorite = findViewById(R.id.btnFavorite);
         frmMainFrame = findViewById(R.id.frmMainFrame);
         gestureDetector = new GestureDetector(this, new BtnStartModeGesture());
 
     }
+
 
     private void loadAnimations() {
         anim_btnscan_changemode_fadein = AnimationUtils.loadAnimation(this, R.anim.anim_btnscan_changemode_fadein);
