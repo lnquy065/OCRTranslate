@@ -60,7 +60,7 @@ public class RecyclerTranslationHistoryTouchHelper extends ItemTouchHelper.Simpl
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive)
     {
         if (dX > 0) { //left
-            
+
         } else { //right
 
         }
