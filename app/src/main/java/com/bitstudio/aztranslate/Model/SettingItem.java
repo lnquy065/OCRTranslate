@@ -7,10 +7,20 @@ package com.bitstudio.aztranslate.Model;
 public class SettingItem {
     private int iconSetting;
     private String nameSetting;
+    private String subTitle;
 
-    public SettingItem(int iconSetting, String nameSetting) {
+    public SettingItem(int iconSetting, String nameSetting,String subTitle) {
         this.iconSetting = iconSetting;
         this.nameSetting = nameSetting;
+        this.subTitle=subTitle;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 
     public int getIconSetting() {
