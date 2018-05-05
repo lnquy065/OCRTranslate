@@ -1,11 +1,14 @@
 package com.bitstudio.aztranslate;
 
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +21,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bitstudio.aztranslate.fragments.FavoritesFragment;
 import com.bitstudio.aztranslate.fragments.HistoryFragment;
@@ -25,6 +30,8 @@ import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.Model.TranslationHistory;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements
     private ImageButton btnFloat;
     private ImageButton btnTabList[] = new ImageButton[4];
     private FrameLayout frmMainFrame;
+    private ConstraintLayout lbTabTitleBackground;
+    private TextView lbTabTitle;
+    private ImageView imTabTitle;
 
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
 
@@ -58,10 +68,13 @@ public class MainActivity extends AppCompatActivity implements
     private Animation anim_btnscan_changemode_fadein;
     private Animation anim_btnscan_changemode_fadeout;
     private Animation anim_bounce, anim_zoomout;
+    private Animation anim_general_fadeout, anim_general_fadein;
 
     // translationHistoryDatabaseHelper takes responsibility for creating and managing our local database
     public TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
+    private Animation anim_tabtile_rotate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements
             btnSetting.startAnimation(anim_bounce);
             openFragment( new SettingFragment());
             btnSetting.setImageResource(R.drawable.toggle_setting_enable);
-
+            changeTabTitle("Setting", Color.WHITE, Color.BLUE, R.drawable.toggle_setting_white);
             btnHistory.setImageResource(R.drawable.toggle_history_disable);
             btnFavorite.setImageResource(R.drawable.toggle_favorite_disable);
             btnBook.setImageResource(R.drawable.toggle_book_disable);
@@ -104,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements
             btnHistory.startAnimation(anim_bounce);
             openFragment( new HistoryFragment());
             btnHistory.setImageResource(R.drawable.toggle_history_enable);
-
+            changeTabTitle("History", Color.WHITE, Color.CYAN, R.drawable.toggle_history_white);
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
             btnFavorite.setImageResource(R.drawable.toggle_favorite_disable);
             btnBook.setImageResource(R.drawable.toggle_book_disable);
@@ -113,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements
             btnBook.startAnimation(anim_bounce);
 
             btnBook.setImageResource(R.drawable.toggle_book_enable);
-
+            changeTabTitle("Bookmark", Color.WHITE, Color.GRAY, R.drawable.toggle_book_white);
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
             btnFavorite.setImageResource(R.drawable.toggle_favorite_disable);
             btnHistory.setImageResource(R.drawable.toggle_history_disable);
@@ -122,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements
             btnFavorite.startAnimation(anim_bounce);
             openFragment(new FavoritesFragment());
             btnFavorite.setImageResource(R.drawable.toggle_favorite_enable);
-
+            changeTabTitle("Favorites", Color.WHITE, Color.RED, R.drawable.toggle_favorite_white);
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
             btnHistory.setImageResource(R.drawable.toggle_history_disable);
             btnBook.setImageResource(R.drawable.toggle_book_disable);
@@ -141,6 +154,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addControls() {
+        imTabTitle = findViewById(R.id.imTabTitle);
+        lbTabTitle = findViewById(R.id.lbTabTitle);
+        lbTabTitleBackground = findViewById(R.id.lbTabTitleBackground);
         btnSetting = findViewById(R.id.btnSetting);
         btnHistory = findViewById(R.id.btnHistory);
         btnFloat = findViewById(R.id.btnFloat);
@@ -156,10 +172,40 @@ public class MainActivity extends AppCompatActivity implements
         anim_btnscan_changemode_fadeout = AnimationUtils.loadAnimation(this, R.anim.anim_btnscan_changemode_fadeout);
         anim_bounce = AnimationUtils.loadAnimation(this, R.anim.anim_bounce);
         anim_zoomout = AnimationUtils.loadAnimation(this, R.anim.anim_zoomout);
+        anim_general_fadein = AnimationUtils.loadAnimation(this, R.anim.anim_general_fadein);
+        anim_general_fadeout = AnimationUtils.loadAnimation(this, R.anim.anim_general_fadeout);
+        anim_tabtile_rotate = AnimationUtils.loadAnimation(this, R.anim.anim_tabtile_rotate);
     }
 
 
+    private void changeTabTitle(String title, int fgColor, int bgColor, int drawable) {
+        lbTabTitle.setText(title);
+        //imTabTitle.startAnimation(anim_tabtile_rotate);
+        imTabTitle.animate().setDuration(200).alpha(0).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                imTabTitle.setImageResource(drawable);
+                imTabTitle.setAlpha(1f);
+            }
+        });
 
+//        int currentFgColor = lbTabTitle.getTextColors().getDefaultColor();
+//        int currentBgColor = lbTabTitleBackground.getSolidColor();
+//        ValueAnimator fColorAnim = ValueAnimator.ofInt(currentBgColor, fgColor).setDuration(500);
+//        ValueAnimator bColorAnim = ValueAnimator.ofInt(currentFgColor, bgColor).setDuration(500);
+//
+//        fColorAnim.addUpdateListener(animator -> {
+//            lbTabTitle.setTextColor( (int) animator.getAnimatedValue());
+//        });
+//
+//        bColorAnim.addUpdateListener(animator -> {
+//            lbTabTitleBackground.setBackgroundColor( (int) animator.getAnimatedValue());
+//        });
+//
+//        lbTabTitle.setText(title);
+//        fColorAnim.start();
+//        bColorAnim.start();
+    }
 
     private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
