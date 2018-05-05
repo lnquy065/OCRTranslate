@@ -28,6 +28,24 @@
             android:text="@string/deleteHistory"
             android:textColor="#fff"
             android:textSize="13dp" />
+        <ImageView
+            android:id="@+id/favourite_icon"
+            android:layout_width="@dimen/ic_delete"
+            android:layout_height="@dimen/ic_delete"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:src="@drawable/favourite_momo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padd_10"
+            android:layout_toRightOf="@id/favourite_icon"
+            android:text="@string/addToFavouriteHistory"
+            android:textColor="#fff"
+            android:textSize="13dp" />
 
     </RelativeLayout>
 

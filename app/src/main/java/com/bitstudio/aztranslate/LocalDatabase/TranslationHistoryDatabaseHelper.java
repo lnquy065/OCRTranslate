@@ -20,13 +20,15 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             "xmlPath TEXT," +
             "addedtime TEXT, " +
             "srcLanguage TEXT, " +
-            "dstLanguage TEXT); ";
+            "dstLanguage TEXT," +
+            "favourite INTEGER); ";
     public static final String DB_TABLE_NAME_HISTORY = "HISTORY";
     public static final String DB_KEY_SCREENSHOT = "screenshotPath";
     public static final String DB_KEY_XMLPATH = "xmlPath";
     public static final String DB_KEY_HISTORY_TIME = "addedTime";
     public static final String DB_KEY_SRCLANG = "srcLanguage";
     public static final String DB_KEY_DSTLANG = "dstLanguage";
+    public static final String DB_KEY_FAVOURITE = "favourite";
 
     private static final String DB_CREATE_TABLE_FAVOURITE_WORD = "CREATE TABLE FAVOURITE(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -65,6 +67,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         translationHistory.put(DB_KEY_HISTORY_TIME, addedTime);
         translationHistory.put(DB_KEY_SRCLANG, srcLang);
         translationHistory.put(DB_KEY_DSTLANG, dstLang);
+        translationHistory.put(DB_KEY_FAVOURITE, 0);
         long newRow = db.insert(DB_TABLE_NAME_HISTORY, null, translationHistory);
         Log.d("INSERT", String.valueOf(newRow) + "->");
         return newRow;
@@ -75,7 +78,20 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = getReadableDatabase();
         return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
     }
-
+    public long makeTranslationHisAsFavourite(String translationScreenshotPath)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues updateTranslationHis = new ContentValues();
+        updateTranslationHis.put(DB_KEY_FAVOURITE, 1);
+        return db.update(DB_TABLE_NAME_HISTORY, updateTranslationHis,DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
+    }
+    public long unmakeTranslationHisAsFavourite(String translationScreenshotPath)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues updateTranslationHis = new ContentValues();
+        updateTranslationHis.put(DB_KEY_FAVOURITE, 0);
+        return db.update(DB_TABLE_NAME_HISTORY, updateTranslationHis,DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
+    }
     public long insertNewFavouriteWord(String word, String addedTime)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -94,7 +110,13 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public Cursor queryAllTranslationHistory()
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, null, null, null, null, DB_KEY_HISTORY_TIME + " DESC");
+        return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, DB_KEY_FAVOURITE + " = ?", new String[] {"0"}, null, null, DB_KEY_HISTORY_TIME + " DESC");
+    }
+
+    public Cursor queryAllFavouriteTranslationHistory()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, DB_KEY_FAVOURITE + " = ?", new String[] {"1"}, null, null, DB_KEY_HISTORY_TIME + " DESC");
     }
 
 }

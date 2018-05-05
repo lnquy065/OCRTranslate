@@ -99,4 +99,10 @@ public class TranslationHistory
         else
             return null;
     }
+
+    public String getScreenshotFileName()
+    {
+        int indexofSlash = screenshotPath.lastIndexOf('/');
+        return screenshotPath.substring(indexofSlash + 1);
+    }
 }

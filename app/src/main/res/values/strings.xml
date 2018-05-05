@@ -7,4 +7,5 @@
     <string name="slider_camera">Giới Thiệu Camera</string>
     <string name="slider_file">Giới Thiệu File</string>
     <string name="deleteHistory">Xoá</string>
+    <string name="addToFavouriteHistory">Yêu thích</string>
 </resources>
