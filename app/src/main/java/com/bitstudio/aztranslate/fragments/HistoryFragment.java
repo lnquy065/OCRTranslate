@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
@@ -49,6 +50,8 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     private View onView;
     // Taking control of the History list view
     private RecyclerView translationHistoryRecyclerView;
+
+    private RelativeLayout view_background;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -95,6 +98,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
         super.onActivityCreated(savedInstanceState);
         mappingViewComponentsByID();
         // Let create a database helper
+        view_background = getActivity().findViewById(R.id.view_background);
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
         Cursor cursor = translationHistoryDatabaseHelper.queryAllTranslationHistory();
         Toast toast = Toast.makeText(getActivity(), "Loading All Histories", Toast.LENGTH_SHORT);
@@ -159,6 +163,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             final int deletedIndex = viewHolder.getAdapterPosition();
             if (direction == ItemTouchHelper.LEFT)
             {
+                view_background.setBackgroundColor(0xe05f28);
                 // remove the translation history from recycler view
                 translationHistoryAdapter.removeTranslationHistory(deletedIndex);
                 translationHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
@@ -180,6 +185,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             }
             else if (direction == ItemTouchHelper.RIGHT)
             {
+                view_background.setBackgroundColor(0xfc0000);
                 // remove the translation history from recycler view
                 translationHistoryAdapter.removeTranslationHistory(deletedIndex);
                 translationHistoryDatabaseHelper.makeTranslationHisAsFavourite(screenshotPath);

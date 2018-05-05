@@ -29,6 +29,7 @@ public class RecyclerTranslationHistoryTouchHelper extends ItemTouchHelper.Simpl
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)
     {
+
         return true;
     }
 
@@ -58,6 +59,11 @@ public class RecyclerTranslationHistoryTouchHelper extends ItemTouchHelper.Simpl
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive)
     {
+        if (dX > 0) { //left
+            
+        } else { //right
+
+        }
         final View foregroundView = ((TranslationHistoryAdapter.MyViewHolder)viewHolder).viewForeground;
         getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
     }
@@ -65,7 +71,8 @@ public class RecyclerTranslationHistoryTouchHelper extends ItemTouchHelper.Simpl
     @Override
     public void onChildDrawOver(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive)
     {
-        final View foregroundView = ((TranslationHistoryAdapter.MyViewHolder)viewHolder).viewForeground;
+
+            final View foregroundView = ((TranslationHistoryAdapter.MyViewHolder)viewHolder).viewForeground;
         getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
     }
 
