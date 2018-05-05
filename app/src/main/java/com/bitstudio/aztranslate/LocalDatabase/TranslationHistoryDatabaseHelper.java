@@ -72,7 +72,20 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         Log.d("INSERT", String.valueOf(newRow) + "->");
         return newRow;
     }
-
+    public long insertNewFavouriteTranslationHis(String screenshotPath, String xmlPath, String addedTime, String srcLang, String dstLang)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues translationHistory = new ContentValues();
+        translationHistory.put(DB_KEY_SCREENSHOT, screenshotPath);
+        translationHistory.put(DB_KEY_XMLPATH, xmlPath);
+        translationHistory.put(DB_KEY_HISTORY_TIME, addedTime);
+        translationHistory.put(DB_KEY_SRCLANG, srcLang);
+        translationHistory.put(DB_KEY_DSTLANG, dstLang);
+        translationHistory.put(DB_KEY_FAVOURITE, 1);
+        long newRow = db.insert(DB_TABLE_NAME_HISTORY, null, translationHistory);
+        Log.d("INSERT", String.valueOf(newRow) + "->");
+        return newRow;
+    }
     public long deleteTranslationHis(String translationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
