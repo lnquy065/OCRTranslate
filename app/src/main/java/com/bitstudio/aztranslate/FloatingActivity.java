@@ -286,7 +286,6 @@ public class FloatingActivity extends AppCompatActivity {
 
 
         imvFloatingWidgetIcon.setOnTouchListener(new View.OnTouchListener() {
-            private int lastAction;
             private int initialX;
             private int initialY;
             private float initialTouchX;
@@ -308,16 +307,14 @@ public class FloatingActivity extends AppCompatActivity {
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
 
-                        lastAction = event.getAction();
 
                         startTime = System.currentTimeMillis();
                         return true;
                     case MotionEvent.ACTION_UP:
                         long t = System.currentTimeMillis() - startTime;
                         if (t < MAX_DURATION) {
-                            takeScreenshot();
+                                takeScreenshot();
                         } else {
-                            Log.d("Size", floatingLayout.x + 30 + " " + mWidth / 2);
                             ValueAnimator va;
                             if (floatingLayout.x + 30 < mWidth / 2) {
                                 va = ValueAnimator.ofFloat(floatingLayout.x, 5);
@@ -338,7 +335,6 @@ public class FloatingActivity extends AppCompatActivity {
                             va.start();
                         }
 
-                        lastAction = event.getAction();
                         return true;
                     case MotionEvent.ACTION_MOVE:
                         //Calculate the X and Y coordinates of the view.
@@ -347,9 +343,10 @@ public class FloatingActivity extends AppCompatActivity {
 
                         //Update the layout with new X & Y coordinate
                         mWindowManager.updateViewLayout(floatingView, floatingLayout);
-                        lastAction = event.getAction();
                         return true;
+
                 }
+
                 return false;
             }
         });
