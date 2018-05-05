@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="65dp"
+    android:id="@+id/chat_head_root"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/btnFloatingWidgetClose"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="40dp"
+        android:elevation="10dp"
+        android:src="@android:drawable/btn_dialog"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imvFloatingWidgetIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/float_widget"
+        android:translationZ="5dp"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
