@@ -159,7 +159,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
                 favouriteHistoryAdapter.removeTranslationHistory(deletedIndex);
                 favouriteHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
                 // showing snack bar with undo option
-                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Histories", Snackbar.LENGTH_LONG);
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Favourite Histories", Snackbar.LENGTH_LONG);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
 
@@ -168,10 +168,10 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
                     {
                         // undo is selected, let's restore the deleted item
                         favouriteHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
-                        favouriteHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                        favouriteHistoryDatabaseHelper.insertNewFavouriteTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
                     }
                 });
-                snackbarUndo.setActionTextColor(Color.YELLOW);
+                snackbarUndo.setActionTextColor(Color.RED);
                 snackbarUndo.show();
             }
 
