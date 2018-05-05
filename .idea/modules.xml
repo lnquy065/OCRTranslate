@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AZTranslate.iml" filepath="$PROJECT_DIR$/AZTranslate.iml" />
+      <module fileurl="file://D:\Programming\android\OCRTranslate\OCRTranslate\AZTranslate.iml" filepath="D:\Programming\android\OCRTranslate\OCRTranslate\AZTranslate.iml" />
       <module fileurl="file://$PROJECT_DIR$/OCRTranslate.iml" filepath="$PROJECT_DIR$/OCRTranslate.iml" />
+      <module fileurl="file://D:\Programming\android\AZTranslate\OCRTranslate.iml" filepath="D:\Programming\android\AZTranslate\OCRTranslate.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

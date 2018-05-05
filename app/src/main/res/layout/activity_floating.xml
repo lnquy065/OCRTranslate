@@ -5,7 +5,6 @@
     android:id="@+id/floatActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
     tools:context="com.bitstudio.aztranslate.FloatingActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -72,22 +72,34 @@ public class HOCR {
 
 
     public Bitmap createBitmap(int width, int height) {
+
+
         Paint paint = new Paint();
         paint.setColor(Color.parseColor(Setting.WordBorder.BORDER_COLOR));
         paint.setStyle(Setting.WordBorder.BORDER_STYLE);
         paint.setStrokeWidth(Setting.WordBorder.BORDER_WIDTH);
 
+        Paint paintBorder = new Paint();
+        paintBorder.setColor(Setting.ScreenBorder.BORDER_COLOR);
+        paintBorder.setStyle(Setting.ScreenBorder.BORDER_STYLE);
+        paintBorder.setStrokeWidth(Setting.ScreenBorder.BORDER_WIDTH);
+        //paintBorder.setS
+
         Bitmap bg = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bg);
+        Rect border = new Rect(0, 0, width, height);
+        canvas.drawRect(border, paintBorder);
 
         for (Rect r: data.keySet()) {
-            canvas.drawRect(paddingRect(r, Setting.WordBorder.BORDER_PADDING), paint);
+            if (r.bottom <= Setting.STATUSBAR_HEIGHT) continue;
+            Rect rt = new Rect(r.left, r.top - Setting.STATUSBAR_HEIGHT, r.right, r.bottom - Setting.STATUSBAR_HEIGHT);
+            canvas.drawRect(paddingRect(rt, Setting.WordBorder.BORDER_PADDING), paint);
         }
         return bg;
     }
 
     private Rect paddingRect(Rect r, int width) {
-        return new Rect(r.left+width, r.top+width, r.right+width, r.bottom+width);
+        return new Rect(r.left-width, r.top-width, r.right+width, r.bottom+width);
     }
 
 
