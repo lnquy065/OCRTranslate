@@ -1,3 +1,4 @@
+
 package com.bitstudio.aztranslate;
 
 import android.animation.Animator;
