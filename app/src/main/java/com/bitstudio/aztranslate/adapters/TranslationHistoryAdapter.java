@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate.Adapter;
+package com.bitstudio.aztranslate.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +9,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bitstudio.aztranslate.Model.TranslationHistory;
+import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.R;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationHistoryAdapter.MyViewHolder>
 {

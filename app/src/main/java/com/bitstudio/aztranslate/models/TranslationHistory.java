@@ -1,10 +1,7 @@
-package com.bitstudio.aztranslate.Model;
+package com.bitstudio.aztranslate.models;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.ImageView;
-
-import com.bitstudio.aztranslate.R;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

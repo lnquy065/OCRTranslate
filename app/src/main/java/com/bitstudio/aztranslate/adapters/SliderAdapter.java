@@ -1,7 +1,6 @@
-package com.bitstudio.aztranslate.Adapter;
+package com.bitstudio.aztranslate.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,8 +1,6 @@
-package com.bitstudio.aztranslate.OCRLib;
+package com.bitstudio.aztranslate.ocr;
 
 import android.graphics.Bitmap;
-import android.os.Environment;
-import android.view.View;
 
 import com.bitstudio.aztranslate.MainActivity;
 import com.googlecode.tesseract.android.TessBaseAPI;

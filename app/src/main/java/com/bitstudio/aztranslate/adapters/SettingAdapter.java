@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate.Adapter;
+package com.bitstudio.aztranslate.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bitstudio.aztranslate.Model.SettingItem;
+import com.bitstudio.aztranslate.models.SettingItem;
 import com.bitstudio.aztranslate.R;
 
 import java.util.List;

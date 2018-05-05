@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate.OCRLib;
+package com.bitstudio.aztranslate.ocr;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -57,8 +57,6 @@ public class HOCR {
 
 
 
-
-
     private void extractWord(Element e) {
         String position = e.attr("title");
         String tmp[] = position.split(" ");
@@ -101,7 +99,5 @@ public class HOCR {
     private Rect paddingRect(Rect r, int width) {
         return new Rect(r.left-width, r.top-width, r.right+width, r.bottom+width);
     }
-
-
 
 }

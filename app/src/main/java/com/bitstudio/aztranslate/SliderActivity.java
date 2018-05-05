@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bitstudio.aztranslate.Adapter.SliderAdapter;
+import com.bitstudio.aztranslate.adapters.SliderAdapter;
 
 public class SliderActivity extends AppCompatActivity {
 

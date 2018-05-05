@@ -38,23 +38,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
-import com.bitstudio.aztranslate.OCRLib.HOCR;
-import com.bitstudio.aztranslate.OCRLib.OcrManager;
+import com.bitstudio.aztranslate.ocr.HOCR;
+import com.bitstudio.aztranslate.ocr.OcrManager;
 import com.cunoraz.gifview.library.GifView;
 import com.loopj.android.http.RequestHandle;
-import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;

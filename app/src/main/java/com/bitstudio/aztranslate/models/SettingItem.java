@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate.Model;
+package com.bitstudio.aztranslate.models;
 
 /**
  * Created by Quoc Huy on 3/18/2018.

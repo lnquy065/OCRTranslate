@@ -1,7 +1,6 @@
 package com.bitstudio.aztranslate;
 
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -29,9 +28,7 @@ import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
-
-import org.w3c.dom.Text;
+import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import java.io.File;
 import java.util.ArrayList;
