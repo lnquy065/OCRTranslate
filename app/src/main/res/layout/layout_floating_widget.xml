@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,3 +30,37 @@
         tools:ignore="ContentDescription" />
 
 </android.support.constraint.ConstraintLayout>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="65dp"
+    android:id="@+id/chat_head_root"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/btnFloatingWidgetClose"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="40dp"
+        android:elevation="10dp"
+        android:src="@android:drawable/btn_dialog"
+        tools:ignore="ContentDescription"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imvFloatingWidgetIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/float_widget"
+        android:translationZ="5dp"
+        tools:ignore="ContentDescription"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+>>>>>>> parent of c9ddf57... Merge pull request #17 from QuocHuyTran/Huy

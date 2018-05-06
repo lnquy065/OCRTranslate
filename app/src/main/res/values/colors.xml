@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
 <color name="colorPrimary">#3f51b5</color>
 <color name="colorPrimaryDark">#303F9F</color>
 <color name="colorAccent">#ff4081</color>
@@ -9,4 +10,11 @@
 <color name="bg_row_background">#21991b</color>
 <color name="item_name">#535353</color>
 <color name="description">#a9a9a9</color>
+=======
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="colorWhite" >#ffffff</color>
+>>>>>>> parent of c9ddf57... Merge pull request #17 from QuocHuyTran/Huy
 </resources>

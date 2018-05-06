@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/OCRTranslate.iml" filepath="$PROJECT_DIR$/OCRTranslate.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/AZTranslate.iml" filepath="$PROJECT_DIR$/AZTranslate.iml" />
+>>>>>>> parent of c9ddf57... Merge pull request #17 from QuocHuyTran/Huy
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".FloatingActivity"
             android:label="@string/app_name"
@@ -29,9 +29,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".SetLanguageActivity" />
+<<<<<<< HEAD
         <activity android:name=".LanguageSettingActivity" />
         <activity android:name=".ScreenshotViewerActivity" />
         <activity android:name=".CameraActivity"></activity>
+=======
+        <activity android:name=".LanguageSettingActivity"></activity>
+>>>>>>> parent of c9ddf57... Merge pull request #17 from QuocHuyTran/Huy
     </application>
 
 </manifest>

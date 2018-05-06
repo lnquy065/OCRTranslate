@@ -84,6 +84,11 @@ public class HOCR {
 
 
 
+<<<<<<< HEAD:app/src/main/java/com/bitstudio/aztranslate/ocr/HOCR.java
+=======
+
+
+>>>>>>> parent of c9ddf57... Merge pull request #17 from QuocHuyTran/Huy:app/src/main/java/com/bitstudio/aztranslate/OCRLib/HOCR.java
     private void extractWord(Element e) {
         String position = e.attr("title");
         String tmp[] = position.split(" ");
@@ -127,4 +132,9 @@ public class HOCR {
         return new Rect(r.left-width, r.top-width, r.right+width, r.bottom+width);
     }
 
+<<<<<<< HEAD:app/src/main/java/com/bitstudio/aztranslate/ocr/HOCR.java
+=======
+
+
+>>>>>>> parent of c9ddf57... Merge pull request #17 from QuocHuyTran/Huy:app/src/main/java/com/bitstudio/aztranslate/OCRLib/HOCR.java
 }
