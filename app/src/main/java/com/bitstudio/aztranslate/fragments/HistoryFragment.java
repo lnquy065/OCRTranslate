@@ -20,11 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
-import com.bitstudio.aztranslate.Adapter.TranslationHistoryAdapter;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
+import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
+import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import com.bitstudio.aztranslate.R;
 

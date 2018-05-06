@@ -1,5 +1,6 @@
 package com.bitstudio.aztranslate;
 
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -8,7 +9,7 @@ import android.graphics.Paint;
 
 public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
-
+    public static int STATUSBAR_HEIGHT = 0;
 
 
     public static class YandexAPI {
@@ -23,5 +24,11 @@ public class Setting {
         public static Paint.Style BORDER_STYLE = Paint.Style.STROKE;
         public static int BORDER_WIDTH = 2;
         public static int BORDER_PADDING = 2;
+    }
+
+    public static class ScreenBorder {
+        public static int BORDER_COLOR = Color.RED;
+        public static Paint.Style BORDER_STYLE = Paint.Style.STROKE;
+        public static int BORDER_WIDTH = 10;
     }
 }

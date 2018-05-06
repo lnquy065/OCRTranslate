@@ -1,14 +1,16 @@
 package com.bitstudio.aztranslate;
 
 
-import android.animation.ValueAnimator;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -29,9 +31,7 @@ import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
-
-import org.w3c.dom.Text;
+import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -80,22 +80,24 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Setting.STATUSBAR_HEIGHT = getStatusBarHeight();
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
-        } else {
-
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
+            }
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+            }
 
             createDirs();
-
             addControls();
             addEvents();
             loadAnimations();
             openFragment( new SettingFragment());
+
         }
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
@@ -177,6 +179,14 @@ public class MainActivity extends AppCompatActivity implements
         anim_tabtile_rotate = AnimationUtils.loadAnimation(this, R.anim.anim_tabtile_rotate);
     }
 
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
     private void changeTabTitle(String title, int fgColor, int bgColor, int drawable) {
         lbTabTitle.setText(title);

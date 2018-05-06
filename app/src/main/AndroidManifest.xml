@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".FloatingActivity"
             android:label="@string/app_name"
@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SetLanguageActivity" />
-        <activity android:name=".LanguageSettingActivity"></activity>
+        <activity android:name=".LanguageSettingActivity" />
+        <activity android:name=".ScreenshotViewerActivity"></activity>
     </application>
 
 </manifest>
