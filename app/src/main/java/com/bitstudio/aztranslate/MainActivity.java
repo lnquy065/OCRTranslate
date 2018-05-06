@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements
     public TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
     private Animation anim_tabtile_rotate;
-
+    public static ArrayList<TranslationHistory> favouriteHistories = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
