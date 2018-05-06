@@ -26,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bitstudio.aztranslate.fragments.BookmarkFragment;
 import com.bitstudio.aztranslate.fragments.FavoritesFragment;
 import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
@@ -39,7 +40,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener,
-        FavoritesFragment.OnFragmentInteractionListener {
+        FavoritesFragment.OnFragmentInteractionListener,
+        BookmarkFragment.OnFragmentInteractionListener {
 
     private static int MODE_SCREEN = 1;
     private static int MODE_CAMERA = 0;
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements
         });
         btnBook.setOnClickListener(v-> {
             btnBook.startAnimation(anim_bounce);
-
+            openFragment( new BookmarkFragment());
             btnBook.setImageResource(R.drawable.toggle_book_enable);
             changeTabTitle("Bookmark", Color.WHITE, Color.GRAY, R.drawable.toggle_book_white);
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);

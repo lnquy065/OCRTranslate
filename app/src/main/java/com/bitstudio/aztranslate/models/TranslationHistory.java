@@ -4,10 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TranslationHistory
+public class TranslationHistory implements Serializable
 {
     private long translationUNIXTime;
     private String translationSouceLanguage;
