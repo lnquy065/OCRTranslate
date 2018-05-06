@@ -113,7 +113,6 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         favourWord.put(DB_KEY_WORD_TIME, addedTime);
         return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
     }
-
     public long deleteFavouriteWord(String word)
     {
         SQLiteDatabase db = getReadableDatabase();
