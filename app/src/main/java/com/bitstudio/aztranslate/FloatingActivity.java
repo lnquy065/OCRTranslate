@@ -395,10 +395,13 @@ public class FloatingActivity extends AppCompatActivity {
         });
     }
 
-    private void removeWordFromFavorites(String s) {
+    private void removeWordFromFavorites(String s)
+    {
+
     }
 
-    private void addWordToFavorites(String s) {
+    private void addWordToFavorites(String s)
+    {
         
     }
 

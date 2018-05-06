@@ -17,7 +17,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/padd_10"
-            android:src="@drawable/delete_momo" />
+            android:layout_marginLeft="@dimen/padd_10"
+            android:src="@drawable/trash_hisory" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,7 +36,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/padd_10"
-            android:src="@drawable/favourite_momo" />
+            android:src="@drawable/favourite_history" />
 
         <TextView
             android:layout_width="wrap_content"

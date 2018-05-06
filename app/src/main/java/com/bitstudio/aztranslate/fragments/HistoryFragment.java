@@ -20,8 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
-import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
+
+import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
+import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchListener;
+import com.bitstudio.aztranslate.Adapter.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.models.TranslationHistory;
@@ -175,7 +177,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                         translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
                     }
                 });
-                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.setActionTextColor(Color.RED);
                 snackbarUndo.show();
             }
             else if (direction == ItemTouchHelper.RIGHT)
@@ -236,5 +238,21 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(translationHistoryRecyclerView);
+
+        translationHistoryRecyclerView.addOnItemTouchListener(new RecyclerTranslationHistoryTouchListener(getActivity(), translationHistoryRecyclerView, new RecyclerTranslationHistoryTouchListener.ClickListener()
+        {
+            @Override
+            public void onClick(View view, int position)
+            {
+                TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
+                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position)
+            {
+
+            }
+        }));
     }
 }
