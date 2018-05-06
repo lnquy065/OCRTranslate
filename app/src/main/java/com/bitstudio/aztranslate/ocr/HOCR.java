@@ -33,11 +33,7 @@ public class HOCR {
 
     };
 
-    public HOCR(String rawData) {
-        processHTML(rawData);
-    }
-
-    public HOCR(File f) {
+    public static String readFile(File f) {
         StringBuilder text = new StringBuilder();
 
         try {
@@ -53,7 +49,15 @@ public class HOCR {
         catch (IOException e) {
 
         }
-        processHTML(text.toString());
+        return  text.toString();
+    }
+
+    public HOCR(String rawData) {
+        processHTML(rawData);
+    }
+
+    public HOCR(File f) {
+        processHTML(readFile(f));
     }
 
     public Map<Rect, String> getData() {

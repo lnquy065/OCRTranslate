@@ -31,6 +31,7 @@ public class OcrManager {
     public String startRecognize(Bitmap bitmap, int returnType) {
         if (baseAPI==null) initAPI();
         baseAPI.setImage(bitmap);
+
         switch (returnType) {
             case RETURN_UTF8:
                 return baseAPI.getUTF8Text();

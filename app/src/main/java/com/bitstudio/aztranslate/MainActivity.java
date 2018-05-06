@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -19,6 +20,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,9 +38,14 @@ import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
+import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.TranslationHistory;
+import com.bitstudio.aztranslate.ocr.OcrManager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
@@ -80,12 +88,20 @@ public class MainActivity extends AppCompatActivity implements
     public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
     private Animation anim_tabtile_rotate;
     public static ArrayList<TranslationHistory> favouriteHistories = new ArrayList<>();
+
+    private OcrManager ocrManager;
+    private int screenHeight, screenWidth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Setting.STATUSBAR_HEIGHT = getStatusBarHeight();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenHeight = displayMetrics.heightPixels;
+        screenWidth = displayMetrics.widthPixels;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
@@ -160,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addControls() {
+        ocrManager = new OcrManager();
+        ocrManager.initAPI();
         imTabTitle = findViewById(R.id.imTabTitle);
         lbTabTitle = findViewById(R.id.lbTabTitle);
         lbTabTitleBackground = findViewById(R.id.lbTabTitleBackground);
@@ -248,6 +266,12 @@ public class MainActivity extends AppCompatActivity implements
 
                 File datDirectory = new File(CACHE+"dat/");
                 if (!datDirectory.exists()) datDirectory.mkdirs();
+
+        File cameraIMGDirectory = new File(CACHE+"camera/img/");
+        if (!cameraIMGDirectory.exists()) cameraIMGDirectory.mkdirs();
+
+        File cameraXMLDirectory = new File(CACHE+"camera/xml/");
+        if (!cameraXMLDirectory.exists()) cameraXMLDirectory.mkdirs();
     }
 
 
@@ -278,24 +302,29 @@ public class MainActivity extends AppCompatActivity implements
                 case 0: //camera
 //                     intent = new Intent(MainActivity.this, CameraActivity.class);
 //                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
+                    File file = new File(MainActivity.CACHE + "camera/img/camera.jpg");
                     intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if (intent.resolveActivity(getPackageManager()) != null) {
-                        startActivityForResult(intent, 3);
-                    }
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+
+
+                    startActivityForResult(intent, 100);
+//                    if (intent.resolveActivity(getPackageManager()) != null) {
+//                        startActivityForResult(intent, 3);
+//                    }
 
 
                     break;
                 case 1: //screen
                      intent = new Intent(MainActivity.this, FloatingActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
                     break;
                 case 2: //file
 
                     break;
             }
-            startActivity(intent);
-            finish();
+
             return super.onSingleTapUp(e);
         }
 
@@ -308,13 +337,64 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 3 && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-          //  ocrManager
+        Log.d("IntentRe", requestCode + " " +resultCode);
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            String screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";
+
+            //ghi file
+
+            try {
+                //luu hinh anh
+                Bitmap bitmap = getScaledBitmap(new File(screenshotPath));
+                FileOutputStream fos = null;
+                fos = new FileOutputStream(screenshotPath);
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.close();
+                bitmap = getScaledBitmap(new File(screenshotPath));
+
+                Log.d("IntentRe", "Scaled");
+
+                String xmlData = ocrManager.startRecognize(bitmap,  OcrManager.RETURN_HOCR);
+                Log.d("IntentRe", "Xml");
+
+                //nhan dien chu viet
+                String xmlPath = MainActivity.CACHE + "camera/xml/camera.xml";
+                fos = new FileOutputStream(xmlPath);
+                fos.write(xmlData.getBytes());
+
+                Intent intent =  new Intent(this, ScreenshotViewerActivity.class);
+                intent.putExtra("ScreenshotObj", new ScreenshotObj(screenshotPath, xmlPath));
+                startActivity(intent);
+
+                Log.d("IntentRe", "started intent");
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
         }
+    }
+
+    public Bitmap getScaledBitmap(File imgFile)
+    {
+
+        if(imgFile.exists()){
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = Setting.COMPRESSED_RATE;
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), options);
+            myBitmap = Bitmap.createScaledBitmap(myBitmap,
+                    screenWidth, screenHeight, false);
+           return  myBitmap;
+        }
+        else
+            return null;
     }
 }
 
-}
