@@ -1,4 +1,4 @@
-package com.bitstudio.aztranslate.Adapter;
+package com.bitstudio.aztranslate.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

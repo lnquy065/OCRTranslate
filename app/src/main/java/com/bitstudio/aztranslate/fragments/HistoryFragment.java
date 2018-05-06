@@ -21,9 +21,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
-import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchListener;
-import com.bitstudio.aztranslate.Adapter.TranslationHistoryAdapter;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
+import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.models.TranslationHistory;
@@ -244,6 +244,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             @Override
             public void onClick(View view, int position)
             {
+
                 TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
                 Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
             }
