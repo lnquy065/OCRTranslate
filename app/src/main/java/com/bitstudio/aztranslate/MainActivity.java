@@ -281,10 +281,10 @@ public class MainActivity extends AppCompatActivity implements
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if ( Math.abs(e1.getX() - e2.getX()) > Setting.BTNCHANGEMODE_GESTURES_THRESHOLD) {
                 if (e1.getX()>e2.getX()) { //phai sang trai
-                    scanMode = (scanMode+1)%3;
+                    scanMode = (scanMode+1)%2;
                 } else
                 if (e1.getX()<e2.getX()) { //trai sang phai
-                    scanMode = ((scanMode-1)+3)%3;
+                    scanMode = ((scanMode-1)+2)%2;
                 }
 
                 btnFloat.startAnimation(anim_btnscan_changemode_fadeout);

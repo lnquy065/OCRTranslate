@@ -32,6 +32,15 @@
         <activity android:name=".LanguageSettingActivity" />
         <activity android:name=".ScreenshotViewerActivity" />
         <activity android:name=".CameraActivity"></activity>
+
+        <activity
+            android:name=".ManageLanguageActivity"
+            android:label="@string/title_activity_manage_language"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SetRTActivity" />
+        <activity
+            android:name=".SystemSettingActivity"
+            android:theme="@style/SettingTheme"></activity>
     </application>
 
 </manifest>
