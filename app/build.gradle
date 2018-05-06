@@ -20,7 +20,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.google.code.gson:gson:2.6.2'
+    compile 'com.wonderkiln:camerakit:0.13.1'
 }

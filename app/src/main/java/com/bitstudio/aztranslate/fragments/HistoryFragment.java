@@ -1,6 +1,7 @@
 package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -20,6 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
+import com.bitstudio.aztranslate.ScreenshotViewerActivity;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
 import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
 import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
@@ -175,7 +179,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                         translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
                     }
                 });
-                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.setActionTextColor(Color.RED);
                 snackbarUndo.show();
             }
             else if (direction == ItemTouchHelper.RIGHT)
@@ -236,5 +240,25 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(translationHistoryRecyclerView);
+
+        translationHistoryRecyclerView.addOnItemTouchListener(new RecyclerTranslationHistoryTouchListener(getActivity(), translationHistoryRecyclerView, new RecyclerTranslationHistoryTouchListener.ClickListener()
+        {
+            @Override
+            public void onClick(View view, int position)
+            {
+
+                TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
+                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                Intent intent =  new Intent(HistoryFragment.this.getContext(), ScreenshotViewerActivity.class);
+                intent.putExtra("TranslationHistory", translationHistory);
+                getContext().startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position)
+            {
+
+            }
+        }));
     }
 }
