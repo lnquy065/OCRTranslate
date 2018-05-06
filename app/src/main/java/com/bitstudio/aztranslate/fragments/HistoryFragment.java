@@ -1,11 +1,13 @@
 package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -13,19 +15,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bitstudio.aztranslate.Adapter.CustomTranslationHistoryAdapter;
-import com.bitstudio.aztranslate.Adapter.RecyclerTranslationHistoryTouchHelper;
-import com.bitstudio.aztranslate.Adapter.TranslationHistoryAdapter;
+
+import com.bitstudio.aztranslate.ScreenshotViewerActivity;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
+import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
-
-import java.util.ArrayList;
+import com.bitstudio.aztranslate.models.ScreenshotObj;
+import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import com.bitstudio.aztranslate.R;
 
@@ -49,7 +53,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     private TranslationHistoryAdapter translationHistoryAdapter;
     private View onView;
     // Taking control of the History list view
-    private RecyclerView listViewTranslationHistory;
+    private RecyclerView translationHistoryRecyclerView;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -142,9 +146,65 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position)
     {
+        if (viewHolder instanceof  TranslationHistoryAdapter.MyViewHolder)
+        {
+            // get the removed item name to display it in snack bar
+            String screenshotFileName = MainActivity.translationHistories.get(viewHolder.getAdapterPosition()).getScreenshotFileName();
+            String screenshotPath = MainActivity.translationHistories.get(viewHolder.getAdapterPosition()).getScreenshotPath();
+            // make a backup version of removed item for undo purpose
+            final TranslationHistory deletedTranslationHistory = MainActivity.translationHistories.get(viewHolder.getAdapterPosition());
+            final int deletedIndex = viewHolder.getAdapterPosition();
+            if (direction == ItemTouchHelper.LEFT)
+            {
+                // remove the translation history from recycler view
+                translationHistoryAdapter.removeTranslationHistory(deletedIndex);
+                translationHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+                // showing snack bar with undo option
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Histories", Snackbar.LENGTH_LONG);
+                snackbarUndo.setAction("UNDO", new View.OnClickListener()
+                {
 
+                    @Override
+                    public void onClick(View view)
+                    {
+                        // undo is selected, let's restore the deleted item
+                        translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
+                        translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                    }
+                });
+                snackbarUndo.setActionTextColor(Color.RED);
+                snackbarUndo.show();
+            }
+            else if (direction == ItemTouchHelper.RIGHT)
+            {
+                // remove the translation history from recycler view
+                translationHistoryAdapter.removeTranslationHistory(deletedIndex);
+                translationHistoryDatabaseHelper.makeTranslationHisAsFavourite(screenshotPath);
+                // showing snack bar with undo option
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was moved to Favourite Histories", Snackbar.LENGTH_LONG);
+                snackbarUndo.setAction("UNDO", new View.OnClickListener()
+                {
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        // undo is selected, let's restore the deleted item
+                        translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
+                        translationHistoryDatabaseHelper.unmakeTranslationHisAsFavourite(screenshotPath);
+                    }
+                });
+                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.show();
+            }
+        }
     }
 
     /**
@@ -164,22 +224,47 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
     public void mappingViewComponentsByID()
     {
-        listViewTranslationHistory = getActivity().findViewById(R.id.listViewHistory);
+        translationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
 
-        listViewTranslationHistory.setLayoutManager(mLayoutmanager);
-        listViewTranslationHistory.setItemAnimator(new DefaultItemAnimator());
-        listViewTranslationHistory.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        translationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
+        translationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        translationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         translationHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.translationHistories);
-        listViewTranslationHistory.setAdapter(translationHistoryAdapter);
+        translationHistoryRecyclerView.setAdapter(translationHistoryAdapter);
 
         // adding item touch helper
         // only ItemTouchHelper.LEFT added to detect Right to Left swipe
         // if you want both Right -> Left and Left -> Right
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
 
-        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT, this);
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(listViewTranslationHistory);
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(translationHistoryRecyclerView);
+
+        translationHistoryRecyclerView.addOnItemTouchListener(new RecyclerTranslationHistoryTouchListener(getActivity(), translationHistoryRecyclerView, new RecyclerTranslationHistoryTouchListener.ClickListener()
+        {
+            @Override
+            public void onClick(View view, int position)
+            {
+
+                TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
+                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                Intent intent =  new Intent(HistoryFragment.this.getContext(), ScreenshotViewerActivity.class);
+
+
+                intent.putExtra("ScreenshotObj", new ScreenshotObj(
+                        translationHistory.getScreenshotPath(),
+                        translationHistory.getXmlDataPath()));
+
+                getContext().startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position)
+            {
+
+            }
+        }));
     }
 }

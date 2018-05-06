@@ -1,19 +1,27 @@
 package com.bitstudio.aztranslate;
 
 
-import android.animation.ValueAnimator;
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,22 +32,28 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bitstudio.aztranslate.fragments.BookmarkFragment;
 import com.bitstudio.aztranslate.fragments.FavoritesFragment;
 import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
-
-import org.w3c.dom.Text;
+import com.bitstudio.aztranslate.models.ScreenshotObj;
+import com.bitstudio.aztranslate.models.BookmarkWord;
+import com.bitstudio.aztranslate.models.TranslationHistory;
+import com.bitstudio.aztranslate.ocr.OcrManager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener,
-        FavoritesFragment.OnFragmentInteractionListener {
+        FavoritesFragment.OnFragmentInteractionListener,
+        BookmarkFragment.OnFragmentInteractionListener {
 
     private static int MODE_SCREEN = 1;
     private static int MODE_CAMERA = 0;
@@ -74,28 +88,37 @@ public class MainActivity extends AppCompatActivity implements
     public TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
     private Animation anim_tabtile_rotate;
+    public static ArrayList<TranslationHistory> favouriteHistories = new ArrayList<>();
+    private OcrManager ocrManager;
+    private int screenHeight, screenWidth;
 
+    public static ArrayList<BookmarkWord> bookmarkWords = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Setting.STATUSBAR_HEIGHT = getStatusBarHeight();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenHeight = displayMetrics.heightPixels;
+        screenWidth = displayMetrics.widthPixels;
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
-        } else {
-
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
+            }
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+            }
 
             createDirs();
-
             addControls();
             addEvents();
             loadAnimations();
-            openFragment( new SettingFragment());
+            btnSetting.performClick();
         }
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
@@ -124,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements
         });
         btnBook.setOnClickListener(v-> {
             btnBook.startAnimation(anim_bounce);
-
+            openFragment( new BookmarkFragment());
             btnBook.setImageResource(R.drawable.toggle_book_enable);
             changeTabTitle("Bookmark", Color.WHITE, Color.GRAY, R.drawable.toggle_book_white);
             btnSetting.setImageResource(R.drawable.toggle_setting_disable);
@@ -154,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addControls() {
+        ocrManager = new OcrManager();
+        ocrManager.initAPI();
         imTabTitle = findViewById(R.id.imTabTitle);
         lbTabTitle = findViewById(R.id.lbTabTitle);
         lbTabTitleBackground = findViewById(R.id.lbTabTitleBackground);
@@ -177,6 +202,14 @@ public class MainActivity extends AppCompatActivity implements
         anim_tabtile_rotate = AnimationUtils.loadAnimation(this, R.anim.anim_tabtile_rotate);
     }
 
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
     private void changeTabTitle(String title, int fgColor, int bgColor, int drawable) {
         lbTabTitle.setText(title);
@@ -234,6 +267,12 @@ public class MainActivity extends AppCompatActivity implements
 
                 File datDirectory = new File(CACHE+"dat/");
                 if (!datDirectory.exists()) datDirectory.mkdirs();
+
+        File cameraIMGDirectory = new File(CACHE+"camera/img/");
+        if (!cameraIMGDirectory.exists()) cameraIMGDirectory.mkdirs();
+
+        File cameraXMLDirectory = new File(CACHE+"camera/xml/");
+        if (!cameraXMLDirectory.exists()) cameraXMLDirectory.mkdirs();
     }
 
 
@@ -259,10 +298,34 @@ public class MainActivity extends AppCompatActivity implements
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             btnFloat.startAnimation(anim_zoomout);
-                Intent intent = new Intent(MainActivity.this, FloatingActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+            Intent intent = null;
+            switch (scanMode) {
+                case 0: //camera
+//                     intent = new Intent(MainActivity.this, CameraActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    File file = new File(MainActivity.CACHE + "camera/img/camera.jpg");
+                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+
+
+                    startActivityForResult(intent, 100);
+//                    if (intent.resolveActivity(getPackageManager()) != null) {
+//                        startActivityForResult(intent, 3);
+//                    }
+
+
+                    break;
+                case 1: //screen
+                     intent = new Intent(MainActivity.this, FloatingActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case 2: //file
+
+                    break;
+            }
+
             return super.onSingleTapUp(e);
         }
 
@@ -274,4 +337,65 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("IntentRe", requestCode + " " +resultCode);
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            String screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";
+
+            //ghi file
+
+            try {
+                //luu hinh anh
+                Bitmap bitmap = getScaledBitmap(new File(screenshotPath));
+                FileOutputStream fos = null;
+                fos = new FileOutputStream(screenshotPath);
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.close();
+                bitmap = getScaledBitmap(new File(screenshotPath));
+
+                Log.d("IntentRe", "Scaled");
+
+                String xmlData = ocrManager.startRecognize(bitmap,  OcrManager.RETURN_HOCR);
+                Log.d("IntentRe", "Xml");
+
+                //nhan dien chu viet
+                String xmlPath = MainActivity.CACHE + "camera/xml/camera.xml";
+                fos = new FileOutputStream(xmlPath);
+                fos.write(xmlData.getBytes());
+
+                Intent intent =  new Intent(this, ScreenshotViewerActivity.class);
+                intent.putExtra("ScreenshotObj", new ScreenshotObj(screenshotPath, xmlPath));
+                startActivity(intent);
+
+                Log.d("IntentRe", "started intent");
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
+    }
+
+    public Bitmap getScaledBitmap(File imgFile)
+    {
+
+        if(imgFile.exists()){
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = Setting.COMPRESSED_RATE;
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), options);
+            myBitmap = Bitmap.createScaledBitmap(myBitmap,
+                    screenWidth, screenHeight, false);
+           return  myBitmap;
+        }
+        else
+            return null;
+    }
 }
+

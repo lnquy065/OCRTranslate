@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.bitstudio.aztranslate.Adapter.SettingAdapter;
+import com.bitstudio.aztranslate.adapters.SettingAdapter;
 import com.bitstudio.aztranslate.LanguageSettingActivity;
-import com.bitstudio.aztranslate.Model.SettingItem;
+import com.bitstudio.aztranslate.models.SettingItem;
 import com.bitstudio.aztranslate.R;
 import com.bitstudio.aztranslate.SetLanguageActivity;
 

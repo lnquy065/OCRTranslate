@@ -1,7 +1,6 @@
 package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -14,32 +13,28 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bitstudio.aztranslate.FloatingActivity;
-import com.bitstudio.aztranslate.ScreenshotViewerActivity;
-import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
-import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
-import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
-import com.bitstudio.aztranslate.models.ScreenshotObj;
-import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.R;
-
+import com.bitstudio.aztranslate.adapters.BookmarkWordAdapter;
+import com.bitstudio.aztranslate.adapters.RecyclerBookmarkWordTouchHelper;
+import com.bitstudio.aztranslate.models.BookmarkWord;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
+ * {@link BookmarkFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FavoritesFragment#newInstance} factory method to
+ * Use the {@link BookmarkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoritesFragment extends Fragment implements RecyclerTranslationHistoryTouchHelper.RecyclerTranslationHistoryTouchHelperListener
+public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTouchHelper.RecyclerBookmarkWordTouchHelperListener
 {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,14 +47,14 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
 
     private OnFragmentInteractionListener mListener;
 
-    private TranslationHistoryDatabaseHelper favouriteHistoryDatabaseHelper;
+    private TranslationHistoryDatabaseHelper bookmarkWordDatabaseHelper;
 
-    private TranslationHistoryAdapter favouriteHistoryAdapter;
+    private BookmarkWordAdapter bookmarkWordAdapter;
     private View onView;
     // Taking control of the History list view
-    private RecyclerView favouriteTranslationHistoryRecyclerView;
+    private RecyclerView bookmarkWordRecyclerView;
 
-    public FavoritesFragment() {
+    public BookmarkFragment() {
         // Required empty public constructor
     }
 
@@ -69,11 +64,11 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FavoritesFragment.
+     * @return A new instance of fragment BookmarkFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavoritesFragment newInstance(String param1, String param2) {
-        FavoritesFragment fragment = new FavoritesFragment();
+    public static BookmarkFragment newInstance(String param1, String param2) {
+        BookmarkFragment fragment = new BookmarkFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -94,7 +89,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        onView = inflater.inflate(R.layout.fragment_favorites, container, false);
+        onView = inflater.inflate(R.layout.fragment_bookmark, container, false);
         return onView;
     }
 
@@ -103,23 +98,21 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
     {
         super.onActivityCreated(savedInstanceState);
         mappingViewComponentsByID();
-        // Let create a database helper
-        favouriteHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
-        Cursor cursor = favouriteHistoryDatabaseHelper.queryAllFavouriteTranslationHistory();
+        bookmarkWordDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
+
+        Cursor cursor = bookmarkWordDatabaseHelper.queryAllBookmarkWord();
         Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
         toast.show();
-        MainActivity.favouriteHistories.clear();
-        // Loading all old histories and displaying
+        MainActivity.bookmarkWords.clear();
+        // Loading all bookmark word and displaying it
         while (cursor.moveToNext())
         {
-            String screenshotPath = cursor.getString(0);
-            String xmlPath = cursor.getString(1);
-            String addedTime = cursor.getString(2);
-            String srcLang = cursor.getString(3);
-            String dstLang = cursor.getString(4);
+            String word = cursor.getString(0);
+            String addedTime = cursor.getString(1);
+            String srcLang = cursor.getString(2);
 
-            TranslationHistory translationHistory = new TranslationHistory(screenshotPath, xmlPath, Long.parseLong(addedTime), srcLang, dstLang);
-            MainActivity.favouriteHistories.add(translationHistory);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, Long.parseLong(addedTime), srcLang);
+            MainActivity.bookmarkWords.add(bookmarkWord);
         }
     }
 
@@ -150,21 +143,19 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position)
     {
-        if (viewHolder instanceof  TranslationHistoryAdapter.MyViewHolder)
+        if (viewHolder instanceof  BookmarkWordAdapter.MyViewHolder)
         {
             // get the removed item name to display it in snack bar
-            String screenshotFileName = MainActivity.favouriteHistories.get(viewHolder.getAdapterPosition()).getScreenshotFileName();
-            String screenshotPath = MainActivity.favouriteHistories.get(viewHolder.getAdapterPosition()).getScreenshotPath();
             // make a backup version of removed item for undo purpose
-            final TranslationHistory deletedTranslationHistory = MainActivity.favouriteHistories.get(viewHolder.getAdapterPosition());
+            final BookmarkWord deletedBookmarkWord = MainActivity.bookmarkWords.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
             if (direction == ItemTouchHelper.LEFT)
             {
                 // remove the translation history from recycler view
-                favouriteHistoryAdapter.removeTranslationHistory(deletedIndex);
-                favouriteHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+                bookmarkWordAdapter.removeBookmarkWord(deletedIndex);
+                bookmarkWordDatabaseHelper.deleteFavouriteWord(deletedBookmarkWord.getWord());
                 // showing snack bar with undo option
-                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Favourite Histories", Snackbar.LENGTH_LONG);
+                Snackbar snackbarUndo = Snackbar.make(getView(), deletedBookmarkWord.getWord() + " removed from Bookmark", Snackbar.LENGTH_LONG);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
 
@@ -172,8 +163,8 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
                     public void onClick(View view)
                     {
                         // undo is selected, let's restore the deleted item
-                        favouriteHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
-                        favouriteHistoryDatabaseHelper.insertNewFavouriteTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                        bookmarkWordAdapter.restoreBookmarkWord(deletedBookmarkWord, deletedIndex);
+                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage());
                     }
                 });
                 snackbarUndo.setActionTextColor(Color.RED);
@@ -200,47 +191,22 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
 
     public void mappingViewComponentsByID()
     {
-        favouriteTranslationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
+        bookmarkWordRecyclerView = getActivity().findViewById(R.id.listViewBookmark);
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
 
-        favouriteTranslationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
-        favouriteTranslationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        favouriteTranslationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        bookmarkWordRecyclerView.setLayoutManager(mLayoutmanager);
+        bookmarkWordRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        bookmarkWordRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
-        favouriteHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.favouriteHistories);
-        favouriteTranslationHistoryRecyclerView.setAdapter(favouriteHistoryAdapter);
+        bookmarkWordAdapter = new BookmarkWordAdapter(getActivity(), MainActivity.bookmarkWords);
+        bookmarkWordRecyclerView.setAdapter(bookmarkWordAdapter);
 
         // adding item touch helper
+
         // only ItemTouchHelper.LEFT added to detect Right to Left swipe
         // if you want both Right -> Left and Left -> Right
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
-
-        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT, this);
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(favouriteTranslationHistoryRecyclerView);
-
-        favouriteTranslationHistoryRecyclerView.addOnItemTouchListener(new RecyclerTranslationHistoryTouchListener(getActivity(), favouriteTranslationHistoryRecyclerView, new RecyclerTranslationHistoryTouchListener.ClickListener()
-        {
-            @Override
-            public void onClick(View view, int position)
-            {
-
-                TranslationHistory translationHistory = MainActivity.favouriteHistories.get(position);
-                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
-                Intent intent =  new Intent(FavoritesFragment.this.getContext(), ScreenshotViewerActivity.class);
-
-
-                intent.putExtra("ScreenshotObj", new ScreenshotObj(
-                        translationHistory.getScreenshotPath(),
-                        translationHistory.getXmlDataPath()));
-
-                getContext().startActivity(intent);
-            }
-
-            @Override
-            public void onLongClick(View view, int position)
-            {
-
-            }
-        }));
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerBookmarkWordTouchHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(bookmarkWordRecyclerView);
     }
 }

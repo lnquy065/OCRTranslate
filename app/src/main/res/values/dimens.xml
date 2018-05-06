@@ -3,4 +3,6 @@
     <dimen name="padd_10">10dp</dimen>
     <dimen name="ic_delete">30dp</dimen>
     <dimen name="screenshot">90dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="word_position">40dp</dimen>
 </resources>
