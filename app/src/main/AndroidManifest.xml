@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +29,8 @@
         </activity>
         <activity android:name=".SetLanguageActivity" />
         <activity android:name=".LanguageSettingActivity" />
-        <activity android:name=".ScreenshotViewerActivity"></activity>
+        <activity android:name=".ScreenshotViewerActivity" />
+        <activity android:name=".CameraActivity"></activity>
     </application>
 
 </manifest>

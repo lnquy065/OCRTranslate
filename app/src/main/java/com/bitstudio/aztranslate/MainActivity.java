@@ -2,12 +2,15 @@ package com.bitstudio.aztranslate;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
@@ -270,10 +273,29 @@ public class MainActivity extends AppCompatActivity implements
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             btnFloat.startAnimation(anim_zoomout);
-                Intent intent = new Intent(MainActivity.this, FloatingActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+            Intent intent = null;
+            switch (scanMode) {
+                case 0: //camera
+//                     intent = new Intent(MainActivity.this, CameraActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivityForResult(intent, 3);
+                    }
+
+
+                    break;
+                case 1: //screen
+                     intent = new Intent(MainActivity.this, FloatingActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    break;
+                case 2: //file
+
+                    break;
+            }
+            startActivity(intent);
+            finish();
             return super.onSingleTapUp(e);
         }
 
@@ -284,5 +306,15 @@ public class MainActivity extends AppCompatActivity implements
         }
 
     }
+
+
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 3 && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+          //  ocrManager
+        }
+    }
+}
 
 }

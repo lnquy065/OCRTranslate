@@ -519,7 +519,7 @@ public class FloatingActivity extends AppCompatActivity {
         return (int) px;
     }
 
-    private int map(int v, int iMin, int iMax, int oMin, int oMax) {
+    public static int map(int v, int iMin, int iMax, int oMin, int oMax) {
         float ratio = (float) ((oMax - oMin) * 1.0 / (iMax - iMin));
         return (int) (v * ratio) - oMin;
     }
