@@ -130,7 +130,7 @@ public class FloatingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-      //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_floating);
 
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
@@ -215,22 +215,22 @@ public class FloatingActivity extends AppCompatActivity {
         anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
 
 
-       anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
-           @Override
-           public void onAnimationStart(Animation animation) {
+        anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-           }
+            }
 
-           @Override
-           public void onAnimationEnd(Animation animation) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 floatingView.setVisibility(View.GONE);
-           }
+            }
 
-           @Override
-           public void onAnimationRepeat(Animation animation) {
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
-           }
-       });
+            }
+        });
     }
 
     public void addControls() {
@@ -239,7 +239,6 @@ public class FloatingActivity extends AppCompatActivity {
         lbTranslateTarget = translateView.findViewById(R.id.lbTranslateTarget);
         imTranslateSource = translateView.findViewById(R.id.imTranslateSource);
         btnTranslateFavorite = translateView.findViewById(R.id.btnTranslateFavorite);
-
         btnFloatingWidgetClose = floatingView.findViewById(R.id.btnFloatingWidgetClose);
         imvFloatingWidgetIcon = floatingView.findViewById(R.id.imvFloatingWidgetIcon);
         imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
@@ -277,7 +276,7 @@ public class FloatingActivity extends AppCompatActivity {
             }
         });
 
-        
+
         btnFloatingWidgetClose.setOnClickListener(v -> {
             Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
             startActivity(intent);
@@ -313,7 +312,7 @@ public class FloatingActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         long t = System.currentTimeMillis() - startTime;
                         if (t < MAX_DURATION) {
-                                takeScreenshot();
+                            takeScreenshot();
                         } else {
                             ValueAnimator va;
                             if (floatingLayout.x + 30 < mWidth / 2) {
@@ -395,11 +394,15 @@ public class FloatingActivity extends AppCompatActivity {
         });
     }
 
-    private void removeWordFromFavorites(String s) {
+    private void removeWordFromFavorites(String s)
+    {
+
     }
 
-    private void addWordToFavorites(String s) {
-        
+    private void addWordToFavorites(String s)
+    {
+        long unixTime = System.currentTimeMillis() / 1000L;
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(s, String.valueOf(unixTime), "English");
     }
 
     public void showFloatingWidget() {
@@ -516,7 +519,7 @@ public class FloatingActivity extends AppCompatActivity {
         return (int) px;
     }
 
-    private int map(int v, int iMin, int iMax, int oMin, int oMax) {
+    public static int map(int v, int iMin, int iMax, int oMin, int oMax) {
         float ratio = (float) ((oMax - oMin) * 1.0 / (iMax - iMin));
         return (int) (v * ratio) - oMin;
     }
@@ -652,6 +655,7 @@ public class FloatingActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             mainView.setBackgroundDrawable(new BitmapDrawable(bitmapReco));
+
                             imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
                             imvFloatingWidgetIcon.play();
                         }
@@ -743,8 +747,4 @@ public class FloatingActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 }

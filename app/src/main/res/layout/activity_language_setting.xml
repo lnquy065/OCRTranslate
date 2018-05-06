@@ -6,58 +6,57 @@
     android:layout_height="match_parent"
     tools:context="com.bitstudio.aztranslate.LanguageSettingActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="384dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="8dp"
-        android:autoText="false"
-        android:background="@android:color/darker_gray"
-        android:text="Ngôn ngữ đã cài đặt"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:textAlignment="center" />
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="104dp"
-        android:layout_height="52dp"
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="551dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Xóa"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="382dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Tiếng Anh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="395dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Tiếng Việt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/darker_gray"
+            android:text="Ngôn ngữ đã cài đặt"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
 
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="384dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Tiếng Pháp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        <ListView
+            android:id="@+id/lv1"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible" />
 
+        <Button
+            android:id="@+id/btXoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="14dp"
+            android:text="Xóa" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/btXoa"
+            android:layout_marginStart="74dp" />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
