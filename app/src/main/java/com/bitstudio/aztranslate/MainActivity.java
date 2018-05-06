@@ -96,8 +96,7 @@ public class MainActivity extends AppCompatActivity implements
             addControls();
             addEvents();
             loadAnimations();
-            openFragment( new SettingFragment());
-
+            btnSetting.performClick();
         }
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }

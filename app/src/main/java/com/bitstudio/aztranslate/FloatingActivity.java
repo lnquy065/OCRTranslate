@@ -652,6 +652,7 @@ public class FloatingActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             mainView.setBackgroundDrawable(new BitmapDrawable(bitmapReco));
+
                             imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
                             imvFloatingWidgetIcon.play();
                         }
