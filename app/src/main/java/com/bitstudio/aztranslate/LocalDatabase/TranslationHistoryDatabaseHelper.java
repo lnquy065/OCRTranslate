@@ -30,13 +30,15 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public static final String DB_KEY_DSTLANG = "dstLanguage";
     public static final String DB_KEY_FAVOURITE = "favourite";
 
-    private static final String DB_CREATE_TABLE_FAVOURITE_WORD = "CREATE TABLE FAVOURITE(" +
+    private static final String DB_CREATE_TABLE_FAVOURITE_WORD = "CREATE TABLE FAVOURITE_WORD(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "word TEXT, " +
+            "srcLanguage TEXT," +
             "addedTime TEXT);";
     public static final String DB_TABLE_NAME_FAVOURITE_WORD = "FAVOURITE_WORD";
     public static final String DB_KEY_WORD = "word";
     public static final String DB_KEY_WORD_TIME = "addedTime";
+    public static final String DB_KEY_WORD_SRCLANG = "srcLanguage";
     public TranslationHistoryDatabaseHelper(Context context, SQLiteDatabase.CursorFactory factory)
     {
         super(context, DB_NAME, factory, DB_VERSION);
@@ -105,15 +107,15 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         updateTranslationHis.put(DB_KEY_FAVOURITE, 0);
         return db.update(DB_TABLE_NAME_HISTORY, updateTranslationHis,DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
     }
-    public long insertNewFavouriteWord(String word, String addedTime)
+    public long insertNewFavouriteWord(String word, String addedTime, String srcLang)
     {
         SQLiteDatabase db = getReadableDatabase();
         ContentValues favourWord = new ContentValues();
         favourWord.put(DB_KEY_WORD, word);
         favourWord.put(DB_KEY_WORD_TIME, addedTime);
+        favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
         return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
     }
-
     public long deleteFavouriteWord(String word)
     {
         SQLiteDatabase db = getReadableDatabase();
@@ -130,6 +132,12 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = getReadableDatabase();
         return db.query(DB_TABLE_NAME_HISTORY, new String[]{DB_KEY_SCREENSHOT, DB_KEY_XMLPATH, DB_KEY_HISTORY_TIME, DB_KEY_SRCLANG, DB_KEY_DSTLANG}, DB_KEY_FAVOURITE + " = ?", new String[] {"1"}, null, null, DB_KEY_HISTORY_TIME + " DESC");
+    }
+
+    public Cursor queryAllBookmarkWord()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TIME, DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
     }
 
 }

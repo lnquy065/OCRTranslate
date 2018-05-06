@@ -1,4 +1,4 @@
-﻿package com.bitstudio.aztranslate;
+package com.bitstudio.aztranslate;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

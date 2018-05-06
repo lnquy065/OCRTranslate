@@ -24,7 +24,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
+import com.bitstudio.aztranslate.models.ScreenshotObj;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.ocr.HOCR;
 import com.cunoraz.gifview.library.GifView;
@@ -50,7 +53,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     private View translateView;
     private WindowManager.LayoutParams translateLayout;
 
-    private TranslationHistory translationHistory;
+    private ScreenshotObj translationHistory;
     private View mainView;
     private HOCR hocr;
     private Bitmap screenshotBitMap;
@@ -62,6 +65,8 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     private ToggleButton btnTranslateFavorite;
     private GifView imTranslateLoading;
 
+    private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
+    private ToggleButton btnTranslateFavourite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +74,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_screenshot_viewer);
 
         translateView = LayoutInflater.from(this).inflate(R.layout.layout_floating_translate, null);
-
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
         //create service layout
         translateLayout = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -151,11 +156,11 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        translationHistory = (TranslationHistory) getIntent().getSerializableExtra("TranslationHistory");
+        translationHistory = (ScreenshotObj) getIntent().getSerializableExtra("ScreenshotObj");
         screenshotBitMap = translationHistory.getScreenshotBitmap();
       //  Log.d("Bitmap", screenshotBitMap.getWidth() + " " + screenshotBitMap.getHeight());
         screenshotBitMap = Bitmap.createBitmap(screenshotBitMap, 0, Setting.STATUSBAR_HEIGHT, screenshotBitMap.getWidth(), screenshotBitMap.getHeight()-Setting.STATUSBAR_HEIGHT);
-        hocr = new HOCR(new File(translationHistory.getXmlDataPath()));
+        hocr = new HOCR(translationHistory.readXmlData());
         recognizeBitMap = hocr.createBitmap(screenshotBitMap.getWidth(), screenshotBitMap.getHeight());
     }
 
