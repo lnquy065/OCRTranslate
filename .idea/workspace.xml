@@ -11,142 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="531f645e-6287-418d-94ec-e94be0ecb5c4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/bat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/bear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/bee.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/butterfly.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/cat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/deer.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/dolphin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/eagle.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/elephant.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/horse.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/owl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/peacock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/pig.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/rat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/snake.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/squirrel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/google-services.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/BuilderManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LocalDatabase/DBManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ManageLanguageActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/SetRTActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/SystemSettingActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/adapters/BookmarkWordAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/adapters/LanguageAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/adapters/RecyclerBookmarkWordTouchHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/dialogs/ColorDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/InstallFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/RemoveFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/models/BookmarkWord.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/models/Language.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/models/ScreenshotObj.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_compare_arrows_blue_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_delete_black_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_favorite_black_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_laptop_white_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_reply_black_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_black_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_language.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_set_rt.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_system_setting.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/bookmark_listview.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_install.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_language.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_remove.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_setcolor.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_manage_language.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_setting.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/proguard-rules.pro" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/androidTest/java/com/nightonke/boommenu/ApplicationTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/androidTest/java/com/nightonke/boommenu/ExampleInstrumentedTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/AnimationManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/BoomEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/Ease.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/EaseEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/HideRgbEvaluator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/OrderEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/Rotate3DAnimation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/ShareLinesView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Animation/ShowRgbEvaluator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BMBFrameLayout.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BMBShadow.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BackgroundView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/BoomButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/BoomButtonBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/BoomButtonWithTextBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/ButtonPlaceAlignmentEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/ButtonPlaceEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/ButtonPlaceManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/HamButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/InnerOnBoomButtonClickListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/OnBMClickListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/SimpleCircleButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/TextInsideCircleButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomButtons/TextOutsideCircleButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomMenuButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/BoomStateEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/ButtonEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/ExceptionManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/OnBoomListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/OnBoomListenerAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Piece/BoomPiece.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Piece/Dot.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Piece/Ham.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Piece/PiecePlaceEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Piece/PiecePlaceManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/java/com/nightonke/boommenu/Util.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/ic_crop_square_white_24dp.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/piece.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/piece_dot.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/shape_oval_normal.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/drawable/shape_rectangle_normal.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/layout-v17/bmb.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/layout/bmb.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/layout/bmb_ham_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/layout/bmb_simple_circle_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/layout/bmb_text_inside_circle_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/layout/bmb_text_outside_circle_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/values/attrs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/values/default_values.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/main/res/values/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boommenu/src/test/java/com/nightonke/boommenu/ExampleUnitTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OCRTranslate.iml" afterPath="$PROJECT_DIR$/OCRTranslate.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LocalDatabase/TranslationHistoryDatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LocalDatabase/TranslationHistoryDatabaseHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ScreenshotViewerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ScreenshotViewerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/Setting.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/Setting.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/adapters/SettingAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/adapters/SettingAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/BookmarkFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/BookmarkFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/FavoritesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/FavoritesFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/HistoryFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/HistoryFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/SettingFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/fragments/SettingFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/models/SettingItem.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/models/SettingItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ocr/HOCR.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ocr/HOCR.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ocr/OcrManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/ocr/OcrManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_remove_red_eye_black_24dp.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_remove_red_eye_black_24dp.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bookmark.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_bookmark.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/history_listview.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/history_listview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/setting_item_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/setting_item_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LanguageSettingActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LanguageSettingActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -164,17 +33,30 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="OCRTranslate" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LanguageSettingActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LanguageSettingActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LanguageSettingActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+            <state relative-caret-position="-1015">
+              <caret line="34" column="57" lean-forward="true" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -182,48 +64,13 @@
       </file>
       <file leaf-file-name="activity_language_setting.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
           <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_floating.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_floating.xml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="833">
+              <caret line="49" column="48" lean-forward="false" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
               <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FloatingActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="748" column="5" lean-forward="true" selection-start-line="748" selection-start-column="5" selection-end-line="748" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6821#7020#0" expanded="true" />
-                <element signature="e#7019#7020#0" expanded="true" />
-                <element signature="e#9333#9590#0" expanded="true" />
-                <element signature="e#9589#9590#0" expanded="true" />
-                <element signature="e#16303#16547#0" expanded="true" />
-                <element signature="e#16546#16547#0" expanded="true" />
-                <element signature="e#18485#18486#0" expanded="true" />
-                <element signature="e#18592#18593#0" expanded="true" />
-                <element signature="e#26159#26160#0" expanded="true" />
-                <element signature="e#26197#26198#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -232,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="65" column="35" lean-forward="false" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+              <caret line="143" column="75" lean-forward="true" selection-start-line="143" selection-start-column="75" selection-end-line="143" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -3346,10 +3193,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/anim/anim_tabtile_rotate.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_floating_widget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LanguageSettingActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LanguageSettingActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml" />
       </list>
     </option>
   </component>
@@ -3375,10 +3222,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3391,68 +3237,9 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OCRTranslate" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OCRTranslate" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aztranslate" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OCRTranslate" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aztranslate" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OCRTranslate" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3462,6 +3249,7 @@
     <property name="device.picker.selection" value="192.168.19.102:5555" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -3552,7 +3340,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1525612127974" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1525626638238" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3600,7 +3388,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1525612127974" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1525626638238" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3762,7 +3550,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1525612127974" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1525626638240" />
       </method>
     </configuration>
     <list size="1">
@@ -3807,10 +3595,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.49394855" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3818,22 +3605,22 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27474403" sideWeight="0.50907713" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33063585" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.301059" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283237" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41271678" sideWeight="0.49353796" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33063585" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4112628" sideWeight="0.49092284" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4112628" sideWeight="0.50907713" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17776097" sideWeight="0.41878173" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16868381" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17776097" sideWeight="0.5812183" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3892,33 +3679,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="1452">
           <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6952">
           <caret line="382" column="75" lean-forward="false" selection-start-line="382" selection-start-column="75" selection-end-line="382" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3942,33 +3715,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="1452">
           <caret line="66" column="32" lean-forward="false" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3984,19 +3743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4012,19 +3758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="661" column="13" lean-forward="true" selection-start-line="661" selection-start-column="13" selection-end-line="661" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4032,19 +3765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5520">
           <caret line="368" column="30" lean-forward="true" selection-start-line="368" selection-start-column="30" selection-end-line="368" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4057,33 +3777,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
           <caret line="79" column="38" lean-forward="false" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4096,64 +3802,36 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6525">
           <caret line="435" column="42" lean-forward="true" selection-start-line="435" selection-start-column="42" selection-end-line="435" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4168,19 +3846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4196,19 +3861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4235,13 +3887,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/slide_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/anim_general_fadein.xml">
@@ -4279,6 +3931,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
@@ -4286,9 +3941,6 @@
             <marker date="1525611654412" expanded="true" signature="1882:1913" ph="..." />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/anim_tabtile_rotate.xml">
@@ -4303,49 +3955,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_translate.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_floating_widget.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/SetLanguageActivity.java">
@@ -4355,61 +4002,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_floating.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_floating.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3621">
+          <caret line="177" column="24" lean-forward="true" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="48" lean-forward="false" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="65" column="35" lean-forward="false" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+          <caret line="143" column="75" lean-forward="true" selection-start-line="143" selection-start-column="75" selection-end-line="143" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/LanguageSettingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+        <state relative-caret-position="-1015">
+          <caret line="34" column="57" lean-forward="true" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/bitstudio/aztranslate/FloatingActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="748" column="5" lean-forward="true" selection-start-line="748" selection-start-column="5" selection-end-line="748" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6821#7020#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#9333#9590#0" expanded="true" />
-            <element signature="e#9589#9590#0" expanded="true" />
-            <element signature="e#16303#16547#0" expanded="true" />
-            <element signature="e#16546#16547#0" expanded="true" />
-            <element signature="e#18485#18486#0" expanded="true" />
-            <element signature="e#18592#18593#0" expanded="true" />
-            <element signature="e#26159#26160#0" expanded="true" />
-            <element signature="e#26197#26198#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

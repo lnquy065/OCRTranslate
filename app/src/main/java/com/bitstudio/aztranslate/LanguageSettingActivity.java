@@ -3,6 +3,7 @@ package com.bitstudio.aztranslate;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -75,6 +76,7 @@ public class LanguageSettingActivity extends AppCompatActivity {
         btXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final DialogInterface.OnClickListener diaOn = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -102,11 +104,15 @@ public class LanguageSettingActivity extends AppCompatActivity {
                                     lv1.setItemChecked(j,false);
 
                                 adapter.notifyDataSetChanged();
+                                break;
 
                         }
-
                     }
                 };
+                AlertDialog.Builder buider = new AlertDialog.Builder(context);
+                buider.setMessage("Xóa các mục đã chọn ").setPositiveButton("Xóa",diaOn)
+                        .setNegativeButton("Hủy",diaOn).show();
+
             }
         });
     }

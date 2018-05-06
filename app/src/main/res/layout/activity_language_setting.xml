@@ -43,6 +43,7 @@
 
         <Button
             android:id="@+id/btXoa"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -50,13 +51,5 @@
             android:layout_marginEnd="14dp"
             android:text="Xóa" />
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/btXoa"
-            android:layout_marginStart="74dp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
