@@ -25,7 +25,6 @@
                 android:background="@drawable/btn_translate_favorite"
                 android:textOff=""
                 android:textOn=""
-                android:onClick="onTranslationFavouriteToogleClicked"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

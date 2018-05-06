@@ -12,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.ocr.HOCR;
 
@@ -29,7 +32,9 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     private HOCR hocr;
     private Bitmap screenshotBitMap;
     private Bitmap recognizeBitMap;
-
+    private TextView txtTranslateSource;
+    private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
+    private ToggleButton btnTranslateFavourite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +42,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_screenshot_viewer);
 
         translateView = LayoutInflater.from(this).inflate(R.layout.layout_floating_translate, null);
-
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
         //create service layout
         translateLayout = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -60,7 +65,8 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
 
     private void addControls() {
         mainView = findViewById(R.id.mainScreenshotViewer);
-
+        txtTranslateSource = findViewById(R.id.txtTranslateSource);
+        btnTranslateFavourite = findViewById(R.id.btnTranslateFavorite);
         Bitmap merge = mergeToPin(screenshotBitMap, recognizeBitMap);
         mainView.setBackground(new BitmapDrawable(merge));
 

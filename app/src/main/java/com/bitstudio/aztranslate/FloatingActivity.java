@@ -402,7 +402,7 @@ public class FloatingActivity extends AppCompatActivity {
     private void addWordToFavorites(String s)
     {
         long unixTime = System.currentTimeMillis() / 1000L;
-        translationHistoryDatabaseHelper.insertNewFavouriteWord(s, String.valueOf(unixTime));
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(s, String.valueOf(unixTime), "English");
     }
 
     public void showFloatingWidget() {
@@ -747,20 +747,4 @@ public class FloatingActivity extends AppCompatActivity {
             }
         }
     }
-    public void onTranslationFavouriteToogleClicked(View view)
-    {
-        ToggleButton button = (ToggleButton)view;
-        String currentWord = txtTranslateSource.getText().toString();
-        if (button.isChecked())
-        {
-            addWordToFavorites(currentWord);
-        }
-        else
-        {
-            removeWordFromFavorites(currentWord);
-        }
-    }
-
-
-
 }
