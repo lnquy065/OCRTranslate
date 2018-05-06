@@ -39,6 +39,7 @@ import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
+import com.bitstudio.aztranslate.models.BookmarkWord;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.ocr.OcrManager;
 
@@ -88,10 +89,10 @@ public class MainActivity extends AppCompatActivity implements
     public static ArrayList<TranslationHistory> translationHistories = new ArrayList<>();
     private Animation anim_tabtile_rotate;
     public static ArrayList<TranslationHistory> favouriteHistories = new ArrayList<>();
-
     private OcrManager ocrManager;
     private int screenHeight, screenWidth;
 
+    public static ArrayList<BookmarkWord> bookmarkWords = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

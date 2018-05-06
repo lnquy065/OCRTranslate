@@ -239,7 +239,6 @@ public class FloatingActivity extends AppCompatActivity {
         lbTranslateTarget = translateView.findViewById(R.id.lbTranslateTarget);
         imTranslateSource = translateView.findViewById(R.id.imTranslateSource);
         btnTranslateFavorite = translateView.findViewById(R.id.btnTranslateFavorite);
-
         btnFloatingWidgetClose = floatingView.findViewById(R.id.btnFloatingWidgetClose);
         imvFloatingWidgetIcon = floatingView.findViewById(R.id.imvFloatingWidgetIcon);
         imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
@@ -402,7 +401,8 @@ public class FloatingActivity extends AppCompatActivity {
 
     private void addWordToFavorites(String s)
     {
-        
+        long unixTime = System.currentTimeMillis() / 1000L;
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(s, String.valueOf(unixTime), "English");
     }
 
     public void showFloatingWidget() {
@@ -747,8 +747,4 @@ public class FloatingActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 }

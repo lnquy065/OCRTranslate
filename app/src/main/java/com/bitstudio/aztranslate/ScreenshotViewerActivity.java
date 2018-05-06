@@ -24,8 +24,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
 import com.bitstudio.aztranslate.models.ScreenshotObj;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.ocr.HOCR;
 import com.cunoraz.gifview.library.GifView;
@@ -63,6 +65,8 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     private ToggleButton btnTranslateFavorite;
     private GifView imTranslateLoading;
 
+    private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
+    private ToggleButton btnTranslateFavourite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +74,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_screenshot_viewer);
 
         translateView = LayoutInflater.from(this).inflate(R.layout.layout_floating_translate, null);
-
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
         //create service layout
         translateLayout = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
