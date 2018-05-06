@@ -1,6 +1,7 @@
 package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import com.bitstudio.aztranslate.ScreenshotViewerActivity;
 import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
 import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
 import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
@@ -247,6 +249,9 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
                 TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
                 Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                Intent intent =  new Intent(HistoryFragment.this.getContext(), ScreenshotViewerActivity.class);
+                intent.putExtra("TranslationHistory", translationHistory);
+                getContext().startActivity(intent);
             }
 
             @Override
