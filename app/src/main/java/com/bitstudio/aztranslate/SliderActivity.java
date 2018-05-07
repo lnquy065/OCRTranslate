@@ -20,13 +20,29 @@ public class SliderActivity extends AppCompatActivity {
     private TextView[] mDots;
 
     private Button btnSkip;
-
+    private final String SHARE_PREFERENCES_NAME = "ocr_prefer";
+    private final String IS_FIRST_LAUNCH = "is_first_launch";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slider);
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
 
-        mapped();
+        android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        boolean isFirtsLauncher = sharedPreferences.getBoolean(IS_FIRST_LAUNCH,true);
+        if(isFirtsLauncher){
+            android.util.Log.d("Boolean","True");
+            editor.putBoolean(IS_FIRST_LAUNCH,false);
+            editor.apply();
+            mapped();
+        }else{
+            android.util.Log.d("Boolean","False");
+            Intent intent = new Intent(SliderActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        //mapped();
 
     }
 
