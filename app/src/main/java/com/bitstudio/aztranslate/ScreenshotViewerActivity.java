@@ -59,7 +59,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     private Bitmap screenshotBitMap;
     private Bitmap recognizeBitMap;
 
-    private EditText txtTranslateSource;
+    private TextView txtTranslateSource;
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
     private ToggleButton btnTranslateFavorite;
