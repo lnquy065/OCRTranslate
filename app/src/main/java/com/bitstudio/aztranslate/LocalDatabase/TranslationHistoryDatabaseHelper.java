@@ -91,7 +91,12 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public long deleteTranslationHis(String translationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
+        return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{translationScreenshotPath, "0"});
+    }
+    public long deleteFavouriteTranslationHis(String favouriteTranslationScreenshotPath)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{favouriteTranslationScreenshotPath, "1"});
     }
     public long makeTranslationHisAsFavourite(String translationScreenshotPath)
     {
