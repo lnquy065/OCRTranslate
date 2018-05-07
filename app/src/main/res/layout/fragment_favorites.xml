@@ -15,7 +15,7 @@
             android:choiceMode="singleChoice"></android.support.v7.widget.RecyclerView>
 
         <Button
-            android:id="@+id/buttonModifyHistory"
+            android:id="@+id/buttonDeleteAllFav"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
