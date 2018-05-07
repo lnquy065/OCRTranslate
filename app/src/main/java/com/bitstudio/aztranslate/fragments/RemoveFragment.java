@@ -17,9 +17,11 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.Setting;
 import com.bitstudio.aztranslate.adapters.LanguageAdapter;
 import com.bitstudio.aztranslate.models.Language;
 import com.bitstudio.aztranslate.R;
+import com.bitstudio.aztranslate.models.LanguageLite;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,7 +37,6 @@ public class RemoveFragment extends Fragment {
     ArrayList<String> arrayString;
     ArrayAdapter<String> adapter ;
     String[] listData;
-    HashMap<String,String> mapLang;
     Context context;
 
     @Nullable
@@ -49,25 +50,6 @@ public class RemoveFragment extends Fragment {
         lv1 =  view.findViewById(R.id.lv1);
         lv1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        mapLang = new HashMap<String,String>();
-
-        mapLang.put("afr.traineddata","Afrikaans");
-        mapLang.put("bel.traineddata","Belorussian");
-        mapLang.put("chi_tra.traineddata","Chinese" );
-        mapLang.put("dan.traineddata","Danish");
-        mapLang.put("eng.traineddata","English");
-        mapLang.put("fra.traineddata","French");
-        mapLang.put("grc.traineddata","Greek");
-        mapLang.put("hin.traineddata","Hindi");
-        mapLang.put("ita.traineddata","Italian");
-        mapLang.put("lao.traineddata","Laotian");
-        mapLang.put("mal.traineddata","Malay");
-        mapLang.put("por.traineddata","Portuguese" );
-        mapLang.put("rus.traineddata","Russian");
-        mapLang.put("spa.traineddata","Spanish");
-        mapLang.put("vie.traineddata","Vietnamese");
-        mapLang.put("jpn.traineddata","Japanese");
-
         final File dir = new File(MainActivity.CACHE+"tessdata/");
         if(!dir.exists())
             dir.mkdirs();
@@ -78,9 +60,10 @@ public class RemoveFragment extends Fragment {
         arrayString.clear();
 
         for(int i=0;i<listData.length;i++) {
-            String Lang = mapLang.get(listData[i]);
-            if(Lang!=null)
-                arrayString.add(Lang);
+            String ocrF = listData[i].substring(0, listData[i].length() - 12);
+            LanguageLite l = Setting.findByOCR(ocrF);
+            if(l!=null)
+                arrayString.add(l.name);
         }
         adapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_multiple_choice ,arrayString);
 
@@ -101,9 +84,10 @@ public class RemoveFragment extends Fragment {
                                 arrayString.clear();
 
                                 for(int j=0;j<listData.length;j++) {
-                                    String Lang = mapLang.get(listData[j]);
-                                    if(Lang!=null)
-                                        arrayString.add(Lang);
+                                    String ocrF = listData[i].substring(0, listData[j].length() - 11);
+                                    LanguageLite l = Setting.findByOCR(ocrF);
+                                    if(l!=null)
+                                        arrayString.add(l.name);
                                 }
                                 adapter.notifyDataSetChanged();
 

@@ -4,6 +4,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.bitstudio.aztranslate.models.LanguageLite;
+
+import java.util.ArrayList;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -15,9 +19,34 @@ public class Setting {
     public static int STATUSBAR_HEIGHT = 0;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
+    public static ArrayList<LanguageLite> LANGUAGE = new ArrayList<>();
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";
+
+    static {
+        LANGUAGE.add(new LanguageLite("Azerbaijan","aze","az"));
+        LANGUAGE.add(new LanguageLite("Amharic","amh","am"));
+        LANGUAGE.add(new LanguageLite("English","eng","en"));
+        LANGUAGE.add(new LanguageLite("Arabic","ara","ar"));
+        LANGUAGE.add(new LanguageLite("Afrikaans","afr","af"));
+        LANGUAGE.add(new LanguageLite("Belarusian","bel","be"));
+        LANGUAGE.add(new LanguageLite("Bengali","ben","bn"));
+        LANGUAGE.add(new LanguageLite("Bulgarian","bul","bg"));
+        LANGUAGE.add(new LanguageLite("Bosnian","bos","bs"));
+        LANGUAGE.add(new LanguageLite("Vietnamese","vie","vi"));
+        LANGUAGE.add(new LanguageLite("Italian","ita","it"));
+        LANGUAGE.add(new LanguageLite("Spanish","spa","es"));
+        LANGUAGE.add(new LanguageLite("Chinese","chi_sim","zh"));
+
+    }
+
+    public static LanguageLite findByOCR(String ocr) {
+        for (LanguageLite l: LANGUAGE) {
+            if (l.ocrSymbol.equals(ocr)) return l;
+        }
+        return null;
+    }
 
     public static class BORDER_SHAPE {
         public static int RECT = 0;
@@ -44,6 +73,9 @@ public class Setting {
         public static Paint.Style BORDER_STYLE = Paint.Style.STROKE;
         public static int BORDER_WIDTH = 10;
     }
+
+
+
 
 
 }

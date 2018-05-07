@@ -142,6 +142,7 @@
     <orderEntry type="library" name="com.daasuu:EasingInterpolator-1.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="junit:junit:4.12@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-12.0.1" level="project" />
+    <orderEntry type="library" name="com.github.faruktoptas:FancyShowCaseView-1.0.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-database-connection-12.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-core-3.0.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-basement-12.0.1" level="project" />

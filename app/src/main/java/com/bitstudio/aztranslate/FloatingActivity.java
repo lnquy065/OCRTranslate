@@ -109,7 +109,7 @@ public class FloatingActivity extends AppCompatActivity {
     private Animation anim_general_fadein;
 
     //translate form
-    private EditText txtTranslateSource;
+    private TextView txtTranslateSource;
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
     private ToggleButton btnTranslateFavorite;

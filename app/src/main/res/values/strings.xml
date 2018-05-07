@@ -6,8 +6,8 @@
     <string name="slider_onscreen">Giới Thiệu Onscreen</string>
     <string name="slider_camera">Giới Thiệu Camera</string>
     <string name="slider_file">Giới Thiệu File</string>
-    <string name="deleteHistory">Xoá</string>
-    <string name="addToFavouriteHistory">Yêu thích</string>
+    <string name="deleteHistory">Remove</string>
+    <string name="addToFavouriteHistory">Favor</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_manage_language">ManageLanguageActivity</string>
     <string name="tab_text_1">Tab 1</string>

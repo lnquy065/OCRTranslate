@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -55,7 +56,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     private View onView;
     // Taking control of the History list view
     private RecyclerView translationHistoryRecyclerView;
-    private Button buttonDeleteAllHistory;
+    private FloatingActionButton buttonDeleteAllHistory;
     public HistoryFragment() {
         // Required empty public constructor
     }
