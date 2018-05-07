@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <LinearLayout
-        android:layout_width="349dp"
+        android:layout_width="wrap_content"
         android:layout_height="148dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
@@ -38,18 +38,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="TextView"
+                android:text="Red"
                 android:textColor="#ff0000"
                 android:textSize="20dp" />
 
             <SeekBar
                 android:id="@+id/id_red"
-                android:layout_width="wrap_content"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:min="0"
+                android:layout_weight="1"
                 android:max="255"
-                android:layout_weight="1" />
+                android:min="0" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="TextView"
+                android:text="Green"
                 android:textColor="#00ff00"
                 android:textSize="20dp" />
 
@@ -71,9 +71,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:min="0"
+                android:layout_weight="1"
                 android:max="255"
-                android:layout_weight="1" />
+                android:min="0" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="TextView"
+                android:text="Blue"
                 android:textColor="#0000ff"
                 android:textSize="20dp" />
 
@@ -95,9 +95,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:min="0"
+                android:layout_weight="1"
                 android:max="255"
-                android:layout_weight="1" />
+                android:min="0" />
         </LinearLayout>
     </LinearLayout>
 

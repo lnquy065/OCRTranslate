@@ -11,6 +11,7 @@ public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
     public static int STATUSBAR_HEIGHT = 0;
     public static int COMPRESSED_RATE = 8;
+    public static boolean NOTICE = false;
 
 
     public static class YandexAPI {
@@ -21,7 +22,7 @@ public class Setting {
 
 
     public static class WordBorder {
-        public static String BORDER_COLOR = "#CD5CD5";
+        public static int BORDER_COLOR = 0xCD5CD5;
         public static Paint.Style BORDER_STYLE = Paint.Style.STROKE;
         public static int BORDER_WIDTH = 2;
         public static int BORDER_PADDING = 2;

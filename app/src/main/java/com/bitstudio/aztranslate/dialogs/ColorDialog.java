@@ -17,7 +17,6 @@ import com.bitstudio.aztranslate.R;
 
 public class ColorDialog extends AppCompatDialogFragment {
 
-    //Tập trung làm bài đi, ngoan Mơ Hoa mới thương
     private ColorDialogListener listener;
     private SeekBar redSeekbar, greenSeekbar, blueSeekbar;
     private TextView redValue,greenValue,blueValue;
@@ -116,7 +115,7 @@ public class ColorDialog extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialog, int which) {
 
             }
-        }).setPositiveButton("Oke", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 listener.applyTexts(RED,GREEN,BLUE);

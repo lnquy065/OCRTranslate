@@ -100,7 +100,7 @@ public class HOCR {
 
 
         Paint paint = new Paint();
-        paint.setColor(Color.parseColor(Setting.WordBorder.BORDER_COLOR));
+        paint.setColor(Setting.WordBorder.BORDER_COLOR);
         paint.setStyle(Setting.WordBorder.BORDER_STYLE);
         paint.setStrokeWidth(Setting.WordBorder.BORDER_WIDTH);
 

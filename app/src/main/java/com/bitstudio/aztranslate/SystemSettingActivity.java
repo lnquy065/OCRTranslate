@@ -41,15 +41,22 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
 
     private Switch swNotice;
     private Button btnColor;
-    private EditText edtLimit;
+    private EditText id_com;
 
     //private SharedPreferences sharedPreferences=getSharedPreferences(KEY_PREFERENCE,MODE_PRIVATE);
 
     protected void setID(){
         btnColor=findViewById(R.id.id_color);
         swNotice=findViewById(R.id.id_notice);
-        edtLimit=findViewById(R.id.id_limit);
+        id_com = findViewById(R.id.id_com);
         setControl();
+        initSetting();
+    }
+
+    private void initSetting() {
+        btnColor.setBackgroundColor(Setting.WordBorder.BORDER_COLOR);
+        id_com.setText( String.valueOf(Setting.COMPRESSED_RATE));
+        swNotice.setChecked(Setting.NOTICE);
     }
 
     protected void setControl(){
@@ -61,45 +68,12 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
             }
         });
 
-        edtLimit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Toast.makeText(SystemSettingActivity.this, s+"", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btnColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ColorDialog exampleDialog=new ColorDialog();
                 exampleDialog.show(getSupportFragmentManager(),"example dialog");
-
-            }
-        });
-
-        edtLimit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -199,6 +173,8 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
 
     @Override
     public void applyTexts(int red, int green, int blue) {
+        int RGB = android.graphics.Color.argb(255, red, green, blue);
+        Setting.WordBorder.BORDER_COLOR = RGB;
         btnColor.setBackgroundColor(Color.rgb(red,green,blue));
     }
 
