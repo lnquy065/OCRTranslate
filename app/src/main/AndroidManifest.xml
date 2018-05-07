@@ -34,12 +34,12 @@
         <activity android:name=".CameraActivity"></activity>
 
         <activity
-            android:name=".ManageLanguageActivity"
-            android:label="@string/title_activity_manage_language"
-            android:theme="@style/AppTheme" />
+            android:name=".ManageLanguageActivity"/>
+
         <activity android:name=".SetRTActivity" />
         <activity
             android:name=".SystemSettingActivity"
+            android:label="System Setting"
             android:theme="@style/SettingTheme"></activity>
     </application>
 

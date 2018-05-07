@@ -1,7 +1,10 @@
 package com.bitstudio.aztranslate;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by LN Quy on 14/03/2018.
@@ -13,6 +16,13 @@ public class Setting {
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
 
+    public static String recoLang = "vie";
+    public static String tranLang = "vi";
+
+    public static class BORDER_SHAPE {
+        public static int RECT = 0;
+        public static int RRECT = 1;
+    }
 
     public static class YandexAPI {
         public static final String API = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
@@ -22,10 +32,11 @@ public class Setting {
 
 
     public static class WordBorder {
-        public static int BORDER_COLOR = 0xCD5CD5;
+        public static int BORDER_COLOR = Color.RED;
         public static Paint.Style BORDER_STYLE = Paint.Style.STROKE;
         public static int BORDER_WIDTH = 2;
         public static int BORDER_PADDING = 2;
+        public static int BORDER_SHAPE = 0;
     }
 
     public static class ScreenBorder {

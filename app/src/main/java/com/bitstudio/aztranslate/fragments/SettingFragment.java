@@ -65,9 +65,10 @@ public class SettingFragment extends Fragment {
         arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language","Install or Remove Language"));
         arrayList.add(new SettingItem(R.drawable.ic_remove_red_eye_black_24dp,"Recognize/Translate",
                 "Set language to regconize or translate"));
-        arrayList.add(new SettingItem(R.drawable.ic_settings_black_24dp,"Setting",
-                "Notification, sound, auto update "
-        ));
+        arrayList.add(new SettingItem(R.drawable.ic_settings_black_24dp,"System",
+                "Colors, border's shapes, image compression "));
+        arrayList.add(new SettingItem(R.drawable.ic_help_black_24dp,"Guide","Help using my app efficently"));
+
         lvSetting.setAdapter(adapter);
         lvSetting.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,6 +88,11 @@ public class SettingFragment extends Fragment {
                     case 2:{
                         Intent intent=new Intent(getContext(),SystemSettingActivity.class);
                         startActivity(intent);
+                    }break;
+
+                    case 3:{
+                        //Huong dan o day
+                        
                     }break;
                 }
             }

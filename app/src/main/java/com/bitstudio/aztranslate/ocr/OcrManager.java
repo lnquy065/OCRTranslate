@@ -1,8 +1,10 @@
 package com.bitstudio.aztranslate.ocr;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.Setting;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 /**
@@ -19,7 +21,11 @@ public class OcrManager {
     public void initAPI() {
         baseAPI = new TessBaseAPI();
         String dataPath = MainActivity.CACHE;
-        baseAPI.init(dataPath, "vie");
+        try {
+            baseAPI.init(dataPath, Setting.recoLang);
+        } catch (IllegalArgumentException e) {
+            Log.d("ERROR", "Loi nhan dien");
+        }
     }
 
     /**

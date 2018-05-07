@@ -4,6 +4,7 @@ package com.bitstudio.aztranslate;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -119,8 +120,18 @@ public class MainActivity extends AppCompatActivity implements
             addEvents();
             loadAnimations();
             btnSetting.performClick();
+            loadSetting();
         }
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
+    }
+
+    private void loadSetting() {
+        SharedPreferences settingXML= getSharedPreferences("setting", MODE_PRIVATE);
+        Setting.recoLang = settingXML.getString("RECOLANG", "vie");
+        Setting.tranLang = settingXML.getString("TRANLANG", "vie");
+        Setting.WordBorder.BORDER_COLOR = settingXML.getInt("WBORDER", Color.RED);
+        Setting.COMPRESSED_RATE = settingXML.getInt("COMPRESSED", 8);
+        Setting.WordBorder.BORDER_SHAPE = settingXML.getInt("WBORDERSHAPE", 8);
     }
 
     private void addEvents() {
@@ -265,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements
         File xmlDirectory = new File(CACHE+"histories/xml/");
         if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
 
-        File datDirectory = new File(CACHE+"dat/");
+        File datDirectory = new File(CACHE+"tessdata/");
         if (!datDirectory.exists()) datDirectory.mkdirs();
 
         File cameraIMGDirectory = new File(CACHE+"camera/img/");

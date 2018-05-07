@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.util.Log;
 import android.util.Pair;
 
 import com.bitstudio.aztranslate.Setting;
@@ -112,19 +114,28 @@ public class HOCR {
 
         Bitmap bg = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bg);
+
         Rect border = new Rect(0, 0, width, height);
         canvas.drawRect(border, paintBorder);
 
         for (Rect r: data.keySet()) {
             if (r.bottom <= Setting.STATUSBAR_HEIGHT) continue;
             Rect rt = new Rect(r.left, r.top - Setting.STATUSBAR_HEIGHT, r.right, r.bottom - Setting.STATUSBAR_HEIGHT);
-            canvas.drawRect(paddingRect(rt, Setting.WordBorder.BORDER_PADDING), paint);
+            rt = paddingRect(rt, Setting.WordBorder.BORDER_PADDING);
+
+            if (Setting.WordBorder.BORDER_SHAPE == Setting.BORDER_SHAPE.RECT ) {
+                canvas.drawRect(rt, paint);
+            } else {
+
+                canvas.drawLine(rt.left, rt.bottom, rt.right, rt.bottom, paint);
+            }
         }
         return bg;
+
     }
 
     private Rect paddingRect(Rect r, int width) {
-        return new Rect(r.left-width, r.top-width, r.right+width, r.bottom+width);
+        return new Rect(r.left-width, r.top-width, r.right+width+width, r.bottom+width);
     }
 
 }

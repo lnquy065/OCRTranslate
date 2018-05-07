@@ -43,7 +43,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
     private Button btnColor;
     private EditText id_com;
 
-    //private SharedPreferences sharedPreferences=getSharedPreferences(KEY_PREFERENCE,MODE_PRIVATE);
+    private SharedPreferences pre;
 
     protected void setID(){
         btnColor=findViewById(R.id.id_color);
@@ -60,6 +60,25 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
     }
 
     protected void setControl(){
+        id_com.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.toString().equals("")) return;
+                int compressed = Integer.valueOf(editable.toString());
+                Setting.COMPRESSED_RATE = compressed;
+                pre.edit().putInt("COMPRESSED", compressed).commit();
+            }
+        });
 
         swNotice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -78,6 +97,9 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
             }
         });
 
+
+
+
         bmb = (BoomMenuButton) findViewById(R.id.bmb);
         assert bmb != null;
         bmb.setButtonEnum(ButtonEnum.SimpleCircle);
@@ -85,8 +107,8 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
         bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_1);
         bmb.addBuilder(BuilderManager.getSimpleCircleButtonBuilder());
         BuilderManager.getCircleButtonData(piecesAndButtons);
-        bmb.setPiecePlaceEnum((PiecePlaceEnum) piecesAndButtons.get(11).first);
-        bmb.setButtonPlaceEnum((ButtonPlaceEnum) piecesAndButtons.get(11).second);
+        bmb.setPiecePlaceEnum((PiecePlaceEnum) piecesAndButtons.get(6).first);
+        bmb.setButtonPlaceEnum((ButtonPlaceEnum) piecesAndButtons.get(6).second);
         bmb.clearBuilders();
         for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++)
         {
@@ -103,7 +125,11 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
         bmb.setOnBoomListener(new OnBoomListener() {
             @Override
             public void onClicked(int index, BoomButton boomButton) {
-                Toast.makeText(SystemSettingActivity.this, index+"", Toast.LENGTH_SHORT).show();
+                int borderShape = index;
+
+                Setting.WordBorder.BORDER_SHAPE = borderShape;
+                pre.edit().putInt("WBORDERSHAPE", borderShape).commit();
+
             }
 
             @Override
@@ -133,6 +159,8 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
         });
     }
 
+
+
 //    private void getPreference(){
 //        swNotice.setChecked(sharedPreferences.getBoolean(KEY_NOTICE,false));
 //        btnColor.setBackgroundColor(Color.parseColor
@@ -145,16 +173,11 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_setting);
+        pre=getSharedPreferences("setting",MODE_PRIVATE);
         setID();
      //   getPreference();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.menu_setting,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -175,11 +198,18 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
     public void applyTexts(int red, int green, int blue) {
         int RGB = android.graphics.Color.argb(255, red, green, blue);
         Setting.WordBorder.BORDER_COLOR = RGB;
+        pre.edit().putInt("WBORDER", RGB).commit();
         btnColor.setBackgroundColor(Color.rgb(red,green,blue));
     }
 
     @Override
     public void applyTexts(String text) {
 //        tvResult.setText(text);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

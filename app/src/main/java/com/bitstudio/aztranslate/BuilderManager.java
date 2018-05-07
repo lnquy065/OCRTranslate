@@ -50,7 +50,8 @@ public class BuilderManager {
 
     static SimpleCircleButton.Builder getSimpleCircleButtonBuilder() {
         return new SimpleCircleButton.Builder()
-                .normalImageRes(getImageResource());
+                .normalImageRes(getImageResource())
+                ;
     }
 
     static SimpleCircleButton.Builder getSquareSimpleCircleButtonBuilder() {
