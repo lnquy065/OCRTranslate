@@ -254,19 +254,19 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public void createDirs() {
-            File storeDirectory = new File(CACHE);
-            if (!storeDirectory.exists()) {
-                boolean success = storeDirectory.mkdirs();
-            }
+        File storeDirectory = new File(CACHE);
+        if (!storeDirectory.exists()) {
+            boolean success = storeDirectory.mkdirs();
+        }
 
-                File imgDirectory = new File(CACHE+"histories/img/");
-                if (!imgDirectory.exists()) imgDirectory.mkdirs();
+        File imgDirectory = new File(CACHE+"histories/img/");
+        if (!imgDirectory.exists()) imgDirectory.mkdirs();
 
-                File xmlDirectory = new File(CACHE+"histories/xml/");
-                if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
+        File xmlDirectory = new File(CACHE+"histories/xml/");
+        if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
 
-                File datDirectory = new File(CACHE+"dat/");
-                if (!datDirectory.exists()) datDirectory.mkdirs();
+        File datDirectory = new File(CACHE+"dat/");
+        if (!datDirectory.exists()) datDirectory.mkdirs();
 
         File cameraIMGDirectory = new File(CACHE+"camera/img/");
         if (!cameraIMGDirectory.exists()) cameraIMGDirectory.mkdirs();
@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements
 
                     break;
                 case 1: //screen
-                     intent = new Intent(MainActivity.this, FloatingActivity.class);
+                    intent = new Intent(MainActivity.this, FloatingActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
@@ -392,10 +392,9 @@ public class MainActivity extends AppCompatActivity implements
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), options);
             myBitmap = Bitmap.createScaledBitmap(myBitmap,
                     screenWidth, screenHeight, false);
-           return  myBitmap;
+            return  myBitmap;
         }
         else
             return null;
     }
 }
-
