@@ -101,8 +101,8 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
         bookmarkWordDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
 
         Cursor cursor = bookmarkWordDatabaseHelper.queryAllBookmarkWord();
-        Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
-        toast.show();
+        //Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
+        //toast.show();
         MainActivity.bookmarkWords.clear();
         // Loading all bookmark word and displaying it
         while (cursor.moveToNext())

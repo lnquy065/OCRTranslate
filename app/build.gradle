@@ -46,6 +46,7 @@ dependencies {
     compile 'com.google.firebase:firebase-core:12.0.1'
     compile 'com.google.firebase:firebase-database:12.0.1'
     compile project(path: ':boommenu')
+    implementation 'com.github.faruktoptas:FancyShowCaseView:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
