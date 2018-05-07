@@ -8,12 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bitstudio.aztranslate.MainActivity;
+
 import java.io.File;
 
 public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
 {
 
     private static final String DB_NAME = "Translation_History";
+    private static final String DB_DEVICE_STORAGE_PATH = MainActivity.CACHE + "histories";
     private static int DB_VERSION = 1;
 
     private static final String DB_CREATE_TABLE_HISTORY = "CREATE TABLE HISTORY (" +
@@ -51,6 +54,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        deleteFileOrFolder(DB_DEVICE_STORAGE_PATH);
         db.execSQL(DB_CREATE_TABLE_HISTORY);
         db.execSQL(DB_CREATE_TABLE_FAVOURITE_WORD);
         Log.d("BDHelper onCreate", "Create HISTORY and FAVOURITE_WORD tables" + db.getPath());
@@ -161,6 +165,22 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = getReadableDatabase();
         return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TIME, DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
+    }
+
+    public void deleteFileOrFolder(String folderPath)
+    {
+        File file = new File(folderPath);
+        if (file.isDirectory())
+        {
+            for (File content : file.listFiles())
+            {
+                deleteFileOrFolder(content.getAbsolutePath());
+            }
+            file.delete();
+        }
+        else if (file.isFile())
+            file.delete();
+
     }
 
 }
