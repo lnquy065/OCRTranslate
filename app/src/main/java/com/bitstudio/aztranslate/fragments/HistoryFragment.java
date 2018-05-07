@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 
@@ -54,7 +55,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     private View onView;
     // Taking control of the History list view
     private RecyclerView translationHistoryRecyclerView;
-
+    private Button buttonDeleteAllHistory;
     public HistoryFragment() {
         // Required empty public constructor
     }
@@ -225,6 +226,16 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     public void mappingViewComponentsByID()
     {
         translationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
+        buttonDeleteAllHistory = getActivity().findViewById(R.id.buttonDeleteAllHis);
+        buttonDeleteAllHistory.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                onClickDeleteAllHistory();
+            }
+        });
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
 
         translationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
@@ -266,5 +277,17 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
             }
         }));
+    }
+
+    public void onClickDeleteAllHistory()
+    {
+        int numberOfItems = translationHistoryAdapter.getItemCount();
+        for (int index = 0; index < numberOfItems; index++)
+        {
+            TranslationHistory delTrans = translationHistoryAdapter.getTranslationHistoryAt(0);
+            translationHistoryAdapter.removeTranslationHistory(0);
+            translationHistoryDatabaseHelper.deleteTranslationHis(delTrans.getScreenshotPath());
+
+        }
     }
 }

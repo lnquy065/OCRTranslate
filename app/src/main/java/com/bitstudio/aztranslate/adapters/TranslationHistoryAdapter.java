@@ -87,4 +87,8 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
         notifyItemInserted(position);
     }
 
+    public TranslationHistory getTranslationHistoryAt(int index)
+    {
+        return translationHistories.get(index);
+    }
 }

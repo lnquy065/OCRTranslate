@@ -15,17 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:choiceMode="singleChoice"></android.support.v7.widget.RecyclerView>
+
         <Button
-            android:id="@+id/buttonModifyHistory"
+            android:id="@+id/buttonDeleteAllHis"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="44dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/history_button"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/delete_all_history"
             android:gravity="center_vertical|center_horizontal"
-            android:text="X"
             android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
 

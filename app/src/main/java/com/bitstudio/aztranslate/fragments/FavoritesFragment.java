@@ -223,7 +223,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             {
 
                 TranslationHistory translationHistory = MainActivity.favouriteHistories.get(position);
-                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
                 Intent intent =  new Intent(FavoritesFragment.this.getContext(), ScreenshotViewerActivity.class);
                 intent.putExtra("TranslationHistory", translationHistory);
                 getContext().startActivity(intent);
