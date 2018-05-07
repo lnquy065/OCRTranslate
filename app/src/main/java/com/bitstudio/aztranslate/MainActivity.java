@@ -4,6 +4,7 @@ package com.bitstudio.aztranslate;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -119,8 +120,18 @@ public class MainActivity extends AppCompatActivity implements
             addEvents();
             loadAnimations();
             btnSetting.performClick();
+            loadSetting();
         }
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
+    }
+
+    private void loadSetting() {
+        SharedPreferences settingXML= getSharedPreferences("setting", MODE_PRIVATE);
+        Setting.recoLang = settingXML.getString("RECOLANG", "vie");
+        Setting.tranLang = settingXML.getString("TRANLANG", "vie");
+        Setting.WordBorder.BORDER_COLOR = settingXML.getInt("WBORDER", Color.RED);
+        Setting.COMPRESSED_RATE = settingXML.getInt("COMPRESSED", 8);
+        Setting.WordBorder.BORDER_SHAPE = settingXML.getInt("WBORDERSHAPE", 8);
     }
 
     private void addEvents() {
@@ -254,19 +265,19 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public void createDirs() {
-            File storeDirectory = new File(CACHE);
-            if (!storeDirectory.exists()) {
-                boolean success = storeDirectory.mkdirs();
-            }
+        File storeDirectory = new File(CACHE);
+        if (!storeDirectory.exists()) {
+            boolean success = storeDirectory.mkdirs();
+        }
 
-                File imgDirectory = new File(CACHE+"histories/img/");
-                if (!imgDirectory.exists()) imgDirectory.mkdirs();
+        File imgDirectory = new File(CACHE+"histories/img/");
+        if (!imgDirectory.exists()) imgDirectory.mkdirs();
 
-                File xmlDirectory = new File(CACHE+"histories/xml/");
-                if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
+        File xmlDirectory = new File(CACHE+"histories/xml/");
+        if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
 
-                File datDirectory = new File(CACHE+"dat/");
-                if (!datDirectory.exists()) datDirectory.mkdirs();
+        File datDirectory = new File(CACHE+"tessdata/");
+        if (!datDirectory.exists()) datDirectory.mkdirs();
 
         File cameraIMGDirectory = new File(CACHE+"camera/img/");
         if (!cameraIMGDirectory.exists()) cameraIMGDirectory.mkdirs();
@@ -281,10 +292,10 @@ public class MainActivity extends AppCompatActivity implements
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if ( Math.abs(e1.getX() - e2.getX()) > Setting.BTNCHANGEMODE_GESTURES_THRESHOLD) {
                 if (e1.getX()>e2.getX()) { //phai sang trai
-                    scanMode = (scanMode+1)%3;
+                    scanMode = (scanMode+1)%2;
                 } else
                 if (e1.getX()<e2.getX()) { //trai sang phai
-                    scanMode = ((scanMode-1)+3)%3;
+                    scanMode = ((scanMode-1)+2)%2;
                 }
 
                 btnFloat.startAnimation(anim_btnscan_changemode_fadeout);
@@ -316,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements
 
                     break;
                 case 1: //screen
-                     intent = new Intent(MainActivity.this, FloatingActivity.class);
+                    intent = new Intent(MainActivity.this, FloatingActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
@@ -392,10 +403,9 @@ public class MainActivity extends AppCompatActivity implements
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), options);
             myBitmap = Bitmap.createScaledBitmap(myBitmap,
                     screenWidth, screenHeight, false);
-           return  myBitmap;
+            return  myBitmap;
         }
         else
             return null;
     }
 }
-

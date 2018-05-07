@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,12 +21,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.bitstudio.aztranslate.FloatingActivity;
 import com.bitstudio.aztranslate.ScreenshotViewerActivity;
 import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
 import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
 import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.R;
 
@@ -57,7 +60,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
     private View onView;
     // Taking control of the History list view
     private RecyclerView favouriteTranslationHistoryRecyclerView;
-    private Button buttonDeleteAllFavourite;
+    private FloatingActionButton buttonDeleteAllFavourite;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -247,7 +250,12 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
                 TranslationHistory translationHistory = MainActivity.favouriteHistories.get(position);
                 //Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
                 Intent intent =  new Intent(FavoritesFragment.this.getContext(), ScreenshotViewerActivity.class);
-                intent.putExtra("TranslationHistory", translationHistory);
+
+
+                intent.putExtra("ScreenshotObj", new ScreenshotObj(
+                        translationHistory.getScreenshotPath(),
+                        translationHistory.getXmlDataPath()));
+
                 getContext().startActivity(intent);
             }
 

@@ -109,7 +109,7 @@ public class FloatingActivity extends AppCompatActivity {
     private Animation anim_general_fadein;
 
     //translate form
-    private EditText txtTranslateSource;
+    private TextView txtTranslateSource;
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
     private ToggleButton btnTranslateFavorite;
@@ -130,7 +130,7 @@ public class FloatingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-      //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_floating);
 
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
@@ -215,22 +215,22 @@ public class FloatingActivity extends AppCompatActivity {
         anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
 
 
-       anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
-           @Override
-           public void onAnimationStart(Animation animation) {
+        anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-           }
+            }
 
-           @Override
-           public void onAnimationEnd(Animation animation) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 floatingView.setVisibility(View.GONE);
-           }
+            }
 
-           @Override
-           public void onAnimationRepeat(Animation animation) {
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
-           }
-       });
+            }
+        });
     }
 
     public void addControls() {
@@ -276,7 +276,7 @@ public class FloatingActivity extends AppCompatActivity {
             }
         });
 
-        
+
         btnFloatingWidgetClose.setOnClickListener(v -> {
             Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
             startActivity(intent);
@@ -312,7 +312,7 @@ public class FloatingActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                         long t = System.currentTimeMillis() - startTime;
                         if (t < MAX_DURATION) {
-                                takeScreenshot();
+                            takeScreenshot();
                         } else {
                             ValueAnimator va;
                             if (floatingLayout.x + 30 < mWidth / 2) {
