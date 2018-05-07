@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.ManageLanguageActivity;
 import com.bitstudio.aztranslate.R;
 import com.bitstudio.aztranslate.SetRTActivity;
@@ -92,6 +93,7 @@ public class SettingFragment extends Fragment {
 
                     case 3:{
                         //Huong dan o day
+                        ((MainActivity)getActivity()).showSCV();
 
                     }break;
                 }
