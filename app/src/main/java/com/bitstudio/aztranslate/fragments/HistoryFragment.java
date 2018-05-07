@@ -103,8 +103,8 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
         // Let create a database helper
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
         Cursor cursor = translationHistoryDatabaseHelper.queryAllTranslationHistory();
-        Toast toast = Toast.makeText(getActivity(), "Loading All Histories", Toast.LENGTH_SHORT);
-        toast.show();
+        //Toast toast = Toast.makeText(getActivity(), "Loading All Histories", Toast.LENGTH_SHORT);
+        //toast.show();
         MainActivity.translationHistories.clear();
         // Loading all old histories and displaying
         while (cursor.moveToNext())
@@ -233,7 +233,20 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             @Override
             public void onClick(View v)
             {
-                onClickDeleteAllHistory();
+                Snackbar snackbarUndo = Snackbar.make(getView(), "Do you want to delete all histories ? ", Snackbar.LENGTH_LONG);
+                snackbarUndo.setAction("YES", new View.OnClickListener()
+                {
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        onClickDeleteAllHistory();
+
+                    }
+                });
+                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.show();
+
             }
         });
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
@@ -260,7 +273,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             {
 
                 TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
-                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
                 Intent intent =  new Intent(HistoryFragment.this.getContext(), ScreenshotViewerActivity.class);
 
 
