@@ -92,7 +92,7 @@ public class SettingFragment extends Fragment {
 
                     case 3:{
                         //Huong dan o day
-                        
+
                     }break;
                 }
             }
