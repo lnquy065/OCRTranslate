@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -21,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -31,6 +31,7 @@ import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
+import com.bitstudio.aztranslate.itemDecorators.DividerItemDecoration;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import com.bitstudio.aztranslate.R;
@@ -254,7 +255,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
         translationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
         translationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        translationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        translationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), Color.GRAY, 2));
 
         translationHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.translationHistories);
         translationHistoryRecyclerView.setAdapter(translationHistoryAdapter);
