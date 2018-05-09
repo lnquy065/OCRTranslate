@@ -36,16 +36,16 @@ dependencies {
     compile 'com.rmtheis:tess-two:6.3.0'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
-    compile 'com.sackcentury:shinebutton:0.2.0'
+    implementation 'com.sackcentury:shinebutton:0.2.0'
     compile 'com.github.Cutta:GifView:1.1'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.google.code.gson:gson:2.6.2'
-    compile 'com.wonderkiln:camerakit:0.13.1'
-    compile 'com.google.firebase:firebase-core:12.0.1'
-    compile 'com.google.firebase:firebase-database:12.0.1'
-    compile project(path: ':boommenu')
+    implementation 'com.wonderkiln:camerakit:0.13.1'
+    implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation 'com.google.firebase:firebase-database:12.0.1'
+    implementation project(path: ':boommenu')
     implementation 'com.github.faruktoptas:FancyShowCaseView:1.0.0'
 }
 
