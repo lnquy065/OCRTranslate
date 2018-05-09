@@ -99,7 +99,7 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position)
     {
-        final TranslationHistory translationHistory = translationHistories.get(position);
+        final TranslationHistory translationHistory = translationHistoriesFiltered.get(position);
         String screenshotPath = translationHistory.getScreenshotPath();
         int index = screenshotPath.lastIndexOf('/');
         holder.textViewScreenshotPath.setText(screenshotPath.substring(index + 1));
@@ -112,12 +112,12 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
     @Override
     public int getItemCount()
     {
-        return translationHistories.size();
+        return translationHistoriesFiltered.size();
     }
 
     public void removeTranslationHistory(int position)
     {
-        translationHistories.remove(position);
+        translationHistoriesFiltered.remove(position);
         // notify the item removed by position
         // to perform recycler view delete animations
         // NOTE: don't call notifyDataSetChanged()
@@ -126,12 +126,12 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
 
     public void restoreTranslationHistory(TranslationHistory translationHistory, int position)
     {
-        translationHistories.add(position, translationHistory);
+        translationHistoriesFiltered.add(position, translationHistory);
         notifyItemInserted(position);
     }
 
     public TranslationHistory getTranslationHistoryAt(int index)
     {
-        return translationHistories.get(index);
+        return translationHistoriesFiltered.get(index);
     }
 }
