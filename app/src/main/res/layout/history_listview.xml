@@ -83,6 +83,7 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/imageViewScreenshot"
             android:textColor="@color/description"
+            android:textStyle="italic"
             android:textSize="14dp" />
 
         <TextView
