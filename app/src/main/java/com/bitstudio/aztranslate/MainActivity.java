@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -50,6 +52,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import me.toptas.fancyshowcase.FancyShowCaseQueue;
+import me.toptas.fancyshowcase.FancyShowCaseView;
+import me.toptas.fancyshowcase.OnViewInflateListener;
+
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
         HistoryFragment.OnFragmentInteractionListener,
@@ -71,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements
     private ConstraintLayout lbTabTitleBackground;
     private TextView lbTabTitle;
     private ImageView imTabTitle;
+
+    FancyShowCaseQueue mQueue;
+    private TextView tvTitle;
+    private Button btnNext;
+    private int conditor = 0;
 
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
 
@@ -105,6 +116,19 @@ public class MainActivity extends AppCompatActivity implements
         screenHeight = displayMetrics.heightPixels;
         screenWidth = displayMetrics.widthPixels;
 
+
+
+            requestPermissions();
+            createDirs();
+            addControls();
+            addEvents();
+            loadAnimations();
+            btnSetting.performClick();
+            loadSetting();
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
+    }
+
+    private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -114,15 +138,10 @@ public class MainActivity extends AppCompatActivity implements
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
             }
-
-            createDirs();
-            addControls();
-            addEvents();
-            loadAnimations();
-            btnSetting.performClick();
-            loadSetting();
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 3);
+            }
         }
-        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
 
     private void loadSetting() {
@@ -135,9 +154,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addEvents() {
-        btnFavorite.setOnClickListener(v-> {
 
-        });
         btnSetting.setOnClickListener(v->{
             btnSetting.startAnimation(anim_bounce);
             openFragment( new SettingFragment());
@@ -183,7 +200,39 @@ public class MainActivity extends AppCompatActivity implements
                 return true;
             }
         });
+    }
 
+
+    public void showSCV(){
+        final FancyShowCaseView SCV_Setting = new FancyShowCaseView.Builder(this)
+                .focusOn(btnSetting)
+                .title("Cài đặt các gói ngôn ngữ, thay đổi màu sắc của khung nhận diện, quản lí ngôn ngữ sử dụng")
+                .build();
+
+        final FancyShowCaseView SCV_Book = new FancyShowCaseView.Builder(this)
+                .focusOn(btnBook)
+                .title("Cho phép người dùng lưu các từ vựng yêu thích")
+                .build();
+
+        final FancyShowCaseView SCV_Float = new FancyShowCaseView.Builder(this)
+                .focusOn(btnFloat)
+                .title("hu nhỏ ứng dụng để sử dụng một cách tiện lợi hơn")
+                .build();
+        final FancyShowCaseView SCV_Favorites = new FancyShowCaseView.Builder(this)
+                .focusOn(btnFavorite)
+                .title("Cho phép người dùng lưu các hình ảnh yêu thích đã chụp")
+                .build();
+        final FancyShowCaseView SCV_History = new FancyShowCaseView.Builder(this)
+                .focusOn(btnHistory)
+                .title("Cho phép người dùng xem lại lịch sử các hình ảnh đã chụp trên màn hình điện thoại")
+                .build();
+        mQueue = new FancyShowCaseQueue()
+                .add(SCV_Setting)
+                .add(SCV_Book)
+                .add(SCV_Float)
+                .add(SCV_Favorites)
+                .add(SCV_History);
+        mQueue.show();
 
     }
 
@@ -232,23 +281,6 @@ public class MainActivity extends AppCompatActivity implements
                 imTabTitle.setAlpha(1f);
             }
         });
-
-//        int currentFgColor = lbTabTitle.getTextColors().getDefaultColor();
-//        int currentBgColor = lbTabTitleBackground.getSolidColor();
-//        ValueAnimator fColorAnim = ValueAnimator.ofInt(currentBgColor, fgColor).setDuration(500);
-//        ValueAnimator bColorAnim = ValueAnimator.ofInt(currentFgColor, bgColor).setDuration(500);
-//
-//        fColorAnim.addUpdateListener(animator -> {
-//            lbTabTitle.setTextColor( (int) animator.getAnimatedValue());
-//        });
-//
-//        bColorAnim.addUpdateListener(animator -> {
-//            lbTabTitleBackground.setBackgroundColor( (int) animator.getAnimatedValue());
-//        });
-//
-//        lbTabTitle.setText(title);
-//        fColorAnim.start();
-//        bColorAnim.start();
     }
 
     private void openFragment(Fragment fragment) {
@@ -351,6 +383,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         Log.d("IntentRe", requestCode + " " +resultCode);
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             String screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";
