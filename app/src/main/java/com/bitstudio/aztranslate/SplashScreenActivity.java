@@ -3,7 +3,6 @@ package com.bitstudio.aztranslate;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -13,6 +12,9 @@ public class SplashScreenActivity extends AppCompatActivity{
     private ImageView mImageView;
     private TextView mTextView;
     private Thread mThread;
+
+    private final String SHARE_PREFERENCES_NAME = "ocr_prefer";
+    private final String IS_FIRST_LAUNCH = "is_first_launch";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,31 +27,46 @@ public class SplashScreenActivity extends AppCompatActivity{
 
     private void startAnimation() {
         Animation opaque = AnimationUtils.loadAnimation(this, R.anim.anim_opaque);
-        Animation rightToLeft = AnimationUtils.loadAnimation(this, R.anim.anim_right_to_left);
+        Animation bottonUp = AnimationUtils.loadAnimation(this, R.anim.anim_botton_up);
 
         opaque.reset();
-        rightToLeft.reset();
+        bottonUp.reset();
 
         mImageView.setAnimation(opaque);
-        mTextView.setAnimation(rightToLeft);
+        mTextView.setAnimation(bottonUp);
 
         mThread = new Thread() {
             @Override
             public void run() {
                 super.run();
-                int waited = 0;
-                while (waited < 3000) {
                     try {
-                        sleep(100);
+
+                        sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    } finally {
+
+                        android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
+                        android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        boolean isFirtsLauncher = sharedPreferences.getBoolean(IS_FIRST_LAUNCH,true);
+                        if(isFirtsLauncher){
+                            android.util.Log.d("Boolean","True");
+                            editor.putBoolean(IS_FIRST_LAUNCH,false);
+                            editor.apply();
+
+                            Intent intent = new Intent(SplashScreenActivity.this, SliderActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        }else{
+
+                            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        }
                     }
-                    waited += 100;
-                }
-                SplashScreenActivity.this.finish();
-                Intent intent = new Intent(SplashScreenActivity.this, SliderActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
             }
         };
         mThread.start();
