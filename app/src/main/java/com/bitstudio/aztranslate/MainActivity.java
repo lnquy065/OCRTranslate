@@ -105,6 +105,19 @@ public class MainActivity extends AppCompatActivity implements
         screenHeight = displayMetrics.heightPixels;
         screenWidth = displayMetrics.widthPixels;
 
+
+
+            requestPermissions();
+            createDirs();
+            addControls();
+            addEvents();
+            loadAnimations();
+            btnSetting.performClick();
+            loadSetting();
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
+    }
+
+    private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -114,15 +127,10 @@ public class MainActivity extends AppCompatActivity implements
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
             }
-
-            createDirs();
-            addControls();
-            addEvents();
-            loadAnimations();
-            btnSetting.performClick();
-            loadSetting();
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 3);
+            }
         }
-        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
 
     private void loadSetting() {
@@ -232,23 +240,6 @@ public class MainActivity extends AppCompatActivity implements
                 imTabTitle.setAlpha(1f);
             }
         });
-
-//        int currentFgColor = lbTabTitle.getTextColors().getDefaultColor();
-//        int currentBgColor = lbTabTitleBackground.getSolidColor();
-//        ValueAnimator fColorAnim = ValueAnimator.ofInt(currentBgColor, fgColor).setDuration(500);
-//        ValueAnimator bColorAnim = ValueAnimator.ofInt(currentFgColor, bgColor).setDuration(500);
-//
-//        fColorAnim.addUpdateListener(animator -> {
-//            lbTabTitle.setTextColor( (int) animator.getAnimatedValue());
-//        });
-//
-//        bColorAnim.addUpdateListener(animator -> {
-//            lbTabTitleBackground.setBackgroundColor( (int) animator.getAnimatedValue());
-//        });
-//
-//        lbTabTitle.setText(title);
-//        fColorAnim.start();
-//        bColorAnim.start();
     }
 
     private void openFragment(Fragment fragment) {
@@ -351,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         Log.d("IntentRe", requestCode + " " +resultCode);
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             String screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";

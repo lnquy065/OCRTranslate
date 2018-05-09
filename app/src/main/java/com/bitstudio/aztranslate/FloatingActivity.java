@@ -105,6 +105,7 @@ public class FloatingActivity extends AppCompatActivity {
     private Animation anim_btnfloating_appear;
     private Animation anim_btnfloating_touch;
     private Animation anim_btnfloating_disappear;
+    private Animation anim_btnfloating_remove;
     private Animation anim_general_fadeout;
     private Animation anim_general_fadein;
 
@@ -213,7 +214,25 @@ public class FloatingActivity extends AppCompatActivity {
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
         anim_btnfloating_disappear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
         anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
+        anim_btnfloating_remove = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
 
+        anim_btnfloating_remove.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mWindowManager.removeViewImmediate(translateView);
+                mWindowManager.removeViewImmediate(floatingView);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -278,6 +297,7 @@ public class FloatingActivity extends AppCompatActivity {
 
 
         btnFloatingWidgetClose.setOnClickListener(v -> {
+            imvFloatingWidgetIcon.startAnimation(anim_btnfloating_remove);
             Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
