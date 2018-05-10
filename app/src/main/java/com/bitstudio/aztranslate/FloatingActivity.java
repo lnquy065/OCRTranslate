@@ -275,8 +275,6 @@ public class FloatingActivity extends AppCompatActivity {
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
                     hideTranslateDialog();
-                    // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
-                    btnTranslateFavorite.setChecked(false);
                     return super.onDoubleTap(e);
                 }
             });
@@ -287,7 +285,6 @@ public class FloatingActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
         btnTranslateFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -464,7 +461,10 @@ public class FloatingActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
             }
         });
-
+        // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
+        btnTranslateFavorite.setChecked(false);
+        btnTranslateFavorite.requestLayout();
+        btnTranslateFavorite.forceLayout();
         va.start();
         showFloatingWidget();
     }
