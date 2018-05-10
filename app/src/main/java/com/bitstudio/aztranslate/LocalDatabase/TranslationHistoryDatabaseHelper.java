@@ -166,7 +166,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public Cursor queryAllBookmarkWord()
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TIME, DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
+        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
     }
 
     public void deleteFileOrFolder(String folderPath)
