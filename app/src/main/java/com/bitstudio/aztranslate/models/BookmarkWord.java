@@ -6,6 +6,7 @@ import java.util.Date;
 public class BookmarkWord
 {
     private String word;
+    private String wordTranslated;
     private long addedUNIXTime;
     private String sourceLanguage;
 
@@ -54,5 +55,6 @@ public class BookmarkWord
     {
         this.sourceLanguage = sourceLanguage;
     }
-
+    public String getWordTranslated() { return wordTranslated; }
+    public void setWordTranslated(String wordTranslated) { this.wordTranslated = wordTranslated; }
 }

@@ -164,7 +164,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
                     {
                         // undo is selected, let's restore the deleted item
                         bookmarkWordAdapter.restoreBookmarkWord(deletedBookmarkWord, deletedIndex);
-                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage());
+                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), deletedBookmarkWord.getWordTranslated(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage());
                     }
                 });
                 snackbarUndo.setActionTextColor(Color.RED);
