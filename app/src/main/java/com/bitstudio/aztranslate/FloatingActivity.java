@@ -271,6 +271,8 @@ public class FloatingActivity extends AppCompatActivity {
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
                     hideTranslateDialog();
+                    // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
+                    btnTranslateFavorite.setChecked(false);
                     return super.onDoubleTap(e);
                 }
             });
@@ -288,9 +290,9 @@ public class FloatingActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 btnTranslateFavorite.startAnimation(anim_btn_translate_favorite);
                 if (b) {
-                    addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase());
+                    addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase(),lbTranslateTarget.getText().toString().toLowerCase());
                 } else {
-                    removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase());
+                    removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase(), lbTranslateTarget.getText().toString().toLowerCase());
                 }
             }
         });
@@ -414,15 +416,15 @@ public class FloatingActivity extends AppCompatActivity {
         });
     }
 
-    private void removeWordFromFavorites(String s)
+    private void removeWordFromFavorites(String word, String wordTrans)
     {
 
     }
 
-    private void addWordToFavorites(String s)
+    private void addWordToFavorites(String word, String wordTrans)
     {
         long unixTime = System.currentTimeMillis() / 1000L;
-        translationHistoryDatabaseHelper.insertNewFavouriteWord(s, String.valueOf(unixTime), "English");
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
     }
 
     public void showFloatingWidget() {
