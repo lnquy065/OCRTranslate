@@ -28,6 +28,7 @@ import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
 import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import com.bitstudio.aztranslate.R;
@@ -250,7 +251,12 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                 TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
                 Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
                 Intent intent =  new Intent(HistoryFragment.this.getContext(), ScreenshotViewerActivity.class);
-                intent.putExtra("TranslationHistory", translationHistory);
+
+
+                intent.putExtra("ScreenshotObj", new ScreenshotObj(
+                        translationHistory.getScreenshotPath(),
+                        translationHistory.getXmlDataPath()));
+
                 getContext().startActivity(intent);
             }
 

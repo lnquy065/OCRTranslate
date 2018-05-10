@@ -45,9 +45,11 @@ public class SettingAdapter extends ArrayAdapter<SettingItem> {
 
             TextView tvnameSetting = (TextView) v.findViewById(R.id.nameSetting);
             ImageView imgiconSetting=(ImageView) v.findViewById(R.id.iconSetting);
+            TextView tvSubtitle=(TextView) v.findViewById(R.id.id_sub);
 
             tvnameSetting.setText(p.getNameSetting());
             imgiconSetting.setImageResource(p.getIconSetting());
+            tvSubtitle.setText(p.getSubTitle());
 
         }
 

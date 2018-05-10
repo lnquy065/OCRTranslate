@@ -1,6 +1,7 @@
 package com.bitstudio.aztranslate.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -18,10 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bitstudio.aztranslate.FloatingActivity;
+import com.bitstudio.aztranslate.ScreenshotViewerActivity;
 import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchHelper;
+import com.bitstudio.aztranslate.adapters.RecyclerTranslationHistoryTouchListener;
 import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.R;
 
@@ -212,5 +217,30 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
 
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerTranslationHistoryTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(favouriteTranslationHistoryRecyclerView);
+
+        favouriteTranslationHistoryRecyclerView.addOnItemTouchListener(new RecyclerTranslationHistoryTouchListener(getActivity(), favouriteTranslationHistoryRecyclerView, new RecyclerTranslationHistoryTouchListener.ClickListener()
+        {
+            @Override
+            public void onClick(View view, int position)
+            {
+
+                TranslationHistory translationHistory = MainActivity.favouriteHistories.get(position);
+                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                Intent intent =  new Intent(FavoritesFragment.this.getContext(), ScreenshotViewerActivity.class);
+
+
+                intent.putExtra("ScreenshotObj", new ScreenshotObj(
+                        translationHistory.getScreenshotPath(),
+                        translationHistory.getXmlDataPath()));
+
+                getContext().startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position)
+            {
+
+            }
+        }));
     }
 }
