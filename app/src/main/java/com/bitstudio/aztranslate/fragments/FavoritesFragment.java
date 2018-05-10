@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -19,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bitstudio.aztranslate.FloatingActivity;
@@ -30,6 +30,7 @@ import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.TranslationHistory;
+import com.bitstudio.aztranslate.itemDecorators.DividerItemDecoration;
 import com.bitstudio.aztranslate.R;
 
 
@@ -228,7 +229,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
         favouriteTranslationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
         favouriteTranslationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        favouriteTranslationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        favouriteTranslationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), Color.GRAY, 2));
 
         favouriteHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.favouriteHistories);
         favouriteTranslationHistoryRecyclerView.setAdapter(favouriteHistoryAdapter);
