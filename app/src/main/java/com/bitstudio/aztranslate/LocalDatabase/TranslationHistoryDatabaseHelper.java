@@ -38,6 +38,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     private static final String DB_CREATE_TABLE_FAVOURITE_WORD = "CREATE TABLE FAVOURITE_WORD(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "word TEXT, " +
+            "wordTrans TEXT, " +
             "srcLanguage TEXT," +
             "addedTime TEXT);";
     public static final String DB_TABLE_NAME_FAVOURITE_WORD = "FAVOURITE_WORD";
@@ -134,11 +135,12 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         updateTranslationHis.put(DB_KEY_FAVOURITE, 0);
         return db.update(DB_TABLE_NAME_HISTORY, updateTranslationHis,DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
     }
-    public long insertNewFavouriteWord(String word, String addedTime, String srcLang)
+    public long insertNewFavouriteWord(String word, String word_Trans, String addedTime, String srcLang)
     {
         SQLiteDatabase db = getReadableDatabase();
         ContentValues favourWord = new ContentValues();
         favourWord.put(DB_KEY_WORD, word);
+        favourWord.put(DB_KEY_WORD_TRANS, word_Trans);
         favourWord.put(DB_KEY_WORD_TIME, addedTime);
         favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
         return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
