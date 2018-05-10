@@ -24,7 +24,6 @@ public class BookmarkWordAdapter extends RecyclerView.Adapter<BookmarkWordAdapte
         public TextView textViewWord;
         public TextView textViewWordAddedTime;
         public TextView textViewWordSrcLanguage;
-        public TextView textViewWordPosition;
         public RelativeLayout viewBackground, viewForeground;
 
         public MyViewHolder(View view)
@@ -33,7 +32,6 @@ public class BookmarkWordAdapter extends RecyclerView.Adapter<BookmarkWordAdapte
             textViewWord = view.findViewById(R.id.textViewWord);
             textViewWordAddedTime = view.findViewById(R.id.textViewWordAddedTime);
             textViewWordSrcLanguage = view.findViewById(R.id.textViewWordSrcLang);
-            textViewWordPosition = view.findViewById(R.id.textViewWordPosition);
             viewBackground = view.findViewById(R.id.view_background_bookmark);
             viewForeground = view.findViewById(R.id.view_foreground_bookmark);
         }
@@ -55,7 +53,6 @@ public class BookmarkWordAdapter extends RecyclerView.Adapter<BookmarkWordAdapte
     public void onBindViewHolder(MyViewHolder holder, int position)
     {
         final BookmarkWord bookmarkWord = bookmarkWords.get(position);
-        holder.textViewWordPosition.setText(String.valueOf(position));
         holder.textViewWord.setText(bookmarkWord.getWord());
         holder.textViewWordAddedTime.setText(bookmarkWord.getAddedTime());
         holder.textViewWordSrcLanguage.setText(bookmarkWord.getSourceLanguage());
