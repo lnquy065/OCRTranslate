@@ -10,9 +10,10 @@ public class BookmarkWord
     private long addedUNIXTime;
     private String sourceLanguage;
 
-    public BookmarkWord(String word, long addedTime, String sourceLanguage)
+    public BookmarkWord(String word, String wordTranslated, long addedTime, String sourceLanguage)
     {
         this.word = word;
+        this.wordTranslated = wordTranslated;
         this.addedUNIXTime = addedTime;
         this.sourceLanguage = sourceLanguage;
     }

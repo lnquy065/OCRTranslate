@@ -108,10 +108,11 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
         while (cursor.moveToNext())
         {
             String word = cursor.getString(0);
-            String addedTime = cursor.getString(1);
-            String srcLang = cursor.getString(2);
+            String wordTranslated = cursor.getString(1);
+            String addedTime = cursor.getString(2);
+            String srcLang = cursor.getString(3);
 
-            BookmarkWord bookmarkWord = new BookmarkWord(word, Long.parseLong(addedTime), srcLang);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
             MainActivity.bookmarkWords.add(bookmarkWord);
         }
     }
