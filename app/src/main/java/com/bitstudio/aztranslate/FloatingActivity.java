@@ -158,18 +158,6 @@ public class FloatingActivity extends AppCompatActivity {
                 PixelFormat.TRANSLUCENT
         );
 
-        //set postion for layout
-        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
-        floatingLayout.x = 0;
-        floatingLayout.y = 100;
-
-        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
-        translateView.setVisibility(View.GONE);
-
-        //add to window
-        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        mWindowManager.addView(floatingView, floatingLayout);
-        mWindowManager.addView(translateView, translateLayout);
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         mDensity = metrics.densityDpi;
@@ -179,6 +167,18 @@ public class FloatingActivity extends AppCompatActivity {
         mWidth = size.x;
         mHeight = size.y;
 
+        //set postion for layout
+        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
+        floatingLayout.x = mWidth;
+        floatingLayout.y = mHeight-700;
+
+        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
+        translateView.setVisibility(View.GONE);
+
+        //add to window
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mWindowManager.addView(floatingView, floatingLayout);
+        mWindowManager.addView(translateView, translateLayout);
 
         loadAnimations();
         addControls();
@@ -224,8 +224,12 @@ public class FloatingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
                 mWindowManager.removeViewImmediate(translateView);
                 mWindowManager.removeViewImmediate(floatingView);
+                Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override
@@ -299,10 +303,8 @@ public class FloatingActivity extends AppCompatActivity {
 
 
         btnFloatingWidgetClose.setOnClickListener(v -> {
+
             imvFloatingWidgetIcon.startAnimation(anim_btnfloating_remove);
-            Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
         });
 
 
