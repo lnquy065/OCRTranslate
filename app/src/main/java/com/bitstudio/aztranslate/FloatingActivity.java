@@ -22,7 +22,6 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Pair;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -36,7 +35,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -277,10 +275,16 @@ public class FloatingActivity extends AppCompatActivity {
                     hideTranslateDialog();
                     return super.onDoubleTap(e);
                 }
+
+
             });
 
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction()==MotionEvent.ACTION_MOVE) {
+                    translateLayout.y = mHeight-(int) motionEvent.getRawY();
+                    mWindowManager.updateViewLayout(translateView, translateLayout);
+                }
                 gestureDetector.onTouchEvent(motionEvent);
                 return false;
             }
@@ -673,7 +677,7 @@ public class FloatingActivity extends AppCompatActivity {
                     // save screenshot information to local database
                     translationHistoryDatabaseHelper.insertNewTranslationHis(screenshotPath,xmlPath, String.valueOf(unixTime), "English", "Vietnamese");
                     hOcr.processHTML(recognizedText);
-                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight - Setting.STATUSBAR_HEIGHT);
+                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight - Setting.Screen.STATUSBAR_HEIGHT);
 
                     runOnUiThread(new Runnable() {
                         @Override
