@@ -212,25 +212,25 @@ public class MainActivity extends AppCompatActivity implements
     public void showSCV(){
         final FancyShowCaseView SCV_Setting = new FancyShowCaseView.Builder(this)
                 .focusOn(btnSetting)
-                .title("Cài đặt các gói ngôn ngữ, thay đổi màu sắc của khung nhận diện, quản lí ngôn ngữ sử dụng")
+                .title("Install language packs, change the color of the recognition pane, manage the language used.")
                 .build();
 
         final FancyShowCaseView SCV_Book = new FancyShowCaseView.Builder(this)
                 .focusOn(btnBook)
-                .title("Cho phép người dùng lưu các từ vựng yêu thích")
+                .title("Allows users to save their favorite vocabulary.")
                 .build();
 
         final FancyShowCaseView SCV_Float = new FancyShowCaseView.Builder(this)
                 .focusOn(btnFloat)
-                .title("hu nhỏ ứng dụng để sử dụng một cách tiện lợi hơn")
+                .title("Minimize the application to use in a more convenient way.")
                 .build();
         final FancyShowCaseView SCV_Favorites = new FancyShowCaseView.Builder(this)
                 .focusOn(btnFavorite)
-                .title("Cho phép người dùng lưu các hình ảnh yêu thích đã chụp")
+                .title("Allows users to save favorite images taken.")
                 .build();
         final FancyShowCaseView SCV_History = new FancyShowCaseView.Builder(this)
                 .focusOn(btnHistory)
-                .title("Cho phép người dùng xem lại lịch sử các hình ảnh đã chụp trên màn hình điện thoại")
+                .title("Allows the user to review the history of the captured images on the phone screen.")
                 .build();
         mQueue = new FancyShowCaseQueue()
                 .add(SCV_Setting)
