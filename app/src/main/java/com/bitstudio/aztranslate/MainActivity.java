@@ -3,7 +3,6 @@ package com.bitstudio.aztranslate;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,7 +15,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -56,7 +54,6 @@ import java.util.ArrayList;
 
 import me.toptas.fancyshowcase.FancyShowCaseQueue;
 import me.toptas.fancyshowcase.FancyShowCaseView;
-import me.toptas.fancyshowcase.OnViewInflateListener;
 
 public class MainActivity extends AppCompatActivity implements
         SettingFragment.OnFragmentInteractionListener,
@@ -109,14 +106,12 @@ public class MainActivity extends AppCompatActivity implements
     public static ArrayList<BookmarkWord> bookmarkWords = new ArrayList<>();
 
 
-    private ProgressDialog dialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Setting.STATUSBAR_HEIGHT = getStatusBarHeight();
+        Setting.Screen.STATUSBAR_HEIGHT = getStatusBarHeight();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenHeight = displayMetrics.heightPixels;
@@ -124,8 +119,9 @@ public class MainActivity extends AppCompatActivity implements
 
 
 
-            requestPermissions();
-            createDirs();
+
+        requestPermissions();
+           createDirs();
             addControls();
             addEvents();
             loadAnimations();
@@ -157,9 +153,18 @@ public class MainActivity extends AppCompatActivity implements
         Setting.WordBorder.BORDER_COLOR = settingXML.getInt("WBORDER", Color.RED);
         Setting.COMPRESSED_RATE = settingXML.getInt("COMPRESSED", 8);
         Setting.WordBorder.BORDER_SHAPE = settingXML.getInt("WBORDERSHAPE", 8);
+        Setting.Screen.HEIGH = screenHeight;
+        Setting.Screen.WIDTH = screenWidth;
     }
 
     private void addEvents() {
+        frmMainFrame.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                return false;
+            }
+        });
 
         btnSetting.setOnClickListener(v->{
             btnSetting.startAnimation(anim_bounce);
@@ -323,6 +328,7 @@ public class MainActivity extends AppCompatActivity implements
         File cameraXMLDirectory = new File(CACHE+"camera/xml/");
         if (!cameraXMLDirectory.exists()) cameraXMLDirectory.mkdirs();
     }
+
 
 
     class BtnStartModeGesture extends GestureDetector.SimpleOnGestureListener {

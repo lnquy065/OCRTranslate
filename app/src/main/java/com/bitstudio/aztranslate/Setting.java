@@ -16,7 +16,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
-    public static int STATUSBAR_HEIGHT = 0;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
     public static ArrayList<LanguageLite> LANGUAGE = new ArrayList<>();
@@ -39,6 +38,12 @@ public class Setting {
         LANGUAGE.add(new LanguageLite("Spanish","spa","es"));
         LANGUAGE.add(new LanguageLite("Chinese","chi_sim","zh"));
 
+    }
+
+    public static class Screen {
+        public static int HEIGH = 0;
+        public static int WIDTH = 0;
+        public static int STATUSBAR_HEIGHT = 0;
     }
 
     public static LanguageLite findByOCR(String ocr) {
