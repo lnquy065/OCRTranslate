@@ -105,6 +105,7 @@ public class FloatingActivity extends AppCompatActivity {
     private Animation anim_btnfloating_appear;
     private Animation anim_btnfloating_touch;
     private Animation anim_btnfloating_disappear;
+    private Animation anim_btnfloating_remove;
     private Animation anim_general_fadeout;
     private Animation anim_general_fadein;
 
@@ -157,18 +158,6 @@ public class FloatingActivity extends AppCompatActivity {
                 PixelFormat.TRANSLUCENT
         );
 
-        //set postion for layout
-        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
-        floatingLayout.x = 0;
-        floatingLayout.y = 100;
-
-        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
-        translateView.setVisibility(View.GONE);
-
-        //add to window
-        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        mWindowManager.addView(floatingView, floatingLayout);
-        mWindowManager.addView(translateView, translateLayout);
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         mDensity = metrics.densityDpi;
@@ -178,6 +167,18 @@ public class FloatingActivity extends AppCompatActivity {
         mWidth = size.x;
         mHeight = size.y;
 
+        //set postion for layout
+        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
+        floatingLayout.x = mWidth;
+        floatingLayout.y = mHeight-700;
+
+        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
+        translateView.setVisibility(View.GONE);
+
+        //add to window
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mWindowManager.addView(floatingView, floatingLayout);
+        mWindowManager.addView(translateView, translateLayout);
 
         loadAnimations();
         addControls();
@@ -213,7 +214,29 @@ public class FloatingActivity extends AppCompatActivity {
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
         anim_btnfloating_disappear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
         anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
+        anim_btnfloating_remove = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
 
+        anim_btnfloating_remove.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                mWindowManager.removeViewImmediate(translateView);
+                mWindowManager.removeViewImmediate(floatingView);
+                Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -278,9 +301,8 @@ public class FloatingActivity extends AppCompatActivity {
 
 
         btnFloatingWidgetClose.setOnClickListener(v -> {
-            Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+
+            imvFloatingWidgetIcon.startAnimation(anim_btnfloating_remove);
         });
 
 

@@ -3,9 +3,11 @@ package com.bitstudio.aztranslate;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -105,6 +107,10 @@ public class MainActivity extends AppCompatActivity implements
     private int screenHeight, screenWidth;
 
     public static ArrayList<BookmarkWord> bookmarkWords = new ArrayList<>();
+
+
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +122,19 @@ public class MainActivity extends AppCompatActivity implements
         screenHeight = displayMetrics.heightPixels;
         screenWidth = displayMetrics.widthPixels;
 
+
+
+            requestPermissions();
+            createDirs();
+            addControls();
+            addEvents();
+            loadAnimations();
+            btnSetting.performClick();
+            loadSetting();
+        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
+    }
+
+    private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -125,15 +144,10 @@ public class MainActivity extends AppCompatActivity implements
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
             }
-
-            createDirs();
-            addControls();
-            addEvents();
-            loadAnimations();
-            btnSetting.performClick();
-            loadSetting();
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 3);
+            }
         }
-        translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
 
     private void loadSetting() {
@@ -273,23 +287,6 @@ public class MainActivity extends AppCompatActivity implements
                 imTabTitle.setAlpha(1f);
             }
         });
-
-//        int currentFgColor = lbTabTitle.getTextColors().getDefaultColor();
-//        int currentBgColor = lbTabTitleBackground.getSolidColor();
-//        ValueAnimator fColorAnim = ValueAnimator.ofInt(currentBgColor, fgColor).setDuration(500);
-//        ValueAnimator bColorAnim = ValueAnimator.ofInt(currentFgColor, bgColor).setDuration(500);
-//
-//        fColorAnim.addUpdateListener(animator -> {
-//            lbTabTitle.setTextColor( (int) animator.getAnimatedValue());
-//        });
-//
-//        bColorAnim.addUpdateListener(animator -> {
-//            lbTabTitleBackground.setBackgroundColor( (int) animator.getAnimatedValue());
-//        });
-//
-//        lbTabTitle.setText(title);
-//        fColorAnim.start();
-//        bColorAnim.start();
     }
 
     private void openFragment(Fragment fragment) {
@@ -333,10 +330,10 @@ public class MainActivity extends AppCompatActivity implements
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if ( Math.abs(e1.getX() - e2.getX()) > Setting.BTNCHANGEMODE_GESTURES_THRESHOLD) {
                 if (e1.getX()>e2.getX()) { //phai sang trai
-                    scanMode = (scanMode+1)%2;
+                    scanMode = (scanMode+1)%3;
                 } else
                 if (e1.getX()<e2.getX()) { //trai sang phai
-                    scanMode = ((scanMode-1)+2)%2;
+                    scanMode = ((scanMode-1)+3)%3;
                 }
 
                 btnFloat.startAnimation(anim_btnscan_changemode_fadeout);
@@ -349,35 +346,44 @@ public class MainActivity extends AppCompatActivity implements
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
+            anim_zoomout.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Intent intent = null;
+                    switch (scanMode) {
+                        case 0: //camera
+                            File file = new File(MainActivity.CACHE + "camera/img/camera.jpg");
+                            intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                            startActivityForResult(intent, 100);
+                            onPause();
+                            break;
+                        case 1: //screen
+                            intent = new Intent(MainActivity.this, FloatingActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                            break;
+                        case 2: //file
+                            intent = new Intent();
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 101);
+                            break;
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
             btnFloat.startAnimation(anim_zoomout);
-            Intent intent = null;
-            switch (scanMode) {
-                case 0: //camera
-//                     intent = new Intent(MainActivity.this, CameraActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    File file = new File(MainActivity.CACHE + "camera/img/camera.jpg");
-                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-
-
-                    startActivityForResult(intent, 100);
-//                    if (intent.resolveActivity(getPackageManager()) != null) {
-//                        startActivityForResult(intent, 3);
-//                    }
-
-
-                    break;
-                case 1: //screen
-                    intent = new Intent(MainActivity.this, FloatingActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                    break;
-                case 2: //file
-
-                    break;
-            }
-
             return super.onSingleTapUp(e);
         }
 
@@ -392,10 +398,18 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("IntentRe", requestCode + " " +resultCode);
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            String screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";
 
+
+        //lay anh
+        if ( (resultCode == 100 || requestCode==101) && resultCode == Activity.RESULT_OK) {
+
+            String screenshotPath;
+
+            if (requestCode==100) { // camera
+                screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";
+            } else { //file
+                screenshotPath = getRealPathFromURI(data.getData());
+            }
             //ghi file
 
             try {
@@ -422,8 +436,6 @@ public class MainActivity extends AppCompatActivity implements
                 intent.putExtra("ScreenshotObj", new ScreenshotObj(screenshotPath, xmlPath));
                 startActivity(intent);
 
-                Log.d("IntentRe", "started intent");
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -433,6 +445,8 @@ public class MainActivity extends AppCompatActivity implements
 
 
         }
+
+
     }
 
     public Bitmap getScaledBitmap(File imgFile)
@@ -448,5 +462,20 @@ public class MainActivity extends AppCompatActivity implements
         }
         else
             return null;
+    }
+
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
     }
 }

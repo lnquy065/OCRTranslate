@@ -8,10 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bitstudio.aztranslate.MainActivity;
+
+import java.io.File;
+
 public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
 {
 
     private static final String DB_NAME = "Translation_History";
+    private static final String DB_DEVICE_STORAGE_PATH = MainActivity.CACHE + "histories";
     private static int DB_VERSION = 1;
 
     private static final String DB_CREATE_TABLE_HISTORY = "CREATE TABLE HISTORY (" +
@@ -37,6 +42,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             "addedTime TEXT);";
     public static final String DB_TABLE_NAME_FAVOURITE_WORD = "FAVOURITE_WORD";
     public static final String DB_KEY_WORD = "word";
+    public static final String DB_KEY_WORD_TRANS = "wordTrans";
     public static final String DB_KEY_WORD_TIME = "addedTime";
     public static final String DB_KEY_WORD_SRCLANG = "srcLanguage";
     public TranslationHistoryDatabaseHelper(Context context, SQLiteDatabase.CursorFactory factory)
@@ -48,6 +54,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        deleteFileOrFolder(DB_DEVICE_STORAGE_PATH);
         db.execSQL(DB_CREATE_TABLE_HISTORY);
         db.execSQL(DB_CREATE_TABLE_FAVOURITE_WORD);
         Log.d("BDHelper onCreate", "Create HISTORY and FAVOURITE_WORD tables" + db.getPath());
@@ -91,11 +98,26 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public long deleteTranslationHis(String translationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
+        File deleteScreenshot = new File(translationScreenshotPath);
+        deleteScreenshot.delete();
+        String xmlDir = translationScreenshotPath.replaceAll("img", "xml");
+        String xmlPath = xmlDir.replaceAll("jpg", "xml");
+
+        File deleteXml = new File(xmlPath);
+        deleteXml.delete();
         return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{translationScreenshotPath, "0"});
     }
     public long deleteFavouriteTranslationHis(String favouriteTranslationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
+        File deleteScreenshot = new File(favouriteTranslationScreenshotPath);
+        deleteScreenshot.delete();
+
+        String xmlDir = favouriteTranslationScreenshotPath.replaceAll("img", "xml");
+        String xmlPath = xmlDir.replaceAll("jpg", "xml");
+
+        File deleteXml = new File(xmlPath);
+        deleteXml.delete();
         return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{favouriteTranslationScreenshotPath, "1"});
     }
     public long makeTranslationHisAsFavourite(String translationScreenshotPath)
@@ -143,6 +165,22 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = getReadableDatabase();
         return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TIME, DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
+    }
+
+    public void deleteFileOrFolder(String folderPath)
+    {
+        File file = new File(folderPath);
+        if (file.isDirectory())
+        {
+            for (File content : file.listFiles())
+            {
+                deleteFileOrFolder(content.getAbsolutePath());
+            }
+            file.delete();
+        }
+        else if (file.isFile())
+            file.delete();
+
     }
 
 }

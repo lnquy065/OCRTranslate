@@ -66,17 +66,53 @@ public class InstallFragment extends Fragment {
 
             }
         });
-
-//        arrayList.add(new Language("Vietnamese","","Xin chào",1,""));
+//
+//        arrayList.add(new Language(1,"Vietnamese","","vie.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/vie.traineddata"));
 //        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
 //
-//        arrayList.add(new Language("Japanese","","Kon ni chi wa",1,""));
+//        arrayList.add(new Language(2,"Japanese","","jpn.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/jpn.traineddata"));
 //        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
 //
-//        arrayList.add(new Language("French","","Bonjour",1,""));
+//        arrayList.add(new Language(3,"French","","fra.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/fra.traineddata"));
 //        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
 //
-//        arrayList.add(new Language("English","","Hello",1,""));
+//        arrayList.add(new Language(4,"English","","eng.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/eng.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(5,"Chinese","","chi_tra.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/chi_tra.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(6,"Afrikaans","","afr.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/afr.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(7,"Danish","","dan.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/dan.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(8,"Greek","","grc.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/grc.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(9,"Italian","","ita.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/ita.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(10,"Portuguese","","por.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/por.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(11,"Spanish","","spa.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/spa.traineddata"));
+//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+//
+//        arrayList.add(new Language(12,"Hindi","","hin.traineddata",1,
+//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/hin.traineddata"));
 //        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
     }
 
