@@ -79,4 +79,8 @@ public class Language {
     public void setLinkDownLoad(String linkDownLoad) {
         this.linkDownLoad = linkDownLoad;
     }
+
+    public LanguageLite toLanguaLite() {
+        return new LanguageLite(this.name, this.subtitle, this.transSymbol);
+    }
 }
