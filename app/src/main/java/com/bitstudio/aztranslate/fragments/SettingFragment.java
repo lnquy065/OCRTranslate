@@ -63,7 +63,7 @@ public class SettingFragment extends Fragment {
         ListView lvSetting=rootView.findViewById(R.id.idListView);
         ArrayList<SettingItem> arrayList=new ArrayList<>();
         SettingAdapter adapter=new SettingAdapter(getContext(),R.layout.setting_item_layout,arrayList);
-        arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language","Install or Remove Language"));
+        arrayList.add(new SettingItem(R.drawable.ic_language_black_24dp,"Language Manager","Install or Remove Language"));
         arrayList.add(new SettingItem(R.drawable.ic_remove_red_eye_black_24dp,"Recognize/Translate",
                 "Set language to regconize or translate"));
         arrayList.add(new SettingItem(R.drawable.ic_settings_black_24dp,"System",
