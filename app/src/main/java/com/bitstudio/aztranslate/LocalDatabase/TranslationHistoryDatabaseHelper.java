@@ -6,9 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.bitstudio.aztranslate.MainActivity;
+import com.bitstudio.aztranslate.Setting;
 
 import java.io.File;
 
@@ -16,7 +15,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
 {
 
     private static final String DB_NAME = "Translation_History";
-    private static final String DB_DEVICE_STORAGE_PATH = MainActivity.CACHE + "histories";
+    private static final String DB_DEVICE_STORAGE_PATH = Setting.OCRDir.OCRDIR + "histories";
     private static int DB_VERSION = 1;
 
     private static final String DB_CREATE_TABLE_HISTORY = "CREATE TABLE HISTORY (" +

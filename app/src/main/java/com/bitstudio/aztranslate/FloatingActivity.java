@@ -662,7 +662,7 @@ public class FloatingActivity extends AppCompatActivity {
 
 
                     //luu hinh anh
-                    String screenshotPath = MainActivity.CACHE + "histories/img/" + unixTime + ".jpg";
+                    String screenshotPath = Setting.OCRDir.OCRDIR + "histories/img/" + unixTime + ".jpg";
                     fos = new FileOutputStream(screenshotPath);
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 
@@ -670,7 +670,7 @@ public class FloatingActivity extends AppCompatActivity {
 
                     //nhan dien chu viet
                     String recognizedText = ocrManager.startRecognize(bitmap, OcrManager.RETURN_HOCR);
-                    String xmlPath = MainActivity.CACHE + "histories/xml/" + unixTime + ".xml";
+                    String xmlPath = Setting.OCRDir.OCRDIR + "histories/xml/" + unixTime + ".xml";
                     fos = new FileOutputStream(xmlPath);
                     fos.write(recognizedText.getBytes());
 

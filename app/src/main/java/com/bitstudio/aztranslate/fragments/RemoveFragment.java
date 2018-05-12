@@ -3,7 +3,6 @@ package com.bitstudio.aztranslate.fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,19 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
-import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.Setting;
-import com.bitstudio.aztranslate.adapters.LanguageAdapter;
-import com.bitstudio.aztranslate.models.Language;
 import com.bitstudio.aztranslate.R;
 import com.bitstudio.aztranslate.models.LanguageLite;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class RemoveFragment extends Fragment {
@@ -50,7 +44,7 @@ public class RemoveFragment extends Fragment {
         lv1 =  view.findViewById(R.id.lv1);
         lv1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        final File dir = new File(MainActivity.CACHE+"tessdata/");
+        final File dir = new File(Setting.OCRDir.OCRDIR +"tessdata/");
         if(!dir.exists())
             dir.mkdirs();
         //tv1.setText("Ten : "+dir.getName()+" link : "+dir.getAbsolutePath()+" " );

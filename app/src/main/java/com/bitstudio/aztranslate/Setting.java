@@ -1,14 +1,12 @@
 package com.bitstudio.aztranslate;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Environment;
 
 import com.bitstudio.aztranslate.models.LanguageLite;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by LN Quy on 14/03/2018.
@@ -22,6 +20,21 @@ public class Setting {
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";
+
+
+    public static class OCRDir {
+        public static  String OCR = "ocrtranslate";
+        public static String OCRDIR = Environment.getExternalStorageDirectory().toString()+"/ocrtranslate/";
+        public static String OCRDIR_CAMERA_XML = OCRDIR +"camera/xml/";
+        public static String OCRDIR_CAMERA_IMG = OCRDIR +"camera/img/";
+        public static String OCRDIR_CAMERA = OCRDIR +"camera/";
+        public static String OCRDIR_TESSDATA = OCRDIR +"tessdata/";
+        public static String OCRDIR_HISTORIES_XML = OCRDIR +"histories/xml/";
+        public static String OCRDIR_HISTORIES_IMG = OCRDIR +"histories/img/";
+        public static String OCRDIR_HISTORIES = OCRDIR +"histories/";
+    }
+
+
 
     static {
         LANGUAGE.add(new LanguageLite("Azerbaijan","aze","az"));
