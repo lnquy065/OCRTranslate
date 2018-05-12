@@ -12,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
@@ -64,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements
     private static int MODE_SCREEN = 1;
     private static int MODE_CAMERA = 0;
     private static int MODE_FILE = 2;
-
-    public static String CACHE = Environment.getExternalStorageDirectory().toString()+"/aztrans/";
 
     //Controls
     private ImageButton btnSetting, btnBook, btnFavorite;
@@ -308,25 +305,27 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public void createDirs() {
-        File storeDirectory = new File(CACHE);
+        Log.d("Dir", Setting.OCRDir.OCRDIR);
+        File storeDirectory = new File(Setting.OCRDir.OCRDIR);
         if (!storeDirectory.exists()) {
             boolean success = storeDirectory.mkdirs();
         }
 
-        File imgDirectory = new File(CACHE+"histories/img/");
+        File imgDirectory = new File(Setting.OCRDir.OCRDIR_HISTORIES_IMG);
         if (!imgDirectory.exists()) imgDirectory.mkdirs();
 
-        File xmlDirectory = new File(CACHE+"histories/xml/");
+        File xmlDirectory = new File(Setting.OCRDir.OCRDIR_HISTORIES_XML);
         if (!xmlDirectory.exists()) xmlDirectory.mkdirs();
 
-        File datDirectory = new File(CACHE+"tessdata/");
+        File datDirectory = new File(Setting.OCRDir.OCRDIR_TESSDATA);
         if (!datDirectory.exists()) datDirectory.mkdirs();
 
-        File cameraIMGDirectory = new File(CACHE+"camera/img/");
+        File cameraIMGDirectory = new File(Setting.OCRDir.OCRDIR_CAMERA_IMG);
         if (!cameraIMGDirectory.exists()) cameraIMGDirectory.mkdirs();
 
-        File cameraXMLDirectory = new File(CACHE+"camera/xml/");
+        File cameraXMLDirectory = new File(Setting.OCRDir.OCRDIR_CAMERA_XML);
         if (!cameraXMLDirectory.exists()) cameraXMLDirectory.mkdirs();
+
     }
 
 
@@ -363,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements
                     Intent intent = null;
                     switch (scanMode) {
                         case 0: //camera
-                            File file = new File(MainActivity.CACHE + "camera/img/camera.jpg");
+                            File file = new File(Setting.OCRDir.OCRDIR + "camera/img/camera.jpg");
                             intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
                             startActivityForResult(intent, 100);
@@ -412,7 +411,7 @@ public class MainActivity extends AppCompatActivity implements
             String screenshotPath;
 
             if (requestCode==100) { // camera
-                screenshotPath = MainActivity.CACHE + "camera/img/camera.jpg";
+                screenshotPath = Setting.OCRDir.OCRDIR + "camera/img/camera.jpg";
             } else { //file
                 screenshotPath = getRealPathFromURI(data.getData());
             }
@@ -434,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements
                 Log.d("IntentRe", "Xml");
 
                 //nhan dien chu viet
-                String xmlPath = MainActivity.CACHE + "camera/xml/camera.xml";
+                String xmlPath = Setting.OCRDir.OCRDIR + "camera/xml/camera.xml";
                 fos = new FileOutputStream(xmlPath);
                 fos.write(xmlData.getBytes());
 
