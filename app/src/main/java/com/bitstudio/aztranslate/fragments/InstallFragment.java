@@ -53,6 +53,7 @@ public class InstallFragment extends Fragment {
                 if (t.exists()) return;
                 arrayList.add(language);
                 languageAdapter.notifyDataSetChanged();
+                swipe_refresh_layout.setRefreshing(false);
             }
 
             @Override
@@ -83,6 +84,7 @@ public class InstallFragment extends Fragment {
         languageAdapter=new LanguageAdapter(getContext(),R.layout.fragment_install,arrayList);
         lvInstall.setAdapter(languageAdapter);
         swipe_refresh_layout = view.findViewById(R.id.swipe_refresh_layout);
+        swipe_refresh_layout.setRefreshing(true);
 
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

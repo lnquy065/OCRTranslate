@@ -59,7 +59,7 @@ public class Setting {
         public static int STATUSBAR_HEIGHT = 0;
     }
 
-    public static LanguageLite findByOCR(String ocr) {
+    public static LanguageLite findLanguageByFileName(String ocr) {
         for (LanguageLite l: LANGUAGE) {
             if (l.ocrSymbol.equals(ocr)) return l;
         }

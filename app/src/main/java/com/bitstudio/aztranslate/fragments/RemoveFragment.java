@@ -55,7 +55,7 @@ public class RemoveFragment extends Fragment {
 
         for(int i=0;i<listData.length;i++) {
             String ocrF = listData[i].substring(0, listData[i].length() - 12);
-            LanguageLite l = Setting.findByOCR(ocrF);
+            LanguageLite l = Setting.findLanguageByFileName(ocrF);
             if(l!=null)
                 arrayString.add(l.name);
         }
@@ -79,7 +79,7 @@ public class RemoveFragment extends Fragment {
 
                                 for(int j=0;j<listData.length;j++) {
                                     String ocrF = listData[i].substring(0, listData[j].length() - 11);
-                                    LanguageLite l = Setting.findByOCR(ocrF);
+                                    LanguageLite l = Setting.findLanguageByFileName(ocrF);
                                     if(l!=null)
                                         arrayString.add(l.name);
                                 }
