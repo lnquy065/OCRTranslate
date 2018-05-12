@@ -27,7 +27,6 @@
         <activity android:name=".SliderActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SetLanguageActivity" />
-        <activity android:name=".LanguageSettingActivity" />
         <activity android:name=".ScreenshotViewerActivity" />
         <activity android:name=".CameraActivity"/>
         <activity android:name=".SetRTActivity" />
