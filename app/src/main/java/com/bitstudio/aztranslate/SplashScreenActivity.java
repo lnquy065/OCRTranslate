@@ -8,10 +8,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cunoraz.gifview.library.GifView;
+
 public class SplashScreenActivity extends AppCompatActivity{
     private ImageView mImageView;
     private TextView mTextView;
     private Thread mThread;
+    private GifView gif_loading;
 
     private final String SHARE_PREFERENCES_NAME = "ocr_prefer";
     private final String IS_FIRST_LAUNCH = "is_first_launch";
@@ -22,6 +25,10 @@ public class SplashScreenActivity extends AppCompatActivity{
         setContentView(R.layout.activity_splash_screen);
         mImageView = (ImageView) findViewById(R.id.image);
         mTextView = (TextView) findViewById(R.id.text);
+        gif_loading = findViewById(R.id.gif_splash_loading);
+        gif_loading.setAlpha(0f);
+        gif_loading.setGifResource(R.drawable.translate_loading);
+
         startAnimation();
     }
 
@@ -29,8 +36,25 @@ public class SplashScreenActivity extends AppCompatActivity{
         Animation opaque = AnimationUtils.loadAnimation(this, R.anim.anim_opaque);
         Animation bottonUp = AnimationUtils.loadAnimation(this, R.anim.anim_botton_up);
 
+
         opaque.reset();
         bottonUp.reset();
+        bottonUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                OCRInit();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         mImageView.setAnimation(opaque);
         mTextView.setAnimation(bottonUp);
@@ -42,6 +66,8 @@ public class SplashScreenActivity extends AppCompatActivity{
                     try {
 
                         sleep(3000);
+
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
@@ -70,6 +96,12 @@ public class SplashScreenActivity extends AppCompatActivity{
             }
         };
         mThread.start();
+    }
+
+
+    private void OCRInit() {
+        gif_loading.animate().alpha(1f).setDuration(200);
+        gif_loading.play();
     }
 
 }
