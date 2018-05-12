@@ -19,7 +19,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,6 +69,8 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
 
     private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     private ToggleButton btnTranslateFavourite;
+
+    private Animation anim_btn_translate_favorite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,11 +96,15 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         mWindowManager.addView(translateView, translateLayout);
         mainView = findViewById(R.id.mainScreenshotViewer);
 
+        loadAnimations();
         initData();
         addControls();
         addEvents();
     }
-
+    private void loadAnimations()
+    {
+        anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
+    }
     private void addEvents() {
 
         mainView.setOnTouchListener(new View.OnTouchListener() {
@@ -138,6 +146,18 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
 
 
                 return true;
+            }
+        });
+
+        btnTranslateFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                btnTranslateFavorite.startAnimation(anim_btn_translate_favorite);
+                if (b) {
+                    addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase(),lbTranslateTarget.getText().toString().toLowerCase());
+                } else {
+                    removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase(), lbTranslateTarget.getText().toString().toLowerCase());
+                }
             }
         });
     }
@@ -223,7 +243,10 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
 
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
-
+        // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
+        btnTranslateFavorite.setChecked(false);
+        btnTranslateFavorite.requestLayout();
+        btnTranslateFavorite.forceLayout();
         va.start();
     }
 
@@ -274,5 +297,15 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (translateView.getVisibility() == View.VISIBLE) hideTranslateDialog();
         super.onBackPressed();
+    }
+    private void removeWordFromFavorites(String word, String wordTrans)
+    {
+
+    }
+
+    private void addWordToFavorites(String word, String wordTrans)
+    {
+        long unixTime = System.currentTimeMillis() / 1000L;
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
     }
 }
