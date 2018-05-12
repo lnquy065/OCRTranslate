@@ -136,13 +136,17 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     }
     public long insertNewFavouriteWord(String word, String word_Trans, String addedTime, String srcLang)
     {
-        SQLiteDatabase db = getReadableDatabase();
-        ContentValues favourWord = new ContentValues();
-        favourWord.put(DB_KEY_WORD, word);
-        favourWord.put(DB_KEY_WORD_TRANS, word_Trans);
-        favourWord.put(DB_KEY_WORD_TIME, addedTime);
-        favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
-        return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
+        if (!isDuplicateWord(word))
+        {
+            SQLiteDatabase db = getReadableDatabase();
+            ContentValues favourWord = new ContentValues();
+            favourWord.put(DB_KEY_WORD, word);
+            favourWord.put(DB_KEY_WORD_TRANS, word_Trans);
+            favourWord.put(DB_KEY_WORD_TIME, addedTime);
+            favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
+            return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
+        }
+        return -1;
     }
     public long deleteFavouriteWord(String word)
     {
@@ -183,5 +187,12 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             file.delete();
 
     }
-
+    public boolean isDuplicateWord(String word)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD}, DB_KEY_WORD + " = ?", new String[]{word}, null, null, null);
+        if (cursor.getCount() >= 1)
+            return true;
+        return false;
+    }
 }

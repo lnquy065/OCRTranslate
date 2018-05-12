@@ -465,10 +465,6 @@ public class FloatingActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
             }
         });
-        // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
-        btnTranslateFavorite.setChecked(false);
-        btnTranslateFavorite.requestLayout();
-        btnTranslateFavorite.forceLayout();
         va.start();
         showFloatingWidget();
     }
@@ -494,7 +490,10 @@ public class FloatingActivity extends AppCompatActivity {
         hideFloatingWidget();
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
-
+        // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
+        btnTranslateFavorite.setChecked(false);
+        btnTranslateFavorite.requestLayout();
+        btnTranslateFavorite.forceLayout();
         va.start();
     }
 
