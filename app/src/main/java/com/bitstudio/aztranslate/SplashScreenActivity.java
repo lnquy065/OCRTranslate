@@ -4,12 +4,22 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bitstudio.aztranslate.fragments.InstallFragment;
+import com.bitstudio.aztranslate.models.Language;
+import com.bitstudio.aztranslate.models.LanguageLite;
 import com.cunoraz.gifview.library.GifView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+
+import java.io.File;
 import java.net.InetAddress;
 
 public class SplashScreenActivity extends AppCompatActivity{
@@ -91,7 +101,34 @@ public class SplashScreenActivity extends AppCompatActivity{
             public void run() {
                 super.run();
                     try {
+                        InstallFragment.databaseReference.child("Language").addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                                Language language=dataSnapshot.getValue(Language.class);
+                                Setting.LANGUAGE.add(language.toLanguaLite());
 
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
                         sleep(3000);
 
 
@@ -109,6 +146,11 @@ public class SplashScreenActivity extends AppCompatActivity{
                                 });
                             }
                             else {
+                                for (LanguageLite l:
+                                     Setting.LANGUAGE) {
+                                    Log.d("lang",l.name);
+
+                                }
 
                                 android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
                                 android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
