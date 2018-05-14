@@ -5,8 +5,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -16,7 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,18 +30,22 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".SetLanguageActivity" />
         <activity android:name=".ScreenshotViewerActivity" />
-        <activity android:name=".CameraActivity"/>
+        <activity android:name=".CameraActivity" />
         <activity android:name=".SetRTActivity" />
         <activity android:name=".ManageLanguageActivity" />
         <activity
             android:name=".FloatingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppNoneDisplay" />
-
         <activity
             android:name=".SystemSettingActivity"
             android:label="System Setting"
-            android:theme="@style/SettingTheme"/>
+            android:theme="@style/SettingTheme" />
+
+        <service
+            android:name=".services.BookMarkService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

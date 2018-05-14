@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements
         Setting.WordBorder.BORDER_COLOR = settingXML.getInt("WBORDER", Color.RED);
         Setting.COMPRESSED_RATE = settingXML.getInt("COMPRESSED", 8);
         Setting.WordBorder.BORDER_SHAPE = settingXML.getInt("WBORDERSHAPE", 8);
+        Setting.Notification.ENABLE = settingXML.getBoolean("Notification_ENABLE", false);
         Setting.Screen.HEIGH = screenHeight;
         Setting.Screen.WIDTH = screenWidth;
     }
