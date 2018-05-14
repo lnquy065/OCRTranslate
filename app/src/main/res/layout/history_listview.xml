@@ -36,6 +36,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/padd_10"
+            android:layout_marginLeft="@dimen/padd_10"
             android:src="@drawable/ic_favorite_black_24dp" />
 
         <TextView
@@ -83,6 +84,7 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/imageViewScreenshot"
             android:textColor="@color/description"
+            android:textStyle="italic"
             android:textSize="14dp" />
 
         <TextView

@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -24,6 +23,7 @@ import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.R;
 import com.bitstudio.aztranslate.adapters.BookmarkWordAdapter;
 import com.bitstudio.aztranslate.adapters.RecyclerBookmarkWordTouchHelper;
+import com.bitstudio.aztranslate.itemDecorators.DividerItemDecoration;
 import com.bitstudio.aztranslate.models.BookmarkWord;
 
 /**
@@ -101,17 +101,18 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
         bookmarkWordDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
 
         Cursor cursor = bookmarkWordDatabaseHelper.queryAllBookmarkWord();
-        Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
-        toast.show();
+        //Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
+        //toast.show();
         MainActivity.bookmarkWords.clear();
         // Loading all bookmark word and displaying it
         while (cursor.moveToNext())
         {
             String word = cursor.getString(0);
-            String addedTime = cursor.getString(1);
-            String srcLang = cursor.getString(2);
+            String wordTranslated = cursor.getString(1);
+            String addedTime = cursor.getString(2);
+            String srcLang = cursor.getString(3);
 
-            BookmarkWord bookmarkWord = new BookmarkWord(word, Long.parseLong(addedTime), srcLang);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
             MainActivity.bookmarkWords.add(bookmarkWord);
         }
     }
@@ -164,7 +165,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
                     {
                         // undo is selected, let's restore the deleted item
                         bookmarkWordAdapter.restoreBookmarkWord(deletedBookmarkWord, deletedIndex);
-                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage());
+                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), deletedBookmarkWord.getWordTranslated(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage());
                     }
                 });
                 snackbarUndo.setActionTextColor(Color.RED);
@@ -196,7 +197,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
 
         bookmarkWordRecyclerView.setLayoutManager(mLayoutmanager);
         bookmarkWordRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        bookmarkWordRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        bookmarkWordRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), Color.GRAY, 2));
 
         bookmarkWordAdapter = new BookmarkWordAdapter(getActivity(), MainActivity.bookmarkWords);
         bookmarkWordRecyclerView.setAdapter(bookmarkWordAdapter);

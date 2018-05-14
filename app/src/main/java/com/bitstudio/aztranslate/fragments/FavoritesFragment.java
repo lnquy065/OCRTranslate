@@ -1,22 +1,27 @@
 package com.bitstudio.aztranslate.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bitstudio.aztranslate.FloatingActivity;
@@ -28,6 +33,7 @@ import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.TranslationHistory;
+import com.bitstudio.aztranslate.itemDecorators.DividerItemDecoration;
 import com.bitstudio.aztranslate.R;
 
 
@@ -58,6 +64,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
     private View onView;
     // Taking control of the History list view
     private RecyclerView favouriteTranslationHistoryRecyclerView;
+    private FloatingActionButton buttonDeleteAllFavourite;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -106,8 +113,8 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
         // Let create a database helper
         favouriteHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
         Cursor cursor = favouriteHistoryDatabaseHelper.queryAllFavouriteTranslationHistory();
-        Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
-        toast.show();
+        //Toast toast = Toast.makeText(getActivity(), "Loading All Favourite Histories", Toast.LENGTH_SHORT);
+        //toast.show();
         MainActivity.favouriteHistories.clear();
         // Loading all old histories and displaying
         while (cursor.moveToNext())
@@ -162,9 +169,9 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             {
                 // remove the translation history from recycler view
                 favouriteHistoryAdapter.removeTranslationHistory(deletedIndex);
-                favouriteHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+                favouriteHistoryDatabaseHelper.deleteFavouriteTranslationHis(screenshotPath);
                 // showing snack bar with undo option
-                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Favourite Histories", Snackbar.LENGTH_LONG);
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was deleted. ", Snackbar.LENGTH_SHORT);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
 
@@ -201,11 +208,38 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
     public void mappingViewComponentsByID()
     {
         favouriteTranslationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
-        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
+        buttonDeleteAllFavourite = getActivity().findViewById(R.id.buttonDeleteAllFav);
+        buttonDeleteAllFavourite.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                /*Snackbar snackbarDeleteAll = Snackbar.make(getView(), "Do you want to delete all histories ? ", Snackbar.LENGTH_LONG);
+                snackbarDeleteAll.setAction("YES", new View.OnClickListener()
+                {
 
+                    @Override
+                    public void onClick(View v)
+                    {
+                        onClickDeleteAllFavourites();
+                    }
+                });
+                snackbarDeleteAll.setActionTextColor(Color.RED);
+                snackbarDeleteAll.show();*/
+                int numberOfItems = favouriteHistoryAdapter.getItemCount();
+                if (numberOfItems == 0)
+                {
+                    Snackbar notificationBar = Snackbar.make(getView(), "Nothing to delete !", Snackbar.LENGTH_SHORT);
+                    notificationBar.show();
+                }
+                else createAlertDialog().show();
+            }
+        });
+
+        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
         favouriteTranslationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
         favouriteTranslationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        favouriteTranslationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        favouriteTranslationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), Color.GRAY, 2));
 
         favouriteHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.favouriteHistories);
         favouriteTranslationHistoryRecyclerView.setAdapter(favouriteHistoryAdapter);
@@ -225,7 +259,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             {
 
                 TranslationHistory translationHistory = MainActivity.favouriteHistories.get(position);
-                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
                 Intent intent =  new Intent(FavoritesFragment.this.getContext(), ScreenshotViewerActivity.class);
 
 
@@ -242,5 +276,36 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
 
             }
         }));
+    }
+
+    public void onClickDeleteAllFavourites()
+    {
+        int numberOfItems = favouriteHistoryAdapter.getItemCount();
+        for (int index = 0; index < numberOfItems; index++)
+        {
+            TranslationHistory delTrans = favouriteHistoryAdapter.getTranslationHistoryAt(0);
+            favouriteHistoryAdapter.removeTranslationHistory(0);
+            favouriteHistoryDatabaseHelper.deleteFavouriteTranslationHis(delTrans.getScreenshotPath());
+        }
+    }
+    public Dialog createAlertDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Do you want to delete all the favourites ? ").setTitle("Warning").setIcon(R.drawable.ic_warning_black_24dp)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onClickDeleteAllFavourites();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        return builder.create();
     }
 }

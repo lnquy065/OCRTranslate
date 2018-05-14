@@ -6,12 +6,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.bitstudio.aztranslate.Setting;
+
+import java.io.File;
 
 public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
 {
 
     private static final String DB_NAME = "Translation_History";
+    private static final String DB_DEVICE_STORAGE_PATH = Setting.OCRDir.OCRDIR + "histories";
     private static int DB_VERSION = 1;
 
     private static final String DB_CREATE_TABLE_HISTORY = "CREATE TABLE HISTORY (" +
@@ -33,10 +37,12 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     private static final String DB_CREATE_TABLE_FAVOURITE_WORD = "CREATE TABLE FAVOURITE_WORD(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "word TEXT, " +
+            "wordTrans TEXT, " +
             "srcLanguage TEXT," +
             "addedTime TEXT);";
     public static final String DB_TABLE_NAME_FAVOURITE_WORD = "FAVOURITE_WORD";
     public static final String DB_KEY_WORD = "word";
+    public static final String DB_KEY_WORD_TRANS = "wordTrans";
     public static final String DB_KEY_WORD_TIME = "addedTime";
     public static final String DB_KEY_WORD_SRCLANG = "srcLanguage";
     public TranslationHistoryDatabaseHelper(Context context, SQLiteDatabase.CursorFactory factory)
@@ -48,6 +54,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        deleteFileOrFolder(DB_DEVICE_STORAGE_PATH);
         db.execSQL(DB_CREATE_TABLE_HISTORY);
         db.execSQL(DB_CREATE_TABLE_FAVOURITE_WORD);
         Log.d("BDHelper onCreate", "Create HISTORY and FAVOURITE_WORD tables" + db.getPath());
@@ -91,7 +98,27 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public long deleteTranslationHis(String translationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
+        File deleteScreenshot = new File(translationScreenshotPath);
+        deleteScreenshot.delete();
+        String xmlDir = translationScreenshotPath.replaceAll("img", "xml");
+        String xmlPath = xmlDir.replaceAll("jpg", "xml");
+
+        File deleteXml = new File(xmlPath);
+        deleteXml.delete();
+        return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{translationScreenshotPath, "0"});
+    }
+    public long deleteFavouriteTranslationHis(String favouriteTranslationScreenshotPath)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        File deleteScreenshot = new File(favouriteTranslationScreenshotPath);
+        deleteScreenshot.delete();
+
+        String xmlDir = favouriteTranslationScreenshotPath.replaceAll("img", "xml");
+        String xmlPath = xmlDir.replaceAll("jpg", "xml");
+
+        File deleteXml = new File(xmlPath);
+        deleteXml.delete();
+        return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{favouriteTranslationScreenshotPath, "1"});
     }
     public long makeTranslationHisAsFavourite(String translationScreenshotPath)
     {
@@ -107,14 +134,19 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         updateTranslationHis.put(DB_KEY_FAVOURITE, 0);
         return db.update(DB_TABLE_NAME_HISTORY, updateTranslationHis,DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
     }
-    public long insertNewFavouriteWord(String word, String addedTime, String srcLang)
+    public long insertNewFavouriteWord(String word, String word_Trans, String addedTime, String srcLang)
     {
-        SQLiteDatabase db = getReadableDatabase();
-        ContentValues favourWord = new ContentValues();
-        favourWord.put(DB_KEY_WORD, word);
-        favourWord.put(DB_KEY_WORD_TIME, addedTime);
-        favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
-        return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
+        if (!isDuplicateWord(word))
+        {
+            SQLiteDatabase db = getReadableDatabase();
+            ContentValues favourWord = new ContentValues();
+            favourWord.put(DB_KEY_WORD, word);
+            favourWord.put(DB_KEY_WORD_TRANS, word_Trans);
+            favourWord.put(DB_KEY_WORD_TIME, addedTime);
+            favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
+            return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
+        }
+        return -1;
     }
     public long deleteFavouriteWord(String word)
     {
@@ -137,7 +169,29 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public Cursor queryAllBookmarkWord()
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TIME, DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
+        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
     }
 
+    public void deleteFileOrFolder(String folderPath)
+    {
+        File file = new File(folderPath);
+        if (file.isDirectory())
+        {
+            for (File content : file.listFiles())
+            {
+                deleteFileOrFolder(content.getAbsolutePath());
+            }
+            file.delete();
+        }
+        else if (file.isFile())
+            file.delete();
+    }
+    public boolean isDuplicateWord(String word)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD}, DB_KEY_WORD + " = ?", new String[]{word}, null, null, null);
+        if (cursor.getCount() >= 1)
+            return true;
+        return false;
+    }
 }

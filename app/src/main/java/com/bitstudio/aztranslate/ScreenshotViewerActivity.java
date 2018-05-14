@@ -11,24 +11,23 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Pair;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
-import android.widget.TextView;
-import android.widget.ToggleButton;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
-import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.ocr.HOCR;
 import com.cunoraz.gifview.library.GifView;
 import com.loopj.android.http.AsyncHttpClient;
@@ -38,7 +37,6 @@ import com.loopj.android.http.RequestHandle;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.LinkedHashMap;
 
 import cz.msebera.android.httpclient.Header;
@@ -59,7 +57,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     private Bitmap screenshotBitMap;
     private Bitmap recognizeBitMap;
 
-    private EditText txtTranslateSource;
+    private TextView txtTranslateSource;
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
     private ToggleButton btnTranslateFavorite;
@@ -67,6 +65,8 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
 
     private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
     private ToggleButton btnTranslateFavourite;
+
+    private Animation anim_btn_translate_favorite;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,13 +91,38 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(translateView, translateLayout);
         mainView = findViewById(R.id.mainScreenshotViewer);
-
+        loadAnimations();
         initData();
         addControls();
         addEvents();
     }
-
+    private void loadAnimations()
+    {
+        anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
+    }
     private void addEvents() {
+
+        translateView.setOnTouchListener(new View.OnTouchListener() {
+            private GestureDetector gestureDetector = new GestureDetector(ScreenshotViewerActivity.this, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onDoubleTap(MotionEvent e) {
+                    hideTranslateDialog();
+                    return super.onDoubleTap(e);
+                }
+
+
+            });
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction()==MotionEvent.ACTION_MOVE) {
+                    translateLayout.y = Setting.Screen.HEIGH-(int) motionEvent.getRawY();
+                    mWindowManager.updateViewLayout(translateView, translateLayout);
+                }
+                gestureDetector.onTouchEvent(motionEvent);
+                return false;
+            }
+        });
 
         mainView.setOnTouchListener(new View.OnTouchListener() {
             private String finalText = "";
@@ -140,6 +165,18 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        btnTranslateFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                btnTranslateFavorite.startAnimation(anim_btn_translate_favorite);
+                if (b) {
+                    addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase(),lbTranslateTarget.getText().toString().toLowerCase());
+                } else {
+                    removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase(), lbTranslateTarget.getText().toString().toLowerCase());
+                }
+            }
+        });
     }
 
     private void addControls() {
@@ -159,7 +196,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         translationHistory = (ScreenshotObj) getIntent().getSerializableExtra("ScreenshotObj");
         screenshotBitMap = translationHistory.getScreenshotBitmap();
       //  Log.d("Bitmap", screenshotBitMap.getWidth() + " " + screenshotBitMap.getHeight());
-        screenshotBitMap = Bitmap.createBitmap(screenshotBitMap, 0, Setting.STATUSBAR_HEIGHT, screenshotBitMap.getWidth(), screenshotBitMap.getHeight()-Setting.STATUSBAR_HEIGHT);
+        screenshotBitMap = Bitmap.createBitmap(screenshotBitMap, 0, Setting.Screen.STATUSBAR_HEIGHT, screenshotBitMap.getWidth(), screenshotBitMap.getHeight()- Setting.Screen.STATUSBAR_HEIGHT);
         hocr = new HOCR(translationHistory.readXmlData());
         recognizeBitMap = hocr.createBitmap(screenshotBitMap.getWidth(), screenshotBitMap.getHeight());
     }
@@ -223,7 +260,13 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
 
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
-
+        // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
+        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase()))
+            btnTranslateFavorite.setChecked(true);
+        else
+            btnTranslateFavorite.setChecked(false);
+        btnTranslateFavorite.requestLayout();
+        btnTranslateFavorite.forceLayout();
         va.start();
     }
 
@@ -274,5 +317,15 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (translateView.getVisibility() == View.VISIBLE) hideTranslateDialog();
         super.onBackPressed();
+    }
+    private void removeWordFromFavorites(String word, String wordTrans)
+    {
+        translationHistoryDatabaseHelper.deleteFavouriteWord(word);
+    }
+
+    private void addWordToFavorites(String word, String wordTrans)
+    {
+        long unixTime = System.currentTimeMillis() / 1000L;
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
     }
 }

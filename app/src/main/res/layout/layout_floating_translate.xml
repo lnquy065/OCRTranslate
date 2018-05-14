@@ -29,15 +29,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <TextView
                 android:id="@+id/txtTranslateSource"
-                android:layout_width="211dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name"
-                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnTranslateFavorite"
+                app:layout_constraintEnd_toStartOf="@+id/btnTranslateFavorite"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imTranslateSource"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +58,7 @@
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTranslateSource"
-                app:layout_constraintVertical_bias="0.052" />
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <ImageView
                 android:id="@+id/imTranslateSource"
@@ -61,6 +66,7 @@
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_menu_mapmode" />
@@ -77,6 +83,18 @@
                 app:layout_constraintStart_toStartOf="@+id/lbTranslateTarget"
                 app:layout_constraintTop_toBottomOf="@+id/txtTranslateSource"
                 app:srcCompat="@drawable/translate_loading" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTranslateSource" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

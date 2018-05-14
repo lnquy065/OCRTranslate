@@ -1,24 +1,30 @@
 package com.bitstudio.aztranslate.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -29,6 +35,7 @@ import com.bitstudio.aztranslate.adapters.TranslationHistoryAdapter;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
+import com.bitstudio.aztranslate.itemDecorators.DividerItemDecoration;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import com.bitstudio.aztranslate.R;
@@ -54,7 +61,8 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     private View onView;
     // Taking control of the History list view
     private RecyclerView translationHistoryRecyclerView;
-
+    private FloatingActionButton buttonDeleteAllHistory;
+    private SearchView searchViewTranslationHistory;
     public HistoryFragment() {
         // Required empty public constructor
     }
@@ -99,11 +107,12 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     {
         super.onActivityCreated(savedInstanceState);
         mappingViewComponentsByID();
+        settupSearchViewTranslationHistoryFilter();
         // Let create a database helper
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
         Cursor cursor = translationHistoryDatabaseHelper.queryAllTranslationHistory();
-        Toast toast = Toast.makeText(getActivity(), "Loading All Histories", Toast.LENGTH_SHORT);
-        toast.show();
+        //Toast toast = Toast.makeText(getActivity(), "Loading All Histories", Toast.LENGTH_SHORT);
+        //toast.show();
         MainActivity.translationHistories.clear();
         // Loading all old histories and displaying
         while (cursor.moveToNext())
@@ -168,7 +177,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                 translationHistoryAdapter.removeTranslationHistory(deletedIndex);
                 translationHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
                 // showing snack bar with undo option
-                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Histories", Snackbar.LENGTH_LONG);
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " was deleted .", Snackbar.LENGTH_SHORT);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
 
@@ -189,7 +198,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                 translationHistoryAdapter.removeTranslationHistory(deletedIndex);
                 translationHistoryDatabaseHelper.makeTranslationHisAsFavourite(screenshotPath);
                 // showing snack bar with undo option
-                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was moved to Favourite Histories", Snackbar.LENGTH_LONG);
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was moved to Favourites", Snackbar.LENGTH_SHORT);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
 
@@ -207,16 +216,6 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
         }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -225,11 +224,42 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     public void mappingViewComponentsByID()
     {
         translationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
+        buttonDeleteAllHistory = getActivity().findViewById(R.id.buttonDeleteAllHis);
+        searchViewTranslationHistory = getActivity().findViewById(R.id.searchViewHistory);
+        buttonDeleteAllHistory.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                /*Snackbar snackbarUndo = Snackbar.make(getView(), "Do you want to delete all histories ? ", Snackbar.LENGTH_LONG);
+                snackbarUndo.setAction("YES", new View.OnClickListener()
+                {
+
+                    @Override
+                    public void onClick(View view)
+                    {
+                        onClickDeleteAllHistory();
+
+                    }
+                });
+                snackbarUndo.setActionTextColor(Color.GREEN);
+                snackbarUndo.show();*/
+                int numberOfItems = translationHistoryAdapter.getItemCount();
+                if (numberOfItems == 0)
+                {
+                    Snackbar notificationBar = Snackbar.make(getView(), "Nothing to delete !", Snackbar.LENGTH_SHORT);
+                    notificationBar.show();
+                }
+                else
+                    createAlertDialog().show();
+            }
+        });
         RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(getActivity());
 
         translationHistoryRecyclerView.setLayoutManager(mLayoutmanager);
         translationHistoryRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        translationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        translationHistoryRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), Color.GRAY, 2));
 
         translationHistoryAdapter = new TranslationHistoryAdapter(getActivity(), MainActivity.translationHistories);
         translationHistoryRecyclerView.setAdapter(translationHistoryAdapter);
@@ -249,7 +279,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             {
 
                 TranslationHistory translationHistory = MainActivity.translationHistories.get(position);
-                Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), translationHistory.getScreenshotFileName(), Toast.LENGTH_SHORT).show();
                 Intent intent =  new Intent(HistoryFragment.this.getContext(), ScreenshotViewerActivity.class);
 
 
@@ -266,5 +296,58 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
             }
         }));
+    }
+
+    public void onClickDeleteAllHistory()
+    {
+        int numberOfItems = translationHistoryAdapter.getItemCount();
+        for (int index = 0; index < numberOfItems; index++)
+        {
+            TranslationHistory delTrans = translationHistoryAdapter.getTranslationHistoryAt(0);
+            translationHistoryAdapter.removeTranslationHistory(0);
+            translationHistoryDatabaseHelper.deleteTranslationHis(delTrans.getScreenshotPath());
+
+        }
+    }
+    public void settupSearchViewTranslationHistoryFilter()
+    {
+        searchViewTranslationHistory.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+                Toast.makeText(getActivity(), "ht", Toast.LENGTH_SHORT).show();
+                translationHistoryAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                Toast.makeText(getActivity(), "ht", Toast.LENGTH_SHORT).show();
+                translationHistoryAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+    }
+    public Dialog createAlertDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Do you want to delete all the histories ? ").setTitle("Warning").setIcon(R.drawable.ic_warning_black_24dp)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onClickDeleteAllHistory();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        return builder.create();
     }
 }
