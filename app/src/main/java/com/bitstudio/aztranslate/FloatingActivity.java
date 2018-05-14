@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.bitstudio.aztranslate;
 
 import android.animation.Animator;
@@ -23,7 +22,6 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Pair;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -37,25 +35,19 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
-import com.bitstudio.aztranslate.Model.TranslationHistory;
-import com.bitstudio.aztranslate.OCRLib.HOCR;
-import com.bitstudio.aztranslate.OCRLib.OcrManager;
+import com.bitstudio.aztranslate.ocr.HOCR;
+import com.bitstudio.aztranslate.ocr.OcrManager;
 import com.cunoraz.gifview.library.GifView;
 import com.loopj.android.http.RequestHandle;
-import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -69,15 +61,6 @@ import static com.bitstudio.aztranslate.Setting.YandexAPI.API;
 import static com.bitstudio.aztranslate.Setting.YandexAPI.KEY;
 import static com.bitstudio.aztranslate.Setting.YandexAPI.LANG;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import cz.msebera.android.httpclient.Header;
-
 public class FloatingActivity extends AppCompatActivity {
     private WindowManager mWindowManager;
     private View floatingView, translateView;
@@ -85,13 +68,6 @@ public class FloatingActivity extends AppCompatActivity {
 
     private ImageView btnFloatingWidgetClose;
     private GifView imvFloatingWidgetIcon;
-
-
-    //
-    private static final String API = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
-    private static final String KEY = "trnsl.1.1.20180329T083614Z.2b685ad1b1385380.fdb64e113f85b99546bdafe847164fdaab069e97";
-    private static final String LANG = "en-vi";
-    String dataParse = "..Can't translate..";
 
     //touchVar
     private int clickCount = 0;
@@ -127,11 +103,12 @@ public class FloatingActivity extends AppCompatActivity {
     private Animation anim_btnfloating_appear;
     private Animation anim_btnfloating_touch;
     private Animation anim_btnfloating_disappear;
+    private Animation anim_btnfloating_remove;
     private Animation anim_general_fadeout;
     private Animation anim_general_fadein;
 
     //translate form
-    private EditText txtTranslateSource;
+    private TextView txtTranslateSource;
     private TextView lbTranslateTarget;
     private ImageView imTranslateSource;
     private ToggleButton btnTranslateFavorite;
@@ -152,7 +129,7 @@ public class FloatingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_floating);
 
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
@@ -179,18 +156,6 @@ public class FloatingActivity extends AppCompatActivity {
                 PixelFormat.TRANSLUCENT
         );
 
-        //set postion for layout
-        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
-        floatingLayout.x = 0;
-        floatingLayout.y = 100;
-
-        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
-        translateView.setVisibility(View.GONE);
-
-        //add to window
-        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        mWindowManager.addView(floatingView, floatingLayout);
-        mWindowManager.addView(translateView, translateLayout);
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         mDensity = metrics.densityDpi;
@@ -200,6 +165,18 @@ public class FloatingActivity extends AppCompatActivity {
         mWidth = size.x;
         mHeight = size.y;
 
+        //set postion for layout
+        floatingLayout.gravity = Gravity.TOP | Gravity.LEFT;
+        floatingLayout.x = mWidth;
+        floatingLayout.y = mHeight-700;
+
+        translateLayout.gravity = Gravity.BOTTOM | Gravity.CENTER;
+        translateView.setVisibility(View.GONE);
+
+        //add to window
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mWindowManager.addView(floatingView, floatingLayout);
+        mWindowManager.addView(translateView, translateLayout);
 
         loadAnimations();
         addControls();
@@ -235,24 +212,46 @@ public class FloatingActivity extends AppCompatActivity {
         anim_btnfloating_touch = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_touch);
         anim_btnfloating_disappear = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
         anim_btn_translate_favorite = AnimationUtils.loadAnimation(this, R.anim.anim_btn_translate_favorite);
+        anim_btnfloating_remove = AnimationUtils.loadAnimation(this, R.anim.anim_btnfloating_disappear);
 
+        anim_btnfloating_remove.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-       anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
-           @Override
-           public void onAnimationStart(Animation animation) {
+            }
 
-           }
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
-           @Override
-           public void onAnimationEnd(Animation animation) {
+                mWindowManager.removeViewImmediate(translateView);
+                mWindowManager.removeViewImmediate(floatingView);
+                Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        anim_btnfloating_disappear.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 floatingView.setVisibility(View.GONE);
-           }
+            }
 
-           @Override
-           public void onAnimationRepeat(Animation animation) {
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
-           }
-       });
+            }
+        });
     }
 
     public void addControls() {
@@ -261,7 +260,6 @@ public class FloatingActivity extends AppCompatActivity {
         lbTranslateTarget = translateView.findViewById(R.id.lbTranslateTarget);
         imTranslateSource = translateView.findViewById(R.id.imTranslateSource);
         btnTranslateFavorite = translateView.findViewById(R.id.btnTranslateFavorite);
-
         btnFloatingWidgetClose = floatingView.findViewById(R.id.btnFloatingWidgetClose);
         imvFloatingWidgetIcon = floatingView.findViewById(R.id.imvFloatingWidgetIcon);
         imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
@@ -277,38 +275,41 @@ public class FloatingActivity extends AppCompatActivity {
                     hideTranslateDialog();
                     return super.onDoubleTap(e);
                 }
+
+
             });
 
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction()==MotionEvent.ACTION_MOVE) {
+                    translateLayout.y = mHeight-(int) motionEvent.getRawY();
+                    mWindowManager.updateViewLayout(translateView, translateLayout);
+                }
                 gestureDetector.onTouchEvent(motionEvent);
                 return false;
             }
         });
-
 
         btnTranslateFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 btnTranslateFavorite.startAnimation(anim_btn_translate_favorite);
                 if (b) {
-                    addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase());
+                    addWordToFavorites(txtTranslateSource.getText().toString().toLowerCase(),lbTranslateTarget.getText().toString().toLowerCase());
                 } else {
-                    removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase());
+                    removeWordFromFavorites(txtTranslateSource.getText().toString().toLowerCase(), lbTranslateTarget.getText().toString().toLowerCase());
                 }
             }
         });
 
-        
+
         btnFloatingWidgetClose.setOnClickListener(v -> {
-            Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+
+            imvFloatingWidgetIcon.startAnimation(anim_btnfloating_remove);
         });
 
 
         imvFloatingWidgetIcon.setOnTouchListener(new View.OnTouchListener() {
-            private int lastAction;
             private int initialX;
             private int initialY;
             private float initialTouchX;
@@ -330,7 +331,6 @@ public class FloatingActivity extends AppCompatActivity {
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
 
-                        lastAction = event.getAction();
 
                         startTime = System.currentTimeMillis();
                         return true;
@@ -339,7 +339,6 @@ public class FloatingActivity extends AppCompatActivity {
                         if (t < MAX_DURATION) {
                             takeScreenshot();
                         } else {
-                            Log.d("Size", floatingLayout.x + 30 + " " + mWidth / 2);
                             ValueAnimator va;
                             if (floatingLayout.x + 30 < mWidth / 2) {
                                 va = ValueAnimator.ofFloat(floatingLayout.x, 5);
@@ -360,7 +359,6 @@ public class FloatingActivity extends AppCompatActivity {
                             va.start();
                         }
 
-                        lastAction = event.getAction();
                         return true;
                     case MotionEvent.ACTION_MOVE:
                         //Calculate the X and Y coordinates of the view.
@@ -369,9 +367,10 @@ public class FloatingActivity extends AppCompatActivity {
 
                         //Update the layout with new X & Y coordinate
                         mWindowManager.updateViewLayout(floatingView, floatingLayout);
-                        lastAction = event.getAction();
                         return true;
+
                 }
+
                 return false;
             }
         });
@@ -420,11 +419,15 @@ public class FloatingActivity extends AppCompatActivity {
         });
     }
 
-    private void removeWordFromFavorites(String s) {
+    private void removeWordFromFavorites(String word, String wordTrans)
+    {
+        translationHistoryDatabaseHelper.deleteFavouriteWord(word);
     }
 
-    private void addWordToFavorites(String s) {
-        
+    private void addWordToFavorites(String word, String wordTrans)
+    {
+        long unixTime = System.currentTimeMillis() / 1000L;
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
     }
 
     public void showFloatingWidget() {
@@ -462,7 +465,6 @@ public class FloatingActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
             }
         });
-
         va.start();
         showFloatingWidget();
     }
@@ -488,7 +490,13 @@ public class FloatingActivity extends AppCompatActivity {
         hideFloatingWidget();
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
-
+        // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
+        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase()))
+            btnTranslateFavorite.setChecked(true);
+        else
+            btnTranslateFavorite.setChecked(false);
+        btnTranslateFavorite.requestLayout();
+        btnTranslateFavorite.forceLayout();
         va.start();
     }
 
@@ -541,7 +549,7 @@ public class FloatingActivity extends AppCompatActivity {
         return (int) px;
     }
 
-    private int map(int v, int iMin, int iMax, int oMin, int oMax) {
+    public static int map(int v, int iMin, int iMax, int oMin, int oMax) {
         float ratio = (float) ((oMax - oMin) * 1.0 / (iMax - iMin));
         return (int) (v * ratio) - oMin;
     }
@@ -656,7 +664,7 @@ public class FloatingActivity extends AppCompatActivity {
 
 
                     //luu hinh anh
-                    String screenshotPath = MainActivity.CACHE + "histories/img/" + unixTime + ".jpg";
+                    String screenshotPath = Setting.OCRDir.OCRDIR + "histories/img/" + unixTime + ".jpg";
                     fos = new FileOutputStream(screenshotPath);
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 
@@ -664,18 +672,20 @@ public class FloatingActivity extends AppCompatActivity {
 
                     //nhan dien chu viet
                     String recognizedText = ocrManager.startRecognize(bitmap, OcrManager.RETURN_HOCR);
-                    String xmlPath = MainActivity.CACHE + "histories/xml/" + unixTime + ".xml";
+                    String xmlPath = Setting.OCRDir.OCRDIR + "histories/xml/" + unixTime + ".xml";
                     fos = new FileOutputStream(xmlPath);
                     fos.write(recognizedText.getBytes());
 
                     // save screenshot information to local database
                     translationHistoryDatabaseHelper.insertNewTranslationHis(screenshotPath,xmlPath, String.valueOf(unixTime), "English", "Vietnamese");
                     hOcr.processHTML(recognizedText);
-                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight);
+                    Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight - Setting.Screen.STATUSBAR_HEIGHT);
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             mainView.setBackgroundDrawable(new BitmapDrawable(bitmapReco));
+
                             imvFloatingWidgetIcon.setGifResource(R.drawable.btn_float_idle);
                             imvFloatingWidgetIcon.play();
                         }
@@ -767,8 +777,4 @@ public class FloatingActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 }
