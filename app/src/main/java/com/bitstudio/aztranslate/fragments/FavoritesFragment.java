@@ -169,7 +169,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             {
                 // remove the translation history from recycler view
                 favouriteHistoryAdapter.removeTranslationHistory(deletedIndex);
-                favouriteHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+                favouriteHistoryDatabaseHelper.deleteFavouriteTranslationHis(screenshotPath);
                 // showing snack bar with undo option
                 Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was deleted. ", Snackbar.LENGTH_SHORT);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
