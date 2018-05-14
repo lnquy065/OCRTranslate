@@ -3,12 +3,14 @@ package com.bitstudio.aztranslate.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.bitstudio.aztranslate.R;
+import com.bitstudio.aztranslate.Setting;
 import com.bitstudio.aztranslate.adapters.LanguageAdapter;
 import com.bitstudio.aztranslate.models.Language;
 import com.google.firebase.database.ChildEventListener;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class InstallFragment extends Fragment {
@@ -26,6 +29,9 @@ public class InstallFragment extends Fragment {
     LanguageAdapter languageAdapter;
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
     DatabaseReference databaseReference=firebaseDatabase.getReference();
+
+    private SwipeRefreshLayout swipe_refresh_layout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,16 +40,20 @@ public class InstallFragment extends Fragment {
         return view;
     }
 
-    protected void setID(View view){
-        lvInstall=view.findViewById(R.id.id_install);
-        languageAdapter=new LanguageAdapter(getContext(),R.layout.fragment_install,arrayList);
-        lvInstall.setAdapter(languageAdapter);
+    private void loadDataFromFireBase() {
+        arrayList.clear();
+        languageAdapter.notifyDataSetChanged();
         databaseReference.child("Language").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Language language=dataSnapshot.getValue(Language.class);
+
+                //kiem tra neu ton tai thi ko load len
+                File t = new File(Setting.OCRDir.OCRDIR +"tessdata/"+language.getSubtitle());
+                if (t.exists()) return;
                 arrayList.add(language);
                 languageAdapter.notifyDataSetChanged();
+                swipe_refresh_layout.setRefreshing(false);
             }
 
             @Override
@@ -66,54 +76,25 @@ public class InstallFragment extends Fragment {
 
             }
         });
-//
-//        arrayList.add(new Language(1,"Vietnamese","","vie.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/vie.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(2,"Japanese","","jpn.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/jpn.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(3,"French","","fra.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/fra.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(4,"English","","eng.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/eng.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(5,"Chinese","","chi_tra.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/chi_tra.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(6,"Afrikaans","","afr.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/afr.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(7,"Danish","","dan.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/dan.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(8,"Greek","","grc.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/grc.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(9,"Italian","","ita.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/ita.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(10,"Portuguese","","por.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/por.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(11,"Spanish","","spa.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/spa.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
-//
-//        arrayList.add(new Language(12,"Hindi","","hin.traineddata",1,
-//                "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/hin.traineddata"));
-//        databaseReference.child("Language").push().setValue(arrayList.get(arrayList.size()-1));
+
+    }
+
+    protected void setID(View view){
+        lvInstall=view.findViewById(R.id.id_install);
+        languageAdapter=new LanguageAdapter(getContext(),R.layout.fragment_install,arrayList);
+        lvInstall.setAdapter(languageAdapter);
+        swipe_refresh_layout = view.findViewById(R.id.swipe_refresh_layout);
+        swipe_refresh_layout.setRefreshing(true);
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadDataFromFireBase();
+                swipe_refresh_layout.setRefreshing(false);
+            }
+        });
+
+        loadDataFromFireBase();
     }
 
 }

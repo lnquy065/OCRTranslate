@@ -28,8 +28,6 @@ public class ManageLanguageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_language);
         DBManager database=new DBManager(getApplicationContext());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 

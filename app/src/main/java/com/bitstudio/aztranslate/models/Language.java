@@ -8,8 +8,17 @@ public class Language {
     private int version;
     private String linkDownLoad;
     private int id;
+    private String transSymbol;
 
     public Language() {
+    }
+
+    public String getTransSymbol() {
+        return transSymbol;
+    }
+
+    public void setTransSymbol(String transSymbol) {
+        this.transSymbol = transSymbol;
     }
 
     public int getId() {
@@ -20,7 +29,7 @@ public class Language {
         this.id = id;
     }
 
-    public Language(int id, String name, String linkImage, String subtitle, int version, String url) {
+    public Language(int id, String name, String linkImage, String subtitle, int version, String url, String transSymbol) {
 
         this.name = name;
         this.linkImage = linkImage;
@@ -28,6 +37,7 @@ public class Language {
         this.version=version;
         this.linkDownLoad=url;
         this.id=id;
+        this.transSymbol = transSymbol;
     }
 
     public int getVersion() {
@@ -68,5 +78,9 @@ public class Language {
 
     public void setLinkDownLoad(String linkDownLoad) {
         this.linkDownLoad = linkDownLoad;
+    }
+
+    public LanguageLite toLanguaLite() {
+        return new LanguageLite(this.name, this.subtitle, this.transSymbol);
     }
 }

@@ -19,8 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Made by Android-Team"
+        android:text="Made by EnRoi-Team"
         android:textColor="#3059c3"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <com.cunoraz.gifview.library.GifView
+        android:id="@+id/gif_splash_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

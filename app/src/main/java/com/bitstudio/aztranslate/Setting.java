@@ -1,14 +1,12 @@
 package com.bitstudio.aztranslate;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Environment;
 
 import com.bitstudio.aztranslate.models.LanguageLite;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by LN Quy on 14/03/2018.
@@ -16,13 +14,27 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
-    public static int STATUSBAR_HEIGHT = 0;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
     public static ArrayList<LanguageLite> LANGUAGE = new ArrayList<>();
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";
+
+
+    public static class OCRDir {
+        public static  String OCR = "ocrtranslate";
+        public static String OCRDIR = Environment.getExternalStorageDirectory().toString()+"/ocrtranslate/";
+        public static String OCRDIR_CAMERA_XML = OCRDIR +"camera/xml/";
+        public static String OCRDIR_CAMERA_IMG = OCRDIR +"camera/img/";
+        public static String OCRDIR_CAMERA = OCRDIR +"camera/";
+        public static String OCRDIR_TESSDATA = OCRDIR +"tessdata/";
+        public static String OCRDIR_HISTORIES_XML = OCRDIR +"histories/xml/";
+        public static String OCRDIR_HISTORIES_IMG = OCRDIR +"histories/img/";
+        public static String OCRDIR_HISTORIES = OCRDIR +"histories/";
+    }
+
+
 
     static {
         LANGUAGE.add(new LanguageLite("Azerbaijan","aze","az"));
@@ -41,7 +53,13 @@ public class Setting {
 
     }
 
-    public static LanguageLite findByOCR(String ocr) {
+    public static class Screen {
+        public static int HEIGH = 0;
+        public static int WIDTH = 0;
+        public static int STATUSBAR_HEIGHT = 0;
+    }
+
+    public static LanguageLite findLanguageByFileName(String ocr) {
         for (LanguageLite l: LANGUAGE) {
             if (l.ocrSymbol.equals(ocr)) return l;
         }
