@@ -421,7 +421,7 @@ public class FloatingActivity extends AppCompatActivity {
 
     private void removeWordFromFavorites(String word, String wordTrans)
     {
-
+        translationHistoryDatabaseHelper.deleteFavouriteWord(word);
     }
 
     private void addWordToFavorites(String word, String wordTrans)
@@ -491,7 +491,10 @@ public class FloatingActivity extends AppCompatActivity {
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
         // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
-        btnTranslateFavorite.setChecked(false);
+        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase()))
+            btnTranslateFavorite.setChecked(true);
+        else
+            btnTranslateFavorite.setChecked(false);
         btnTranslateFavorite.requestLayout();
         btnTranslateFavorite.forceLayout();
         va.start();

@@ -1,6 +1,8 @@
 package com.bitstudio.aztranslate.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -166,9 +169,9 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             {
                 // remove the translation history from recycler view
                 favouriteHistoryAdapter.removeTranslationHistory(deletedIndex);
-                favouriteHistoryDatabaseHelper.deleteTranslationHis(screenshotPath);
+                favouriteHistoryDatabaseHelper.deleteFavouriteTranslationHis(screenshotPath);
                 // showing snack bar with undo option
-                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + " removed from Favourite Histories", Snackbar.LENGTH_LONG);
+                Snackbar snackbarUndo = Snackbar.make(getView(), screenshotFileName + "was deleted. ", Snackbar.LENGTH_SHORT);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
                 {
 
@@ -211,7 +214,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             @Override
             public void onClick(View v)
             {
-                Snackbar snackbarDeleteAll = Snackbar.make(getView(), "Do you want to delete all histories ? ", Snackbar.LENGTH_LONG);
+                /*Snackbar snackbarDeleteAll = Snackbar.make(getView(), "Do you want to delete all histories ? ", Snackbar.LENGTH_LONG);
                 snackbarDeleteAll.setAction("YES", new View.OnClickListener()
                 {
 
@@ -222,7 +225,14 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
                     }
                 });
                 snackbarDeleteAll.setActionTextColor(Color.RED);
-                snackbarDeleteAll.show();
+                snackbarDeleteAll.show();*/
+                int numberOfItems = favouriteHistoryAdapter.getItemCount();
+                if (numberOfItems == 0)
+                {
+                    Snackbar notificationBar = Snackbar.make(getView(), "Nothing to delete !", Snackbar.LENGTH_SHORT);
+                    notificationBar.show();
+                }
+                else createAlertDialog().show();
             }
         });
 
@@ -277,5 +287,25 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             favouriteHistoryAdapter.removeTranslationHistory(0);
             favouriteHistoryDatabaseHelper.deleteFavouriteTranslationHis(delTrans.getScreenshotPath());
         }
+    }
+    public Dialog createAlertDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Do you want to delete all the favourites ? ").setTitle("Warning").setIcon(R.drawable.ic_warning_black_24dp)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onClickDeleteAllFavourites();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        return builder.create();
     }
 }

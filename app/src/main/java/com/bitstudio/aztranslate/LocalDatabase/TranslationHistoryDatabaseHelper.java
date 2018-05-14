@@ -185,7 +185,6 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         }
         else if (file.isFile())
             file.delete();
-
     }
     public boolean isDuplicateWord(String word)
     {
