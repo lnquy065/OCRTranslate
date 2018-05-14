@@ -36,6 +36,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/padd_10"
+            android:layout_marginLeft="@dimen/padd_10"
             android:src="@drawable/ic_favorite_black_24dp" />
 
         <TextView
