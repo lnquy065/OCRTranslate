@@ -36,6 +36,8 @@ import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.itemDecorators.DividerItemDecoration;
 import com.bitstudio.aztranslate.R;
 
+import java.io.File;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -165,6 +167,7 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             // make a backup version of removed item for undo purpose
             final TranslationHistory deletedTranslationHistory = MainActivity.favouriteHistories.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
+            final int items = favouriteHistoryAdapter.getItemCount();
             if (direction == ItemTouchHelper.LEFT)
             {
                 // remove the translation history from recycler view
@@ -181,6 +184,21 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
                         // undo is selected, let's restore the deleted item
                         favouriteHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
                         favouriteHistoryDatabaseHelper.insertNewFavouriteTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                    }
+                });
+                snackbarUndo.addCallback(new Snackbar.Callback()
+                {
+
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event)
+                    {
+                        if (favouriteHistoryAdapter.getItemCount() < items)
+                        {
+                            File screenshot = new File(deletedTranslationHistory.getScreenshotPath());
+                            screenshot.delete();
+                            File xml = new File(deletedTranslationHistory.getXmlDataPath());
+                            xml.delete();
+                        }
                     }
                 });
                 snackbarUndo.setActionTextColor(Color.RED);
