@@ -12,6 +12,7 @@ import android.os.IBinder;
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
 import com.bitstudio.aztranslate.R;
+import com.bitstudio.aztranslate.Setting;
 import com.bitstudio.aztranslate.models.BookmarkWord;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 
@@ -24,7 +25,6 @@ public class BookMarkService extends Service {
 
     NotificationManager notificationManager;
     private TranslationHistoryDatabaseHelper translationHistoryDatabaseHelper;
-
 
     NotifyTimerTask notifyTask = new NotifyTimerTask();
     Timer notifyTimer = new Timer();
@@ -50,19 +50,19 @@ public class BookMarkService extends Service {
     }
 
 
-    private BookmarkWord getBookMark(int mode) {
-        return null;
+    private BookmarkWord getBookMark() {
+            return translationHistoryDatabaseHelper.getBookmarkWordRandomly();
     }
 
 
-    private void showNotification() {
+    private void showNotification(BookmarkWord b) {
         Intent intent = new Intent(this,MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
 
         Notification noti  = new Notification.Builder(this)
-                .setContentTitle( String.valueOf(Math.random()))
-                .setContentText("Subject")
-                .setSmallIcon(R.drawable.bat)
+                .setContentTitle( b.getWord())
+                .setContentText(b.getWordTranslated())
+                .setSmallIcon(R.drawable.logo_ocr)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true).build();
 
@@ -70,8 +70,10 @@ public class BookMarkService extends Service {
     }
 
     class NotifyTimerTask extends TimerTask {
+
         public void run() {
-            showNotification();
+
+            showNotification(getBookMark());
         }
     }
 }
