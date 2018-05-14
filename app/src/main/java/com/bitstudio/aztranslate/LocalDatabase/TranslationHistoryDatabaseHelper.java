@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.bitstudio.aztranslate.Setting;
+import com.bitstudio.aztranslate.models.BookmarkWord;
 
 import java.io.File;
 
@@ -193,5 +194,36 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         if (cursor.getCount() >= 1)
             return true;
         return false;
+    }
+
+    public BookmarkWord getBookmarkWordRandomly()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG},null,null,null,null,"RANDOM()", "1");
+        while(cursor.moveToNext())
+        {
+            String word = cursor.getString(0);
+            String wordTranslated = cursor.getString(1);
+            String addedTime = cursor.getString(2);
+            String srcLang = cursor.getString(3);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
+            return bookmarkWord;
+        }
+        return null;
+    }
+    public BookmarkWord getBookmarkWordByIndex(int index)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG},"id = ?", new String[]{String.valueOf(index)}, null, null,null);
+        while(cursor.moveToNext())
+        {
+            String word = cursor.getString(0);
+            String wordTranslated = cursor.getString(1);
+            String addedTime = cursor.getString(2);
+            String srcLang = cursor.getString(3);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
+            return bookmarkWord;
+        }
+        return null;
     }
 }
