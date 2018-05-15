@@ -304,6 +304,10 @@ public class FavoritesFragment extends Fragment implements RecyclerTranslationHi
             TranslationHistory delTrans = favouriteHistoryAdapter.getTranslationHistoryAt(0);
             favouriteHistoryAdapter.removeTranslationHistory(0);
             favouriteHistoryDatabaseHelper.deleteFavouriteTranslationHis(delTrans.getScreenshotPath());
+            File screenshot = new File(delTrans.getScreenshotPath());
+            screenshot.delete();
+            File xml = new File(delTrans.getXmlDataPath());
+            xml.delete();
         }
     }
     public Dialog createAlertDialog()
