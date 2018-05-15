@@ -324,6 +324,10 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             TranslationHistory delTrans = translationHistoryAdapter.getTranslationHistoryAt(0);
             translationHistoryAdapter.removeTranslationHistory(0);
             translationHistoryDatabaseHelper.deleteTranslationHis(delTrans.getScreenshotPath());
+            File screenshot = new File(delTrans.getScreenshotPath());
+            screenshot.delete();
+            File xml = new File(delTrans.getXmlDataPath());
+            xml.delete();
 
         }
     }
@@ -345,6 +349,14 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                 Toast.makeText(getActivity(), "ht", Toast.LENGTH_SHORT).show();
                 translationHistoryAdapter.getFilter().filter(newText);
                 return false;
+            }
+        });
+        searchViewTranslationHistory.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                searchViewTranslationHistory.setIconified(false);
             }
         });
     }
