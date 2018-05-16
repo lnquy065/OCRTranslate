@@ -6,7 +6,8 @@ import android.os.Environment;
 
 import com.bitstudio.aztranslate.models.LanguageLite;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+
 
 /**
  * Created by LN Quy on 14/03/2018.
@@ -16,7 +17,7 @@ public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
-    public static ArrayList<LanguageLite> LANGUAGE = new ArrayList<>();
+    public static HashSet<LanguageLite> LANGUAGE = new HashSet<>();
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";
@@ -33,25 +34,6 @@ public class Setting {
         public static String OCRDIR_HISTORIES_IMG = OCRDIR +"histories/img/";
         public static String OCRDIR_HISTORIES = OCRDIR +"histories/";
     }
-
-
-
-//    static {
-//        LANGUAGE.add(new LanguageLite("Azerbaijan","aze","az"));
-//        LANGUAGE.add(new LanguageLite("Amharic","amh","am"));
-//        LANGUAGE.add(new LanguageLite("English","eng","en"));
-//        LANGUAGE.add(new LanguageLite("Arabic","ara","ar"));
-//        LANGUAGE.add(new LanguageLite("Afrikaans","afr","af"));
-//        LANGUAGE.add(new LanguageLite("Belarusian","bel","be"));
-//        LANGUAGE.add(new LanguageLite("Bengali","ben","bn"));
-//        LANGUAGE.add(new LanguageLite("Bulgarian","bul","bg"));
-//        LANGUAGE.add(new LanguageLite("Bosnian","bos","bs"));
-//        LANGUAGE.add(new LanguageLite("Vietnamese","vie","vi"));
-//        LANGUAGE.add(new LanguageLite("Italian","ita","it"));
-//        LANGUAGE.add(new LanguageLite("Spanish","spa","es"));
-//        LANGUAGE.add(new LanguageLite("Chinese","chi_sim","zh"));
-//
-//    }
 
     public static class Screen {
         public static int HEIGH = 0;
