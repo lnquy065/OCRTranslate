@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:12.0.1'
     implementation project(path: ':boommenu')
     implementation 'com.github.faruktoptas:FancyShowCaseView:1.0.0'
+    implementation 'com.google.code.gson:gson:2.7'
 }
 
 apply plugin: 'com.google.gms.google-services'

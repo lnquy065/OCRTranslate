@@ -29,7 +29,7 @@
 
         <Spinner
             android:id="@+id/sp_recognize"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginEnd="8dp"
             android:spinnerMode="dialog"
@@ -62,7 +62,7 @@
         <Spinner
             android:id="@+id/sp_translate"
             style="@android:style/Widget.DeviceDefault.Light.Spinner"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"

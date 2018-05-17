@@ -277,7 +277,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         imTranslateLoading.play();
         lbTranslateTarget.setVisibility(View.GONE);
         AsyncHttpClient client = new AsyncHttpClient();
-        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + LANG, new AsyncHttpResponseHandler() {
+        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + Setting.YandexAPI.LANG(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (responseBody != null) {

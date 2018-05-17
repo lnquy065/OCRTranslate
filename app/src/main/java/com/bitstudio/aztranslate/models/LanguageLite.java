@@ -21,4 +21,9 @@ public class LanguageLite implements Comparable<LanguageLite>{
     public int compareTo(@NonNull LanguageLite languageLite) {
         return this.name.compareTo(languageLite.name);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((LanguageLite) obj).name.equals(this.name);
+    }
 }

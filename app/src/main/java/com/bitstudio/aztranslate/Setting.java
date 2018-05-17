@@ -8,6 +8,7 @@ import com.bitstudio.aztranslate.models.Language;
 import com.bitstudio.aztranslate.models.LanguageLite;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -22,7 +23,17 @@ public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
-    public static TreeSet<LanguageLite> LANGUAGE = new TreeSet<LanguageLite>();
+    public static ArrayList<LanguageLite> LANGUAGE_LIST = new ArrayList<LanguageLite>() {
+        @Override
+        public boolean add(LanguageLite languageLite) {
+            if (this.contains(languageLite)) return false;
+            return super.add(languageLite);
+        }
+
+
+
+
+    };
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";
@@ -47,16 +58,16 @@ public class Setting {
     }
 
     public static LanguageLite findLanguageByFileName(String ocr) {
-        for (LanguageLite l: LANGUAGE) {
+        for (LanguageLite l: LANGUAGE_LIST) {
             if (l.ocrSymbol.equals(ocr)) return l;
         }
         return null;
     }
 
-    public static TreeSet<LanguageLite> getOCRLanguageList() {
-        TreeSet<LanguageLite> t = new TreeSet<>();
-        for (LanguageLite l: LANGUAGE) {
-            if (!(new File(OCRDIR_TESSDATA+l.transSymbol+"trainneddata")).exists() ) {
+    public static ArrayList<LanguageLite> getOCRLanguageList() {
+        ArrayList<LanguageLite> t = new ArrayList<>();
+        for (LanguageLite l: LANGUAGE_LIST) {
+            if ((new File(OCRDIR_TESSDATA+l.ocrSymbol)).exists() ) {
                 t.add(l);
             }
         }
@@ -79,7 +90,10 @@ public class Setting {
     public static class YandexAPI {
         public static final String API = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
         public static final String KEY = "trnsl.1.1.20180329T083614Z.2b685ad1b1385380.fdb64e113f85b99546bdafe847164fdaab069e97";
-        public static String LANG = "en-vi";
+
+        public static String LANG() {
+            return Language.recognizeFrom.transSymbol+"-"+Language.translateTo.transSymbol;
+        }
     }
 
 
@@ -99,6 +113,9 @@ public class Setting {
 
 
 
-
+    public static class Language {
+        public static LanguageLite recognizeFrom;
+        public static LanguageLite translateTo;
+    }
 
 }
