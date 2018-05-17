@@ -177,6 +177,9 @@ public class MainActivity extends AppCompatActivity implements
             transLang = gson.fromJson(transJSON, LanguageLite.class);
         }
         Setting.Language.translateTo = transLang;
+
+        ocrManager = new OcrManager();
+        ocrManager.initAPI();
     }
 
     private void addEvents() {
@@ -316,8 +319,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addControls() {
-        ocrManager = new OcrManager();
-        ocrManager.initAPI();
+
         imTabTitle = findViewById(R.id.imTabTitle);
         lbTabTitle = findViewById(R.id.lbTabTitle);
         lbTabTitleBackground = findViewById(R.id.lbTabTitleBackground);

@@ -17,6 +17,10 @@ public class LanguageLite implements Comparable<LanguageLite>{
         this.transSymbol = transSymbol;
     }
 
+    public String getSubname() {
+        return ocrSymbol.substring(0, ocrSymbol.length()-12);
+    }
+
     @Override
     public int compareTo(@NonNull LanguageLite languageLite) {
         return this.name.compareTo(languageLite.name);
