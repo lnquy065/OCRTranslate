@@ -4,9 +4,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Environment;
 
+import com.bitstudio.aztranslate.models.Language;
 import com.bitstudio.aztranslate.models.LanguageLite;
 
+import java.io.File;
 import java.util.HashSet;
+import java.util.TreeSet;
+
+import static com.bitstudio.aztranslate.Setting.OCRDir.OCRDIR_TESSDATA;
 
 
 /**
@@ -17,7 +22,7 @@ public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
-    public static HashSet<LanguageLite> LANGUAGE = new HashSet<>();
+    public static TreeSet<LanguageLite> LANGUAGE = new TreeSet<LanguageLite>();
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";
@@ -46,6 +51,16 @@ public class Setting {
             if (l.ocrSymbol.equals(ocr)) return l;
         }
         return null;
+    }
+
+    public static TreeSet<LanguageLite> getOCRLanguageList() {
+        TreeSet<LanguageLite> t = new TreeSet<>();
+        for (LanguageLite l: LANGUAGE) {
+            if (!(new File(OCRDIR_TESSDATA+l.transSymbol+"trainneddata")).exists() ) {
+                t.add(l);
+            }
+        }
+        return t;
     }
 
     public static class Notification {
