@@ -1,5 +1,6 @@
 package com.bitstudio.aztranslate;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.bitstudio.aztranslate.dialogs.ColorDialog;
+import com.bitstudio.aztranslate.services.BookMarkService;
 import com.nightonke.boommenu.BoomButtons.BoomButton;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.InnerOnBoomButtonClickListener;
@@ -77,13 +79,22 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
                 int compressed = Integer.valueOf(editable.toString());
                 Setting.COMPRESSED_RATE = compressed;
                 pre.edit().putInt("COMPRESSED", compressed).commit();
+
+
             }
         });
 
         swNotice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(SystemSettingActivity.this, isChecked+"", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SystemSettingActivity.this, BookMarkService.class);
+                Setting.Notification.ENABLE = isChecked;
+                pre.edit().putBoolean("NOTIFICATION_ENABLE", isChecked).commit();
+                if (isChecked) {
+                    startService(intent);
+                } else {
+                    stopService(intent);
+                }
             }
         });
 

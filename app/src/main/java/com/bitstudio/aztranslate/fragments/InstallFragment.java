@@ -27,8 +27,8 @@ public class InstallFragment extends Fragment {
     ListView lvInstall;
     ArrayList<Language> arrayList=new ArrayList<>();
     LanguageAdapter languageAdapter;
-    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference=firebaseDatabase.getReference();
+    public static FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+    public static DatabaseReference databaseReference=firebaseDatabase.getReference();
 
     private SwipeRefreshLayout swipe_refresh_layout;
 
