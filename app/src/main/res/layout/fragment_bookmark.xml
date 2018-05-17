@@ -9,10 +9,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchViewBookmark"
+            android:closeIcon="@drawable/ic_backspace_black_24dp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewBookmark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/searchViewBookmark"
             android:choiceMode="singleChoice"></android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 

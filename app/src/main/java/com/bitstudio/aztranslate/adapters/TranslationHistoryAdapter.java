@@ -17,50 +17,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationHistoryAdapter.MyViewHolder> implements Filterable
+public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationHistoryAdapter.MyViewHolder>
 {
     private Context context;
     private ArrayList<TranslationHistory> translationHistories;
-    private ArrayList<TranslationHistory> translationHistoriesFiltered;
-
-
-    @Override
-    public Filter getFilter()
-    {
-        return new Filter()
-        {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint)
-            {
-                String charString = constraint.toString();
-                if(charString.isEmpty())
-                {
-                    translationHistoriesFiltered = translationHistories;
-                }
-                else
-                {
-                    ArrayList<TranslationHistory> filteredHis = new ArrayList<>();
-                    for (TranslationHistory rowItem : translationHistories)
-                    {
-                        if (rowItem.getTranslationTime().toLowerCase().contains(charString.toLowerCase()) || rowItem.getTranslationSouceLanguage().toLowerCase().contains(charString.toLowerCase()))
-                            filteredHis.add(rowItem);
-                    }
-                    translationHistoriesFiltered = filteredHis;
-                }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = translationHistoriesFiltered;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results)
-            {
-                translationHistoriesFiltered = (ArrayList<TranslationHistory>) results.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
         public TextView textViewScreenshotPath;
@@ -85,7 +45,6 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
     {
         this.context = context;
         this.translationHistories = translationHistories;
-        this.translationHistoriesFiltered = translationHistories;
     }
 
     @Override
@@ -99,7 +58,7 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position)
     {
-        final TranslationHistory translationHistory = translationHistoriesFiltered.get(position);
+        final TranslationHistory translationHistory = translationHistories.get(position);
         String screenshotPath = translationHistory.getScreenshotPath();
         int index = screenshotPath.lastIndexOf('/');
         holder.textViewScreenshotPath.setText(screenshotPath.substring(index + 1));
@@ -112,12 +71,12 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
     @Override
     public int getItemCount()
     {
-        return translationHistoriesFiltered.size();
+        return translationHistories.size();
     }
 
     public void removeTranslationHistory(int position)
     {
-        translationHistoriesFiltered.remove(position);
+        translationHistories.remove(position);
         // notify the item removed by position
         // to perform recycler view delete animations
         // NOTE: don't call notifyDataSetChanged()
@@ -126,12 +85,12 @@ public class TranslationHistoryAdapter extends RecyclerView.Adapter<TranslationH
 
     public void restoreTranslationHistory(TranslationHistory translationHistory, int position)
     {
-        translationHistoriesFiltered.add(position, translationHistory);
+        translationHistories.add(position, translationHistory);
         notifyItemInserted(position);
     }
 
     public TranslationHistory getTranslationHistoryAt(int index)
     {
-        return translationHistoriesFiltered.get(index);
+        return translationHistories.get(index);
     }
 }
