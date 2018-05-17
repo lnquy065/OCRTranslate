@@ -109,7 +109,6 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     {
         super.onActivityCreated(savedInstanceState);
         mappingViewComponentsByID();
-        settupSearchViewTranslationHistoryFilter();
         // Let create a database helper
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
         Cursor cursor = translationHistoryDatabaseHelper.queryAllTranslationHistory();
@@ -243,7 +242,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     {
         translationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
         buttonDeleteAllHistory = getActivity().findViewById(R.id.buttonDeleteAllHis);
-        searchViewTranslationHistory = getActivity().findViewById(R.id.searchViewHistory);
+        //searchViewTranslationHistory = getActivity().findViewById(R.id.searchViewHistory);
         buttonDeleteAllHistory.setOnClickListener(new View.OnClickListener()
         {
 
@@ -331,7 +330,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
 
         }
     }
-    public void settupSearchViewTranslationHistoryFilter()
+    /*public void settupSearchViewTranslationHistoryFilter()
     {
         searchViewTranslationHistory.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
@@ -359,7 +358,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                 searchViewTranslationHistory.setIconified(false);
             }
         });
-    }
+    }*/
     public Dialog createAlertDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
