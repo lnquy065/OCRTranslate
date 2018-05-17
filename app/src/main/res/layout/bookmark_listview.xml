@@ -36,7 +36,7 @@
         android:id="@+id/view_foreground_bookmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/colorTranslationHistoryBackground"
         android:padding="@dimen/padd_10">
 
         <ImageView
