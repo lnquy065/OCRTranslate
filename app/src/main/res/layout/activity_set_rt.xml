@@ -3,80 +3,114 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:divider="?attr/dividerVertical"
+    android:orientation="vertical"
+    android:showDividers="beginning|middle|end"
     tools:context=".SetRTActivity">
 
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="50dp">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:textSize="20dp"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="Recognize" />
+            android:layout_marginStart="10dp"
+            android:text="Recognize from"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/sp_recognize"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_height="wrap_content"
-             />
-    </LinearLayout>
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="@+id/sp_translate"
+        app:layout_constraintStart_toEndOf="@+id/sp_translate">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Translate  "
-            android:textSize="20dp" />
+            android:layout_height="26dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:text="Translate  to"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/sp_translate"
-            android:layout_marginLeft="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </LinearLayout>
+            style="@android:style/Widget.DeviceDefault.Light.Spinner"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="211dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/colorTranslationHistoryBackground">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="122dp"
-            android:layout_marginTop="20dp"
-            android:layout_height="124dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="82dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/ic_compare_arrows_blue_24dp" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="122dp"
+                android:layout_height="124dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="122dp"
-            android:layout_height="124dp"
-            android:layout_margin="20dp"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="82dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="50dp"
+                app:srcCompat="@drawable/ic_compare_arrows_blue_24dp" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="122dp"
+                android:layout_height="124dp"
+                android:layout_margin="20dp"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
 </LinearLayout>
