@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
     private View onView;
     // Taking control of the History list view
     private RecyclerView bookmarkWordRecyclerView;
-
+    private android.widget.SearchView searchViewBookmarkWord;
     public BookmarkFragment() {
         // Required empty public constructor
     }
@@ -97,7 +98,6 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        mappingViewComponentsByID();
         bookmarkWordDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
 
         Cursor cursor = bookmarkWordDatabaseHelper.queryAllBookmarkWord();
@@ -115,6 +115,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
             BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
             MainActivity.bookmarkWords.add(bookmarkWord);
         }
+        mappingViewComponentsByID();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -148,7 +149,8 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
         {
             // get the removed item name to display it in snack bar
             // make a backup version of removed item for undo purpose
-            final BookmarkWord deletedBookmarkWord = MainActivity.bookmarkWords.get(viewHolder.getAdapterPosition());
+            //MainActivity.bookmarkWords = bookmarkWordAdapter.getBookmarkWordsFiltered();
+            final BookmarkWord deletedBookmarkWord = bookmarkWordAdapter.getBookmarkWordsFiltered().get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
             if (direction == ItemTouchHelper.LEFT)
             {
@@ -209,5 +211,38 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerBookmarkWordTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(bookmarkWordRecyclerView);
+
+        searchViewBookmarkWord = getActivity().findViewById(R.id.searchViewBookmark);
+        settupSearchViewBookmarkFilter();
+    }
+
+    public void settupSearchViewBookmarkFilter()
+    {
+        searchViewBookmarkWord.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+                //Toast.makeText(getActivity(), "ht", Toast.LENGTH_SHORT).show();
+                bookmarkWordAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                //Toast.makeText(getActivity(), "ht", Toast.LENGTH_SHORT).show();
+                bookmarkWordAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        searchViewBookmarkWord.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                searchViewBookmarkWord.setIconified(false);
+            }
+        });
     }
 }
