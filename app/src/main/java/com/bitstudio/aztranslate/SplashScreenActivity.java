@@ -25,15 +25,14 @@ import java.net.InetAddress;
 public class SplashScreenActivity extends AppCompatActivity{
     private ImageView mImageView;
     private TextView mTextView;
-    private Thread mThread;
+    private Thread mThread = null;
     private GifView gif_loading;
 
     private final String SHARE_PREFERENCES_NAME = "ocr_prefer";
     private final String IS_FIRST_LAUNCH = "is_first_launch";
 
     private Dialog dialog;
-    private Button btnExit;
-    private Button btnReconnect;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,7 @@ public class SplashScreenActivity extends AppCompatActivity{
         gif_loading.setAlpha(0f);
         gif_loading.setGifResource(R.drawable.translate_loading);
         startAnimation();
+        startThread();
     }
 
 
@@ -54,7 +54,8 @@ public class SplashScreenActivity extends AppCompatActivity{
         dialog.setContentView(R.layout.dialog_connection_failed);
         ((Button)dialog.findViewById(R.id.btnReconnect)).setOnClickListener(view -> {
             dialog.dismiss();
-            startAnimation();
+            gif_loading.play();
+            startThread();
         });
         ((Button)dialog.findViewById(R.id.btnExit)).setOnClickListener(view -> {
 
@@ -94,17 +95,23 @@ public class SplashScreenActivity extends AppCompatActivity{
 
         mImageView.setAnimation(opaque);
         mTextView.setAnimation(bottonUp);
+
+
+
+    }
+
+    private void startThread(){
         Check_Internet check_internet = new Check_Internet(this);
 
-        mThread = new Thread() {
-            @Override
-            public void run() {
-                super.run();
+            mThread = new Thread() {
+                @Override
+                public void run() {
+                    super.run();
                     try {
                         InstallFragment.databaseReference.child("Language").addChildEventListener(new ChildEventListener() {
                             @Override
                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                                Language language=dataSnapshot.getValue(Language.class);
+                                Language language = dataSnapshot.getValue(Language.class);
                                 Setting.LANGUAGE.add(language.toLanguaLite());
 
                             }
@@ -135,50 +142,52 @@ public class SplashScreenActivity extends AppCompatActivity{
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
-                            if (!check_internet.isConnected()){
-                                //check_internet.execute();
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mThread.interrupt();
-                                        showDialog();
-                                    }
-                                });
-                            }
-                            else {
-                                for (LanguageLite l:
-                                     Setting.LANGUAGE) {
-                                    Log.d("lang",l.name);
+                        if (!check_internet.isConnected()) {
+
+                            mThread.interrupt();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    gif_loading.pause();
+
+                                    showDialog();
 
                                 }
+                            });
+                        } else {
+                            for (LanguageLite l : Setting.LANGUAGE) {
+                                Log.d("country", l.name);
 
-                                android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
-                                android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                boolean isFirtsLauncher = sharedPreferences.getBoolean(IS_FIRST_LAUNCH, true);
-                                if (isFirtsLauncher) {
-                                    android.util.Log.d("Boolean", "True");
-                                    editor.putBoolean(IS_FIRST_LAUNCH, false);
-                                    editor.apply();
-
-                                    Intent intent = new Intent(SplashScreenActivity.this, SliderActivity.class);
-                                    startActivity(intent);
-                                    finish();
-
-                                } else {
-
-                                    Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-
-                                }
                             }
+
+                            android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
+                            android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            boolean isFirtsLauncher = sharedPreferences.getBoolean(IS_FIRST_LAUNCH, true);
+                            if (isFirtsLauncher) {
+                                android.util.Log.d("Boolean", "True");
+                                editor.putBoolean(IS_FIRST_LAUNCH, false);
+                                editor.apply();
+
+                                Intent intent = new Intent(SplashScreenActivity.this, SliderActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+
+                                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        }
                     }
-            }
-        };
-        mThread.start();
-    }
+                }
+            };
+            mThread.start();
 
+    }
 
     private void OCRInit() {
         gif_loading.animate().alpha(1f).setDuration(200);
