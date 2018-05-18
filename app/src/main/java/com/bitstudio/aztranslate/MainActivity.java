@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements
             recoLang = gson.fromJson(recoJSON, LanguageLite.class);
         }
         Setting.Language.recognizeFrom = recoLang;
-        Log.d("RECOLANG",String.valueOf( Setting.Language.recognizeFrom.name));
+        //Log.d("RECOLANG",String.valueOf( Setting.Language.recognizeFrom.name));
 
 
         LanguageLite transLang;
