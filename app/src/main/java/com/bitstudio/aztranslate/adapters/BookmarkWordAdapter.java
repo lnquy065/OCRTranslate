@@ -82,6 +82,7 @@ public class BookmarkWordAdapter extends RecyclerView.Adapter<BookmarkWordAdapte
         public TextView textViewWord;
         public TextView textViewWordTranslated;
         public TextView textViewWordSrcLanguage;
+        public TextView getTextViewWordDstLanguage;
         public RelativeLayout viewBackground, viewForeground;
 
         public MyViewHolder(View view)
@@ -90,6 +91,7 @@ public class BookmarkWordAdapter extends RecyclerView.Adapter<BookmarkWordAdapte
             textViewWord = view.findViewById(R.id.textViewWord);
             textViewWordTranslated = view.findViewById(R.id.textViewWordTranslated);
             textViewWordSrcLanguage = view.findViewById(R.id.textViewWordSrcLang);
+            getTextViewWordDstLanguage = view.findViewById(R.id.textViewWordDstLang);
             viewBackground = view.findViewById(R.id.view_background_bookmark);
             viewForeground = view.findViewById(R.id.view_foreground_bookmark);
         }
@@ -115,6 +117,7 @@ public class BookmarkWordAdapter extends RecyclerView.Adapter<BookmarkWordAdapte
         holder.textViewWord.setText(bookmarkWord.getWord());
         holder.textViewWordTranslated.setText(bookmarkWord.getWordTranslated());
         holder.textViewWordSrcLanguage.setText(bookmarkWord.getSourceLanguage());
+        holder.getTextViewWordDstLanguage.setText(bookmarkWord.getDestinationLanguage());
     }
 
     @Override

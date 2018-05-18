@@ -111,8 +111,8 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
             String wordTranslated = cursor.getString(1);
             String addedTime = cursor.getString(2);
             String srcLang = cursor.getString(3);
-
-            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
+            String dstLang = cursor.getString(4);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang, dstLang);
             MainActivity.bookmarkWords.add(bookmarkWord);
         }
         mappingViewComponentsByID();
@@ -156,7 +156,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
             {
                 // remove the translation history from recycler view
                 bookmarkWordAdapter.removeBookmarkWord(deletedIndex);
-                bookmarkWordDatabaseHelper.deleteFavouriteWord(deletedBookmarkWord.getWord());
+                bookmarkWordDatabaseHelper.deleteFavouriteWord(deletedBookmarkWord.getWord(), deletedBookmarkWord.getSourceLanguage(), deletedBookmarkWord.getDestinationLanguage());
                 // showing snack bar with undo option
                 Snackbar snackbarUndo = Snackbar.make(getView(), deletedBookmarkWord.getWord() + " removed from Bookmark", Snackbar.LENGTH_LONG);
                 snackbarUndo.setAction("UNDO", new View.OnClickListener()
@@ -167,7 +167,7 @@ public class BookmarkFragment extends Fragment implements RecyclerBookmarkWordTo
                     {
                         // undo is selected, let's restore the deleted item
                         bookmarkWordAdapter.restoreBookmarkWord(deletedBookmarkWord, deletedIndex);
-                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), deletedBookmarkWord.getWordTranslated(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage());
+                        bookmarkWordDatabaseHelper.insertNewFavouriteWord(deletedBookmarkWord.getWord(), deletedBookmarkWord.getWordTranslated(), String.valueOf(deletedBookmarkWord.getAddedTimeUNIXTime()), deletedBookmarkWord.getSourceLanguage(), deletedBookmarkWord.getDestinationLanguage());
                     }
                 });
                 snackbarUndo.setActionTextColor(Color.RED);

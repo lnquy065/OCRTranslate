@@ -261,7 +261,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
         // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
-        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase()))
+        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase(), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name))
             btnTranslateFavorite.setChecked(true);
         else
             btnTranslateFavorite.setChecked(false);
@@ -320,12 +320,12 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     }
     private void removeWordFromFavorites(String word, String wordTrans)
     {
-        translationHistoryDatabaseHelper.deleteFavouriteWord(word);
+        translationHistoryDatabaseHelper.deleteFavouriteWord(word, Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
     }
 
     private void addWordToFavorites(String word, String wordTrans)
     {
         long unixTime = System.currentTimeMillis() / 1000L;
-        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
     }
 }
