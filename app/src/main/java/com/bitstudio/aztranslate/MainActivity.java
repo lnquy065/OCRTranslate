@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements
         LanguageLite recoLang;
         String recoJSON = settingXML.getString("RECOLANG", "");
         if (recoJSON.equals("")) {
-           recoLang = Setting.findLanguageByFileName("eng.trainneddata");
+           recoLang = Setting.findLanguageByFileName("eng.traineddata");
         } else {
             recoLang = gson.fromJson(recoJSON, LanguageLite.class);
         }
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements
         LanguageLite transLang;
         String transJSON = settingXML.getString("TRANSLANG", "");
         if (recoJSON.equals("")) {
-            transLang = Setting.findLanguageByFileName("eng.trainneddata");
+            transLang = Setting.findLanguageByFileName("eng.traineddata");
         } else {
             transLang = gson.fromJson(transJSON, LanguageLite.class);
         }
