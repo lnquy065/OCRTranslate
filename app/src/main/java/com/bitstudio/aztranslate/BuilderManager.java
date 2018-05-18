@@ -23,11 +23,11 @@ import java.util.List;
 public class BuilderManager {
 
     private static int[] imageResources = new int[]{
-            R.drawable.bat,
+            R.drawable.bee,
             R.drawable.bear,
     };
 
-    private static int imageResourceIndex = 0;
+    public static int imageResourceIndex = 0;
 
     static int getImageResource() {
         if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
@@ -37,6 +37,7 @@ public class BuilderManager {
     static SimpleCircleButton.Builder getSimpleCircleButtonBuilder() {
         return new SimpleCircleButton.Builder()
                 .normalImageRes(getImageResource())
+
                 ;
     }
 

@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -64,7 +65,11 @@ public class BookMarkService extends Service {
                 .setContentTitle(b.getSourceLanguage()+ ":  "+  b.getWord())
                 .setContentText(b.getDestinationLanguage()+":   "+b.getWordTranslated())
                 .setSmallIcon(R.drawable.logo_ocr)
-                .setAutoCancel(true).build();
+                .setAutoCancel(true)
+                .setLargeIcon(BitmapFactory.decodeResource(getBaseContext().getResources(),
+                R.drawable.logo_ocr))
+                .build()
+                ;
 
         notificationManager.notify(0, noti);
     }

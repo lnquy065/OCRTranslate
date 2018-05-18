@@ -61,7 +61,7 @@ public class LanguageAdapter extends ArrayAdapter<Language> {
 
             tvName.setText(p.getName().toString());
             //tvSubtitle.setText(p.getSubtitle().toString());
-            lbVer.setText("Version: "+p.getVersion());
+            lbVer.setText(p.getSubtitle());
             imgFlag.setImageResource(getContext().getResources().getIdentifier(p.getTransSymbol(), "drawable", getContext().getPackageName()));
 
             View finalV = v;
