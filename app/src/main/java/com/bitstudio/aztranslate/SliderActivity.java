@@ -1,6 +1,7 @@
 package com.bitstudio.aztranslate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class SliderActivity extends AppCompatActivity {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226;"));
             mDots[i].setTextSize(35);
-            mDots[i].setTextColor(getResources().getColor(R.color.transparent));
+            mDots[i].setTextColor(getResources().getColor(R.color.cardview_dark_background));
 
             mDotsLayout.addView(mDots[i]);
         }
@@ -71,6 +72,7 @@ public class SliderActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
+
             addDotsIndicator(position);
         }
 

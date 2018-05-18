@@ -6,6 +6,7 @@ import android.os.Environment;
 
 import com.bitstudio.aztranslate.models.LanguageLite;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 
@@ -17,7 +18,7 @@ public class Setting {
     public static int BTNCHANGEMODE_GESTURES_THRESHOLD = 10;
     public static int COMPRESSED_RATE = 8;
     public static boolean NOTICE = false;
-    public static HashSet<LanguageLite> LANGUAGE = new HashSet<>();
+    public static ArrayList<LanguageLite> LANGUAGE = new ArrayList<>();
 
     public static String recoLang = "vie";
     public static String tranLang = "vi";

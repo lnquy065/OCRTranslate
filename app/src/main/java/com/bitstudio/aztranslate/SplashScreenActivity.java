@@ -136,6 +136,9 @@ public class SplashScreenActivity extends AppCompatActivity{
 
                             }
                         });
+
+
+
                         sleep(3000);
 
 

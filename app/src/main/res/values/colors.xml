@@ -5,7 +5,7 @@
 <color name="colorAccent">#458e2a</color>
 <color name="colorTranslationHistoryBackground">#f0f8ff</color>
 <color name="colorWhite">#ffffff</color>
-<color name="transparent">#00ffffff</color>
+<color name="transparent">#00d7ccc8</color>
 <color name="bg_row_background">#1b5518</color>
 <color name="item_name">#535353</color>
 <color name="description">#949ce4</color>

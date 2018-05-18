@@ -23,9 +23,9 @@ public class SliderAdapter extends PagerAdapter {
 
     public SliderAdapter(Context context){
         this.context = context;
-        slider_descs[0] = context.getResources().getString(R.string.slider_onscreen);
-        slider_descs[1] = context.getResources().getString(R.string.slider_camera);
-        slider_descs[2] = context.getResources().getString(R.string.slider_file);
+        slider_descs[0] = "OCR Translation onvenient, easy to use, support multiple languages, fast translation speed, optimal text recognition technology";
+        slider_descs[1] = "Easy to review history and store favorite images";
+        slider_descs[2] = "Store your favorite words and reminders to learn vocabulary";
     }
 
     public int[] slider_images = {
