@@ -241,6 +241,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     }
 
     public void showTranslateDialog(String translateText) {
+        imTranslateSource.setImageResource(this.getResources().getIdentifier(Setting.Language.recognizeFrom.transSymbol, "drawable", this.getPackageName()));
 
         translateYandexAPI(translateText);
 

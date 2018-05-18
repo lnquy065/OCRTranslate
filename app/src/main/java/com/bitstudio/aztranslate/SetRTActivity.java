@@ -4,9 +4,11 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.bitstudio.aztranslate.adapters.LanguageLiteAdapter;
@@ -39,6 +41,8 @@ public class SetRTActivity extends AppCompatActivity {
                 }
             };
     boolean f1=false,f2=false;
+
+    private ImageView imFlag1, imFlag2, btnSwitch;
 
 
     public int indexOf(Object o, ArrayList<LanguageLite> l) {
@@ -79,20 +83,43 @@ public class SetRTActivity extends AppCompatActivity {
     }
 
     protected void setID(){
+        imFlag1 = findViewById(R.id.imFlag1);
+        imFlag2 = findViewById(R.id.imflag2);
+        btnSwitch = findViewById(R.id.btnFlagSwitch);
         sp_recognize=findViewById(R.id.sp_recognize);
         sp_translate=findViewById(R.id.sp_translate);
         pre=getSharedPreferences("setting",MODE_PRIVATE);
+
+        btnSwitch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                LanguageLite l1 = (LanguageLite) sp_recognize.getSelectedItem();
+                LanguageLite l2 = (LanguageLite) sp_translate.getSelectedItem();
+
+                int id2 = arrayList_translate.indexOf(l1);
+                int id1 = arrayList_recognize.indexOf(l2);
+
+                if (id2!=-1 && id1!=-1) {
+                    sp_recognize.setSelection(id1);
+                    sp_translate.setSelection(id2);
+                }
+
+                return false;
+            }
+        });
 
         Gson gson = new Gson();
 
         sp_recognize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                LanguageLite ll = arrayList_recognize.get(i);
+                imFlag1.setImageResource(SetRTActivity.this.getResources().getIdentifier(ll.transSymbol, "drawable", SetRTActivity.this.getPackageName()));
                 if (f1 == false) {
                     f1 = true;
                     return;
                 }
-                LanguageLite ll = arrayList_recognize.get(i);
+
                 String json = gson.toJson(ll);
                 pre.edit().putString("RECOLANG", json ).commit();
                 Setting.Language.recognizeFrom = ll;
@@ -108,11 +135,14 @@ public class SetRTActivity extends AppCompatActivity {
         sp_translate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                LanguageLite ll = arrayList_translate.get(i);
+                imFlag2.setImageResource(SetRTActivity.this.getResources().getIdentifier(ll.transSymbol, "drawable", SetRTActivity.this.getPackageName()));
+
                 if (f2 == false) {
                     f2 = true;
                     return;
                 }
-                LanguageLite ll = arrayList_translate.get(i);
+
                 pre.edit().putString("TRANSLANG", gson.toJson(ll) ).commit();
                 Setting.Language.translateTo = ll;
                 Log.d("LANGSETTING", arrayList_translate.get(i).name);

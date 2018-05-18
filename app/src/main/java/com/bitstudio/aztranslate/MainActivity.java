@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Setting");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Install language packs, change the color of the recognition pane, manage the language used.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnSetting)
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Favorites Words Saving");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Allows users to save their favorite vocabulary.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnBook)
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Floating Widget");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Minimize the application to use in a more convenient way.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.floatg);
                     }
                 })
                 .focusOn(btnFloat)
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Images Favorites Saving");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Allows users to save favorite images taken.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnFavorite)
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("History Translation");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Allows the user to review the history of the captured images on the phone screen.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnHistory)

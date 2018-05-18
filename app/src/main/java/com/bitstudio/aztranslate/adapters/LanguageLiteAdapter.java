@@ -45,7 +45,7 @@ public class LanguageLiteAdapter extends ArrayAdapter<LanguageLite> {
 
         ImageView imFlags = v.findViewById(R.id.imgRT_flags);
         TextView lbLanguage = v.findViewById(R.id.lbRT_languages);
-
+        imFlags.setImageResource(context.getResources().getIdentifier(l.transSymbol, "drawable", context.getPackageName()));
         lbLanguage.setText(l.name);
 
 
@@ -61,6 +61,7 @@ public class LanguageLiteAdapter extends ArrayAdapter<LanguageLite> {
         TextView lbLanguage = v.findViewById(R.id.lbRT_languages);
 
         lbLanguage.setText(l.name);
+        imFlags.setImageResource(context.getResources().getIdentifier(l.transSymbol, "drawable", context.getPackageName()));
 
 
         return v;
