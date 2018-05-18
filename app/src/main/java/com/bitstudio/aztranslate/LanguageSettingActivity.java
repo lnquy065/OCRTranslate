@@ -1,119 +1,101 @@
 package com.bitstudio.aztranslate;
 
+import android.app.DownloadManager;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import com.bitstudio.aztranslate.adapters.customAdap;
+import com.bitstudio.aztranslate.models.SrcLanguages;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class LanguageSettingActivity extends AppCompatActivity {
+    Context context;
+    ListView lvLang;
+    String [] list;
+    ArrayList<SrcLanguages> srcLangs;
+    ArrayList<SrcLanguages> ArrayLangs;
+    ImageView imgV;
 
-    Button btXoa;
-    ListView lv1;
-    ArrayList<String> arrayString;
-    ArrayAdapter<String> adapter ;
-    String[] listData;
-    HashMap<String,String> mapLang;
-    Context context = this;
+    //Button bt1;
+    //File src = new File(Environment.getExternalStorageDirectory()+"textData");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_setting);
-        btXoa =(Button)findViewById(R.id.btXoa);
-        lv1 = (ListView) findViewById(R.id.lv1);
-        lv1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        mapLang = new HashMap<String,String>();
-
-        mapLang.put("afr.traineddata","Afrikaans");
-        mapLang.put("bel.traineddata","Belorussian");
-        mapLang.put("chi_tra.traineddata","Chinese" );
-        mapLang.put("dan.traineddata","Danish");
-        mapLang.put("eng.traineddata","English");
-        mapLang.put("fra.traineddata","French");
-        mapLang.put("grc.traineddata","Greek");
-        mapLang.put("hin.traineddata","Hindi");
-        mapLang.put("ita.traineddata","Italian");
-        mapLang.put("lao.traineddata","Laotian");
-        mapLang.put("mal.traineddata","Malay");
-        mapLang.put("por.traineddata","Portuguese" );
-        mapLang.put("rus.traineddata","Russian");
-        mapLang.put("spa.traineddata","Spanish");
-        mapLang.put("vie.traineddata","Vietnamese");
-        mapLang.put("jpn.traineddata","Japanese");
+        //lvLang.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         final File dir = new File(Environment.getExternalStorageDirectory()+"/tessdata");
         if(!dir.exists())
             dir.mkdirs();
-        //tv1.setText("Ten : "+dir.getName()+" link : "+dir.getAbsolutePath()+" " );
-        arrayString = new ArrayList<String> ();
-
-        listData = dir.list();
-        arrayString.clear();
-
-        for(int i=0;i<listData.length;i++) {
-            String Lang = mapLang.get(listData[i]);
-            if(Lang!=null)
-                arrayString.add(Lang);
-        }
-        adapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_multiple_choice ,arrayString);
-
-        lv1.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        list = dir.list();
 
 
-        btXoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        SrcLanguages L1 = new SrcLanguages("Afrikaans", "afr.traineddata", "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/afr.traineddata",R.drawable.afrikaans);
+        SrcLanguages L2 = new SrcLanguages("Belorussian", "bel.traineddata", "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/bel.traineddata",R.drawable.belorussian);
+        SrcLanguages L3 = new SrcLanguages("Chinese" , "chi_tra.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/chi_tra.traineddata",R.drawable.chinese);
+        SrcLanguages L4 = new SrcLanguages("Danish" , "dan.traineddata", "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/dan.traineddata",R.drawable.danish);
+        SrcLanguages L5 = new SrcLanguages("English" , "eng.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/eng.traineddata", R.drawable.english);
+        SrcLanguages L6 = new SrcLanguages("French" , "fra.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/fra.traineddata",R.drawable.french);
+        SrcLanguages L7 = new SrcLanguages("Greek",  "grc.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/grc.traineddata",R.drawable.greek);
+        SrcLanguages L8 = new SrcLanguages("Hindi", "hin.traineddata", "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/hin.traineddata",R.drawable.hindi);
+        SrcLanguages L9 = new SrcLanguages("Italian", "ita.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/ita.traineddata",R.drawable.italian);
+        SrcLanguages L10 = new SrcLanguages("Laotian"	, "lao.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/lao.traineddata",R.drawable.laotian);
+        SrcLanguages L11 = new SrcLanguages("Malay" ,"mal.traineddata" ,"https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/mal.traineddata", R.drawable.malay);
+        SrcLanguages L12 = new SrcLanguages("Portuguese" ,"por.traineddata" ,"https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/por.traineddata",R.drawable.portuguese);
+        SrcLanguages L13 = new SrcLanguages("Russian" ,"rus.traineddata" ,"https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/rus.traineddata",R.drawable.russian);
+        SrcLanguages L14 = new SrcLanguages("Spanish" ,"spa.traineddata" , "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/spa.traineddata",R.drawable.spanish);
+        SrcLanguages L15 = new SrcLanguages("Vietnamese" ,"vie.traineddata" ,"https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/vie.traineddata",R.drawable.vietnamese);
+        SrcLanguages L16 = new SrcLanguages("Japanese", "jpn.traineddata", "https://raw.githubusercontent.com/tesseract-ocr/tessdata/3.04.00/jpn.traineddata",R.drawable.japanese);
 
-                final DialogInterface.OnClickListener diaOn = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (i){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                listData = dir.list();
-                                arrayString.clear();
 
-                                for(int j=0;j<listData.length;j++) {
-                                    String Lang = mapLang.get(listData[j]);
-                                    if(Lang!=null)
-                                        arrayString.add(Lang);
-                                }
-                                adapter.notifyDataSetChanged();
+        srcLangs = new ArrayList<SrcLanguages>();
+        ArrayLangs = new ArrayList<SrcLanguages>();
 
-                                SparseBooleanArray sp = lv1.getCheckedItemPositions();
-                                for(int j=0;j<sp.size();j++){
-                                    if(sp.valueAt(j)){
-                                        File dele = new File(dir+"/"+listData[j]/*lv1.getItemAtPosition(i)*/);
-                                        dele.delete();
-                                        arrayString.remove(j);
-                                    }
-                                }
-                                for(int j=0;j<listData.length;j++)
-                                    lv1.setItemChecked(j,false);
+        //imgV = (ImageView)findViewById(R.id.imageView);
 
-                                adapter.notifyDataSetChanged();
-                                break;
+        srcLangs.add(L1);        srcLangs.add(L2);
+        srcLangs.add(L3);        srcLangs.add(L4);
+        srcLangs.add(L5);        srcLangs.add(L6);
+        srcLangs.add(L7);        srcLangs.add(L8);
+        srcLangs.add(L9);        srcLangs.add(L10);
+        srcLangs.add(L11);        srcLangs.add(L12);
+        srcLangs.add(L13);        srcLangs.add(L14);
+        srcLangs.add(L15);        srcLangs.add(L16);
 
-                        }
-                    }
-                };
-                AlertDialog.Builder buider = new AlertDialog.Builder(context);
-                buider.setMessage("Xóa các mục đã chọn ").setPositiveButton("Xóa",diaOn)
-                        .setNegativeButton("Hủy",diaOn).show();
 
+        list = dir.list();
+        for(int i=0;i<list.length;i++) // quet ngon ngu da cai dat o bo nho ngoai va them vao ArrayLangs
+            for(int j=0;j<srcLangs.size();j++) {
+                if (list[i].compareTo(srcLangs.get(j).getFilename()) == 0) {
+                    File f = new File(Environment.getExternalStorageDirectory() + "/tessdata/" + list[i]);
+                    SrcLanguages L = srcLangs.get(j);
+                    L.setDate(f.lastModified());
+
+                    ArrayLangs.add(L);
+                }
             }
-        });
-    }
+
+
+
+                customAdap CustomAdap = new customAdap(this,R.layout.line, ArrayLangs);
+        lvLang = (ListView) findViewById(R.id.lvLang);
+        lvLang.setAdapter(CustomAdap);
+        CustomAdap.notifyDataSetChanged();
+
+
+
+
+
+
+    };
 }

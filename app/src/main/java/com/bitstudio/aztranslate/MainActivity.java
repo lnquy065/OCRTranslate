@@ -377,9 +377,6 @@ public class MainActivity extends AppCompatActivity implements
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-
         }
     }
 
