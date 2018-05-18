@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTranslationHistoryBackground"
     tools:context="com.bitstudio.aztranslate.fragments.BookmarkFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,12 +12,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/searchViewBookmark"
-            android:closeIcon="@drawable/ic_backspace_black_24dp"/>
+            android:closeIcon="@drawable/ic_backspace_black_24dp" />
+        <View
+            android:id="@+id/hline"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/searchViewBookmark"
+            android:background="@android:color/darker_gray" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewBookmark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/searchViewBookmark"
+            android:layout_below="@+id/hline"
             android:choiceMode="singleChoice"></android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 
