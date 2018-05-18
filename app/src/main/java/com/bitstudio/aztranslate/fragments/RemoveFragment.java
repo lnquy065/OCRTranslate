@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -16,7 +17,9 @@ import android.widget.ListView;
 
 import com.bitstudio.aztranslate.Setting;
 import com.bitstudio.aztranslate.R;
+import com.bitstudio.aztranslate.adapters.customAdap;
 import com.bitstudio.aztranslate.models.LanguageLite;
+import com.bitstudio.aztranslate.models.SrcLanguages;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,10 +31,13 @@ public class RemoveFragment extends Fragment {
 
     FloatingActionButton btXoa;
     ListView lv1;
-    ArrayList<String> arrayString;
+    ArrayList<SrcLanguages> arrayString;
     ArrayAdapter<String> adapter ;
     String[] listData;
     Context context;
+
+    private SwipeRefreshLayout swipe_refresh_layout;
+    customAdap CustomAdap;
 
     @Nullable
     @Override
@@ -42,72 +48,16 @@ public class RemoveFragment extends Fragment {
 
         btXoa =view.findViewById(R.id.btXoa);
         lv1 =  view.findViewById(R.id.lv1);
-        lv1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        final File dir = new File(Setting.OCRDir.OCRDIR +"tessdata/");
-        if(!dir.exists())
-            dir.mkdirs();
-        //tv1.setText("Ten : "+dir.getName()+" link : "+dir.getAbsolutePath()+" " );
-        arrayString = new ArrayList<String> ();
+        loadDataFromFile();
+//
+        CustomAdap = new customAdap(this.getContext(),R.layout.line, arrayString);
+        CustomAdap.notifyDataSetChanged();
 
-        listData = dir.list();
-        arrayString.clear();
+        lv1.setAdapter(CustomAdap);
 
-        for(int i=0;i<listData.length;i++) {
-            String ocrF = listData[i];
-            LanguageLite l = Setting.findLanguageByFileName(ocrF);
-            if(l!=null)
-                arrayString.add(l.name);
-        }
-        adapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_multiple_choice ,arrayString);
+        CustomAdap.notifyDataSetChanged();
 
-        lv1.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-
-        btXoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                final DialogInterface.OnClickListener diaOn = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (i){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                listData = dir.list();
-                                arrayString.clear();
-
-                                for(int j=0;j<listData.length;j++) {
-                                    String ocrF = listData[i];
-                                    LanguageLite l = Setting.findLanguageByFileName(ocrF);
-                                    if(l!=null)
-                                        arrayString.add(l.name);
-                                }
-                                adapter.notifyDataSetChanged();
-
-                                SparseBooleanArray sp = lv1.getCheckedItemPositions();
-                                for(int j=0;j<sp.size();j++){
-                                    if(sp.valueAt(j)){
-                                        File dele = new File(dir+"/"+listData[j]/*lv1.getItemAtPosition(i)*/);
-                                        dele.delete();
-                                        arrayString.remove(j);
-                                    }
-                                }
-                                for(int j=0;j<listData.length;j++)
-                                    lv1.setItemChecked(j,false);
-
-                                adapter.notifyDataSetChanged();
-                                break;
-
-                        }
-                    }
-                };
-                AlertDialog.Builder buider = new AlertDialog.Builder(context);
-                buider.setMessage("Xóa các mục đã chọn ").setPositiveButton("Xóa",diaOn)
-                        .setNegativeButton("Hủy",diaOn).show();
-
-            }
-        });
 
         return view;
     }
@@ -115,5 +65,37 @@ public class RemoveFragment extends Fragment {
     protected void setID(View view)
     {
         lvRemove=view.findViewById(R.id.id_remove);
+        swipe_refresh_layout = view.findViewById(R.id.swipe_refresh_layoutInstalled);
+        swipe_refresh_layout.setRefreshing(true);
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadDataFromFile();
+                CustomAdap.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void loadDataFromFile() {
+
+        final File dir = new File(Setting.OCRDir.OCRDIR +"tessdata/");
+        if(!dir.exists())
+            dir.mkdirs();
+        arrayString = new ArrayList<SrcLanguages> ();
+
+        listData = dir.list();
+        arrayString.clear();
+
+        for(int i=0;i<listData.length;i++) {
+            String ocrF = listData[i];
+            LanguageLite l = Setting.findLanguageByFileName(ocrF);
+            int imgID =  RemoveFragment.this.getResources().getIdentifier(l.transSymbol, "drawable", this.getContext().getPackageName());
+
+            if(l!=null)
+                arrayString.add( l.toSrcLanguage(listData[i], imgID));
+        }
+
+        swipe_refresh_layout.setRefreshing(false);
     }
 }

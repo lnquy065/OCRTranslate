@@ -21,6 +21,10 @@ public class LanguageLite implements Comparable<LanguageLite>{
         return ocrSymbol.substring(0, ocrSymbol.length()-12);
     }
 
+    public SrcLanguages toSrcLanguage(String path, int img) {
+        return new SrcLanguages(name, path, "", img, ocrSymbol);
+    }
+
     @Override
     public int compareTo(@NonNull LanguageLite languageLite) {
         return this.name.compareTo(languageLite.name);

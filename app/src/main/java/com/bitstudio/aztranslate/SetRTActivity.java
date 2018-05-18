@@ -76,6 +76,9 @@ public class SetRTActivity extends AppCompatActivity {
         sp_recognize.setAdapter(arrayAdapter_recognize);
         sp_translate.setAdapter(arrayAdapter_translate);
 
+       int i1 = arrayList_recognize.indexOf(Setting.Language.recognizeFrom);
+        int i2 = arrayList_translate.indexOf(Setting.Language.translateTo);
+
         sp_recognize.setSelection(arrayList_recognize.indexOf(Setting.Language.recognizeFrom));
         sp_translate.setSelection(arrayList_translate.indexOf(Setting.Language.translateTo));
 

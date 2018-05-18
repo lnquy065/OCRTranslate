@@ -58,7 +58,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
     private void initSetting() {
         btnColor.setBackgroundColor(Setting.WordBorder.BORDER_COLOR);
         id_com.setText( String.valueOf(Setting.COMPRESSED_RATE));
-        swNotice.setChecked(Setting.NOTICE);
+        swNotice.setChecked(Setting.Notification.ENABLE);
     }
 
     protected void setControl(){
@@ -187,6 +187,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
         pre=getSharedPreferences("setting",MODE_PRIVATE);
         setID();
      //   getPreference();
+
     }
 
 

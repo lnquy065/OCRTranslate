@@ -171,12 +171,13 @@ public class MainActivity extends AppCompatActivity implements
 
         LanguageLite transLang;
         String transJSON = settingXML.getString("TRANSLANG", "");
-        if (recoJSON.equals("")) {
+        if (transJSON.equals("")) {
             transLang = Setting.findLanguageByFileName("eng.traineddata");
         } else {
             transLang = gson.fromJson(transJSON, LanguageLite.class);
         }
         Setting.Language.translateTo = transLang;
+
 
         ocrManager = new OcrManager();
         ocrManager.initAPI();

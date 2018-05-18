@@ -21,7 +21,8 @@ public class OcrManager {
         baseAPI = new TessBaseAPI();
         String dataPath = Setting.OCRDir.OCRDIR;
         try {
-            baseAPI.init(dataPath, Setting.Language.recognizeFrom.getSubname());
+            String subname = Setting.Language.recognizeFrom.getSubname();
+            baseAPI.init(dataPath, subname);
         } catch (IllegalArgumentException e) {
             Log.d("ERROR", "Loi nhan dien");
         }

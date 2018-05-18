@@ -77,7 +77,7 @@ public class Setting {
     public static class Notification {
         public static int MODE_RANDOM = 0;
         public static int MODE_SEQUENCE = 1;
-        public static long TIME_DELAY = 60*1000;
+        public static long TIME_DELAY = 20*1000;
 
         public static boolean ENABLE = false;
     }

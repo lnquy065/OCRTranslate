@@ -13,11 +13,15 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
+        android:visibility="gone"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/trash_hisory" />
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layoutInstalled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <ListView
         android:id="@+id/lv1"
         android:layout_width="0dp"
@@ -30,5 +34,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>
