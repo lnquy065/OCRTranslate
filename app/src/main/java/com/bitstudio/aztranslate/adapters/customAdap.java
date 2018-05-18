@@ -59,7 +59,7 @@ public class customAdap extends ArrayAdapter<SrcLanguages>{
         final SrcLanguages NN = Langs.get(position);
 
         tempLanglay.tv_name.setText(NN.getName());
-        tempLanglay.tv_FileName.setText("Modified "+NN.getDate());
+        tempLanglay.tv_FileName.setText(NN.getDate());
         tempLanglay.imgCountry.setImageResource(NN.getImgName());
         tempLanglay.btDele.setOnClickListener(new View.OnClickListener() {
             @Override
