@@ -222,9 +222,14 @@ public class FloatingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mWindowManager.removeViewImmediate(translateView);
+                        mWindowManager.removeViewImmediate(floatingView);
+                    }
+                });
 
-                mWindowManager.removeViewImmediate(translateView);
-                mWindowManager.removeViewImmediate(floatingView);
                 Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -609,6 +614,7 @@ public class FloatingActivity extends AppCompatActivity {
 
     //******Projection's methods
     private void startProjection() {
+        floatingView.setAlpha(0);
         canScreenshot = true;
         startActivityForResult(mProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
     }
@@ -642,6 +648,13 @@ public class FloatingActivity extends AppCompatActivity {
     private class ImageAvailableListener implements ImageReader.OnImageAvailableListener {
         @Override
         public void onImageAvailable(ImageReader reader) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    floatingView.setAlpha(1f);
+
+                }
+            });
             Image image = null;
             FileOutputStream fos = null;
             Bitmap bitmap = null;

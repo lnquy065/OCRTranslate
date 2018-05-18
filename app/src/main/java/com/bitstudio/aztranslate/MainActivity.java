@@ -481,7 +481,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
         //lay anh
-        if ( (resultCode == 100 || requestCode==101) && resultCode == Activity.RESULT_OK) {
+        if ( (requestCode == 100 || requestCode==101) && resultCode == Activity.RESULT_OK) {
 
             String screenshotPath;
 
