@@ -23,28 +23,28 @@ public class SliderAdapter extends PagerAdapter {
 
     public SliderAdapter(Context context){
         this.context = context;
-        slider_descs[0] = "OCR Translation onvenient, easy to use, support multiple languages, fast translation speed, optimal text recognition technology";
+        slider_descs[0] = "OCR Translation is very convenient and easy to use";
         slider_descs[1] = "Easy to review history and store favorite images";
         slider_descs[2] = "Store your favorite words and reminders to learn vocabulary";
     }
 
     public int[] slider_images = {
-            R.drawable.eat_icon,
-            R.drawable.code_icon,
-            R.drawable.sleep_icon
+            R.drawable.m1,
+            R.drawable.m2,
+            R.drawable.m3
     };
 
-    public String[] slider_headings = {
-            "OnScreen",
-            "Camera",
-            "File"
-    };
+//    public String[] slider_headings = {
+//            "",
+//            "",
+//            ""
+//    };
 
 
 
     @Override
     public int getCount() {
-        return slider_headings.length;
+        return slider_descs.length;
     }
 
     @Override
@@ -58,11 +58,11 @@ public class SliderAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.slide_layout,container,false);
 
         ImageView slideImageView = (ImageView) view.findViewById(R.id.slide_image);
-        TextView slideHeading = (TextView) view.findViewById(R.id.slide_heading);
+        //TextView slideHeading = (TextView) view.findViewById(R.id.slide_heading);
         TextView slideDescription = (TextView) view.findViewById(R.id.slide_desc);
 
         slideImageView.setImageResource(slider_images[position]);
-        slideHeading.setText(slider_headings[position]);
+        //slideHeading.setText(slider_headings[position]);
         slideDescription.setText(slider_descs[position]);
 
         container.addView(view);

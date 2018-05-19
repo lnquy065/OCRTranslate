@@ -8,18 +8,18 @@
         android:id="@+id/slide_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
+
         android:layout_above="@+id/slide_heading"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
-        app:srcCompat="@drawable/eat_icon" />
+        app:srcCompat="@drawable/m1" />
 
     <TextView
         android:id="@+id/slide_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/slide_desc"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="HEADING"
+        android:text=""
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -28,12 +28,9 @@
         android:id="@+id/slide_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="false"
-        android:layout_below="@+id/slide_heading"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="false"
-        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="149dp"
         android:padding="35dp"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"

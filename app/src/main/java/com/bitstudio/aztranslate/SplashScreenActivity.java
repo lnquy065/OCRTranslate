@@ -164,26 +164,26 @@ public class SplashScreenActivity extends AppCompatActivity{
 
                             }
 
-                            android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
-                            android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            boolean isFirtsLauncher = sharedPreferences.getBoolean(IS_FIRST_LAUNCH, true);
-                            if (isFirtsLauncher) {
-                                android.util.Log.d("Boolean", "True");
-                                editor.putBoolean(IS_FIRST_LAUNCH, false);
-                                editor.apply();
+//                            android.content.SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFERENCES_NAME, android.content.Context.MODE_PRIVATE);
+//                            android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//                            boolean isFirtsLauncher = sharedPreferences.getBoolean(IS_FIRST_LAUNCH, true);
+//                            if (isFirtsLauncher) {
+//                                android.util.Log.d("Boolean", "True");
+//                                editor.putBoolean(IS_FIRST_LAUNCH, false);
+//                                editor.apply();
 
                                 Intent intent = new Intent(SplashScreenActivity.this, SliderActivity.class);
                                 startActivity(intent);
                                 finish();
 
-                            } else {
-
-                                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-
-                            }
+//                            } else {
+//
+//                                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//                                startActivity(intent);
+//                                finish();
+//
+//                            }
                         }
                     }
                 }
