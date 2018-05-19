@@ -61,10 +61,8 @@ public class LanguageAdapter extends ArrayAdapter<Language> {
 
             tvName.setText(p.getName().toString());
             //tvSubtitle.setText(p.getSubtitle().toString());
-            lbVer.setText("Version: "+p.getVersion());
-            Glide.with(getContext())
-                    .load(p.getLinkImage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imgFlag);
-
+            lbVer.setText(p.getSubtitle());
+            imgFlag.setImageResource(getContext().getResources().getIdentifier(p.getTransSymbol(), "drawable", getContext().getPackageName()));
 
             View finalV = v;
             btn_lang_download.setOnClickListener(btn -> {

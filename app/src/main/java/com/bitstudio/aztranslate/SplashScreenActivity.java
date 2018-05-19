@@ -112,7 +112,7 @@ public class SplashScreenActivity extends AppCompatActivity{
                             @Override
                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                                 Language language = dataSnapshot.getValue(Language.class);
-                                Setting.LANGUAGE.add(language.toLanguaLite());
+                                Setting.LANGUAGE_LIST.add(language.toLanguaLite());
 
                             }
 
@@ -159,7 +159,7 @@ public class SplashScreenActivity extends AppCompatActivity{
                                 }
                             });
                         } else {
-                            for (LanguageLite l : Setting.LANGUAGE) {
+                            for (LanguageLite l : Setting.LANGUAGE_LIST) {
                                 Log.d("country", l.name);
 
                             }
@@ -177,6 +177,7 @@ public class SplashScreenActivity extends AppCompatActivity{
                                 startActivity(intent);
                                 finish();
 
+
 //                            } else {
 //
 //                                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
@@ -184,6 +185,10 @@ public class SplashScreenActivity extends AppCompatActivity{
 //                                finish();
 //
 //                            }
+
+
+
+
                         }
                     }
                 }

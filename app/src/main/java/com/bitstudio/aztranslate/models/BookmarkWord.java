@@ -10,12 +10,15 @@ public class BookmarkWord
     private long addedUNIXTime;
     private String sourceLanguage;
 
-    public BookmarkWord(String word, String wordTranslated, long addedTime, String sourceLanguage)
+    private String destinationLanguage;
+
+    public BookmarkWord(String word, String wordTranslated, long addedTime, String sourceLanguage, String destinationLanguage)
     {
         this.word = word;
         this.wordTranslated = wordTranslated;
         this.addedUNIXTime = addedTime;
         this.sourceLanguage = sourceLanguage;
+        this.destinationLanguage = destinationLanguage;
     }
 
     public String getWord()
@@ -58,4 +61,13 @@ public class BookmarkWord
     }
     public String getWordTranslated() { return wordTranslated; }
     public void setWordTranslated(String wordTranslated) { this.wordTranslated = wordTranslated; }
+    public String getDestinationLanguage()
+    {
+        return destinationLanguage;
+    }
+
+    public void setDestinationLanguage(String destinationLanguage)
+    {
+        this.destinationLanguage = destinationLanguage;
+    }
 }

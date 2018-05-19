@@ -58,7 +58,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
     private void initSetting() {
         btnColor.setBackgroundColor(Setting.WordBorder.BORDER_COLOR);
         id_com.setText( String.valueOf(Setting.COMPRESSED_RATE));
-        swNotice.setChecked(Setting.NOTICE);
+        swNotice.setChecked(Setting.Notification.ENABLE);
     }
 
     protected void setControl(){
@@ -110,7 +110,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
 
 
 
-
+        BuilderManager.imageResourceIndex = 0;
         bmb = (BoomMenuButton) findViewById(R.id.bmb);
         assert bmb != null;
         bmb.setButtonEnum(ButtonEnum.SimpleCircle);
@@ -129,7 +129,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
        bmb.getBuilder(0).innerListener(new InnerOnBoomButtonClickListener() {
            @Override
            public void onButtonClick(int index, BoomButton boomButton) {
-               Toast.makeText(SystemSettingActivity.this, "hello", Toast.LENGTH_SHORT).show();
+
            }
        });
 
@@ -187,6 +187,7 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
         pre=getSharedPreferences("setting",MODE_PRIVATE);
         setID();
      //   getPreference();
+
     }
 
 

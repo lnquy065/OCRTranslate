@@ -39,13 +39,15 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "word TEXT, " +
             "wordTrans TEXT, " +
-            "srcLanguage TEXT," +
+            "srcLanguage TEXT, " +
+            "dstLanguage TEXT, " +
             "addedTime TEXT);";
     public static final String DB_TABLE_NAME_FAVOURITE_WORD = "FAVOURITE_WORD";
     public static final String DB_KEY_WORD = "word";
     public static final String DB_KEY_WORD_TRANS = "wordTrans";
     public static final String DB_KEY_WORD_TIME = "addedTime";
     public static final String DB_KEY_WORD_SRCLANG = "srcLanguage";
+    public static final String DB_KEY_WORD_DSTLANG = "dstLanguage";
     public TranslationHistoryDatabaseHelper(Context context, SQLiteDatabase.CursorFactory factory)
     {
         super(context, DB_NAME, factory, DB_VERSION);
@@ -99,26 +101,11 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public long deleteTranslationHis(String translationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
-        File deleteScreenshot = new File(translationScreenshotPath);
-        deleteScreenshot.delete();
-        String xmlDir = translationScreenshotPath.replaceAll("img", "xml");
-        String xmlPath = xmlDir.replaceAll("jpg", "xml");
-
-        File deleteXml = new File(xmlPath);
-        deleteXml.delete();
         return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{translationScreenshotPath, "0"});
     }
     public long deleteFavouriteTranslationHis(String favouriteTranslationScreenshotPath)
     {
         SQLiteDatabase db = getReadableDatabase();
-        File deleteScreenshot = new File(favouriteTranslationScreenshotPath);
-        deleteScreenshot.delete();
-
-        String xmlDir = favouriteTranslationScreenshotPath.replaceAll("img", "xml");
-        String xmlPath = xmlDir.replaceAll("jpg", "xml");
-
-        File deleteXml = new File(xmlPath);
-        deleteXml.delete();
         return db.delete(DB_TABLE_NAME_HISTORY, DB_KEY_SCREENSHOT + " = ? AND " + DB_KEY_FAVOURITE + " = ?", new String[]{favouriteTranslationScreenshotPath, "1"});
     }
     public long makeTranslationHisAsFavourite(String translationScreenshotPath)
@@ -135,9 +122,9 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         updateTranslationHis.put(DB_KEY_FAVOURITE, 0);
         return db.update(DB_TABLE_NAME_HISTORY, updateTranslationHis,DB_KEY_SCREENSHOT + " = ?", new String[]{translationScreenshotPath});
     }
-    public long insertNewFavouriteWord(String word, String word_Trans, String addedTime, String srcLang)
+    public long insertNewFavouriteWord(String word, String word_Trans, String addedTime, String srcLang, String dstLang)
     {
-        if (!isDuplicateWord(word))
+        if (!isDuplicateWord(word, srcLang, dstLang))
         {
             SQLiteDatabase db = getReadableDatabase();
             ContentValues favourWord = new ContentValues();
@@ -145,14 +132,15 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             favourWord.put(DB_KEY_WORD_TRANS, word_Trans);
             favourWord.put(DB_KEY_WORD_TIME, addedTime);
             favourWord.put(DB_KEY_WORD_SRCLANG, srcLang);
+            favourWord.put(DB_KEY_WORD_DSTLANG,dstLang);
             return db.insert(DB_TABLE_NAME_FAVOURITE_WORD, null, favourWord);
         }
         return -1;
     }
-    public long deleteFavouriteWord(String word)
+    public long deleteFavouriteWord(String word, String srcLang, String dstLang)
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.delete(DB_TABLE_NAME_FAVOURITE_WORD, DB_KEY_WORD + " = ?", new String[]{word});
+        return db.delete(DB_TABLE_NAME_FAVOURITE_WORD, DB_KEY_WORD + " = ? AND " + DB_KEY_WORD_SRCLANG + " = ? AND " + DB_KEY_WORD_DSTLANG + " = ?", new String[]{word, srcLang, dstLang});
     }
 
     public Cursor queryAllTranslationHistory()
@@ -170,7 +158,7 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public Cursor queryAllBookmarkWord()
     {
         SQLiteDatabase db = getReadableDatabase();
-        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
+        return db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG, DB_KEY_WORD_DSTLANG},null,null,null,null,DB_KEY_WORD_TIME + " DESC");
     }
 
     public void deleteFileOrFolder(String folderPath)
@@ -187,10 +175,10 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
         else if (file.isFile())
             file.delete();
     }
-    public boolean isDuplicateWord(String word)
+    public boolean isDuplicateWord(String word, String srcLang, String dstLang)
     {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD}, DB_KEY_WORD + " = ?", new String[]{word}, null, null, null);
+        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD}, DB_KEY_WORD + " = ? AND " + DB_KEY_WORD_SRCLANG + " = ? AND " + DB_KEY_WORD_DSTLANG + " = ?", new String[]{word, srcLang, dstLang}, null, null, null);
         if (cursor.getCount() >= 1)
             return true;
         return false;
@@ -199,14 +187,15 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
     public BookmarkWord getBookmarkWordRandomly()
     {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG},null,null,null,null,"RANDOM()", "1");
+        Cursor cursor = db.query(DB_TABLE_NAME_FAVOURITE_WORD, new String[]{DB_KEY_WORD, DB_KEY_WORD_TRANS, DB_KEY_WORD_TIME,  DB_KEY_WORD_SRCLANG, DB_KEY_WORD_DSTLANG},null,null,null,null,"RANDOM()", "1");
         while(cursor.moveToNext())
         {
             String word = cursor.getString(0);
             String wordTranslated = cursor.getString(1);
             String addedTime = cursor.getString(2);
             String srcLang = cursor.getString(3);
-            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
+            String dstLang = cursor.getString(4);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang, dstLang);
             return bookmarkWord;
         }
         return null;
@@ -221,7 +210,8 @@ public class TranslationHistoryDatabaseHelper extends SQLiteOpenHelper
             String wordTranslated = cursor.getString(1);
             String addedTime = cursor.getString(2);
             String srcLang = cursor.getString(3);
-            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang);
+            String dstLang = cursor.getString(4);
+            BookmarkWord bookmarkWord = new BookmarkWord(word, wordTranslated, Long.parseLong(addedTime), srcLang, dstLang);
             return bookmarkWord;
         }
         return null;

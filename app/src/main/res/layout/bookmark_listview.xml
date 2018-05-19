@@ -36,7 +36,7 @@
         android:id="@+id/view_foreground_bookmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/colorWhite"
         android:padding="@dimen/padd_10">
 
         <ImageView
@@ -72,9 +72,17 @@
             android:id="@+id/textViewWordSrcLang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_alignParentRight="true"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:textSize="14dp" />
+        <TextView
+            android:id="@+id/textViewWordDstLang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_below="@id/textViewWordSrcLang"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/description"
+            android:textSize="14dp" />
     </RelativeLayout>
 </FrameLayout>

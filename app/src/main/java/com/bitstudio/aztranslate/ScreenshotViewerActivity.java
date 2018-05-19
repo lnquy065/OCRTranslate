@@ -241,6 +241,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     }
 
     public void showTranslateDialog(String translateText) {
+        imTranslateSource.setImageResource(this.getResources().getIdentifier(Setting.Language.recognizeFrom.transSymbol, "drawable", this.getPackageName()));
 
         translateYandexAPI(translateText);
 
@@ -261,7 +262,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
         // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
-        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase()))
+        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase(), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name))
             btnTranslateFavorite.setChecked(true);
         else
             btnTranslateFavorite.setChecked(false);
@@ -277,7 +278,7 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
         imTranslateLoading.play();
         lbTranslateTarget.setVisibility(View.GONE);
         AsyncHttpClient client = new AsyncHttpClient();
-        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + LANG, new AsyncHttpResponseHandler() {
+        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + Setting.YandexAPI.LANG(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (responseBody != null) {
@@ -320,12 +321,12 @@ public class ScreenshotViewerActivity extends AppCompatActivity {
     }
     private void removeWordFromFavorites(String word, String wordTrans)
     {
-        translationHistoryDatabaseHelper.deleteFavouriteWord(word);
+        translationHistoryDatabaseHelper.deleteFavouriteWord(word, Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
     }
 
     private void addWordToFavorites(String word, String wordTrans)
     {
         long unixTime = System.currentTimeMillis() / 1000L;
-        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
     }
 }

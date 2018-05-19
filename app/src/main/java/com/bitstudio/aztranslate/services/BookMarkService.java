@@ -7,7 +7,9 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
 import com.bitstudio.aztranslate.MainActivity;
@@ -56,15 +58,18 @@ public class BookMarkService extends Service {
 
 
     private void showNotification(BookmarkWord b) {
-        Intent intent = new Intent(this,MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+//        Intent intent = new Intent(this,MainActivity.class);
+//        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
 
         Notification noti  = new Notification.Builder(this)
-                .setContentTitle( b.getWord())
-                .setContentText(b.getWordTranslated())
+                .setContentTitle(b.getSourceLanguage()+ ":  "+  b.getWord())
+                .setContentText(b.getDestinationLanguage()+":   "+b.getWordTranslated())
                 .setSmallIcon(R.drawable.logo_ocr)
-                .setContentIntent(pIntent)
-                .setAutoCancel(true).build();
+                .setAutoCancel(true)
+                .setLargeIcon(BitmapFactory.decodeResource(getBaseContext().getResources(),
+                R.drawable.logo_ocr))
+                .build()
+                ;
 
         notificationManager.notify(0, noti);
     }
@@ -72,8 +77,9 @@ public class BookMarkService extends Service {
     class NotifyTimerTask extends TimerTask {
 
         public void run() {
-
-            showNotification(getBookMark());
+            BookmarkWord bm = getBookMark();
+            Log.d("BookmarkWord", bm.getWord());
+            if (bm!=null) showNotification(bm);
         }
     }
 }

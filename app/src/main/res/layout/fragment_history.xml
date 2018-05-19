@@ -10,16 +10,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchViewHistory"
-            android:closeIcon="@drawable/ic_backspace_black_24dp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/searchViewHistory"
             android:choiceMode="singleChoice"></android.support.v7.widget.RecyclerView>
 
         <android.support.design.widget.FloatingActionButton

@@ -41,11 +41,13 @@ import com.bitstudio.aztranslate.fragments.HistoryFragment;
 import com.bitstudio.aztranslate.fragments.SettingFragment;
 
 import com.bitstudio.aztranslate.LocalDatabase.TranslationHistoryDatabaseHelper;
+import com.bitstudio.aztranslate.models.LanguageLite;
 import com.bitstudio.aztranslate.models.ScreenshotObj;
 import com.bitstudio.aztranslate.models.BookmarkWord;
 import com.bitstudio.aztranslate.models.TranslationHistory;
 import com.bitstudio.aztranslate.ocr.OcrManager;
 import com.cunoraz.gifview.library.GifView;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements
             addEvents();
             loadAnimations();
             btnSetting.performClick();
-            loadSetting();
+            loadSettingFromSharedPreferences();
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(this, null);
     }
 
@@ -146,16 +148,40 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void loadSetting() {
+    private void loadSettingFromSharedPreferences() {
         SharedPreferences settingXML= getSharedPreferences("setting", MODE_PRIVATE);
-        Setting.recoLang = settingXML.getString("RECOLANG", "vie");
-        Setting.tranLang = settingXML.getString("TRANLANG", "vie");
         Setting.WordBorder.BORDER_COLOR = settingXML.getInt("WBORDER", Color.RED);
         Setting.COMPRESSED_RATE = settingXML.getInt("COMPRESSED", 8);
         Setting.WordBorder.BORDER_SHAPE = settingXML.getInt("WBORDERSHAPE", 8);
-        Setting.Notification.ENABLE = settingXML.getBoolean("Notification_ENABLE", false);
+        Setting.Notification.ENABLE = settingXML.getBoolean("NOTIFICATION_ENABLE", false);
+
         Setting.Screen.HEIGH = screenHeight;
         Setting.Screen.WIDTH = screenWidth;
+
+        Gson gson = new Gson();
+        LanguageLite recoLang;
+        String recoJSON = settingXML.getString("RECOLANG", "");
+        if (recoJSON.equals("")) {
+           recoLang = Setting.findLanguageByFileName("eng.traineddata");
+        } else {
+            recoLang = gson.fromJson(recoJSON, LanguageLite.class);
+        }
+        Setting.Language.recognizeFrom = recoLang;
+        //Log.d("RECOLANG",String.valueOf( Setting.Language.recognizeFrom.name));
+
+
+        LanguageLite transLang;
+        String transJSON = settingXML.getString("TRANSLANG", "");
+        if (transJSON.equals("")) {
+            transLang = Setting.findLanguageByFileName("eng.traineddata");
+        } else {
+            transLang = gson.fromJson(transJSON, LanguageLite.class);
+        }
+        Setting.Language.translateTo = transLang;
+
+
+        ocrManager = new OcrManager();
+        ocrManager.initAPI();
     }
 
     private void addEvents() {
@@ -216,10 +242,6 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public void showSCV(){
-//        final FancyShowCaseView SCV_Setting = new FancyShowCaseView.Builder(this)
-//                .focusOn(btnSetting)
-//                .title("Install language packs, change the color of the recognition pane, manage the language used.")
-//                .build();
         final FancyShowCaseView SCV_Setting = new FancyShowCaseView.Builder(this)
                 .customView(R.layout.custom_showcase_view, new OnViewInflateListener() {
 
@@ -227,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Setting");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Install language packs, change the color of the recognition pane, manage the language used.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnSetting)
@@ -242,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Favorites Words Saving");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Allows users to save their favorite vocabulary.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnBook)
@@ -256,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Floating Widget");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Minimize the application to use in a more convenient way.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.floatg);
                     }
                 })
                 .focusOn(btnFloat)
@@ -269,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("Images Favorites Saving");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Allows users to save favorite images taken.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnFavorite)
@@ -282,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements
                     public void onViewInflated(@NonNull View view) {
                         ((TextView)view.findViewById(R.id.textViewTitle)).setText("History Translation");
                         ((TextView)view.findViewById(R.id.textViewContent)).setText("Allows the user to review the history of the captured images on the phone screen.");
-                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
+//                        ((GifView)view.findViewById(R.id.imgGuide)).setGifResource(R.drawable.translate_loading);
                     }
                 })
                 .focusOn(btnHistory)
@@ -299,8 +321,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void addControls() {
-        ocrManager = new OcrManager();
-        ocrManager.initAPI();
+
         imTabTitle = findViewById(R.id.imTabTitle);
         lbTabTitle = findViewById(R.id.lbTabTitle);
         lbTabTitleBackground = findViewById(R.id.lbTabTitleBackground);
@@ -460,7 +481,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
         //lay anh
-        if ( (resultCode == 100 || requestCode==101) && resultCode == Activity.RESULT_OK) {
+        if ( (requestCode == 100 || requestCode==101) && resultCode == Activity.RESULT_OK) {
 
             String screenshotPath;
 

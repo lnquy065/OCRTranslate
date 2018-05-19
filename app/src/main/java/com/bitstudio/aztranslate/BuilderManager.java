@@ -23,25 +23,11 @@ import java.util.List;
 public class BuilderManager {
 
     private static int[] imageResources = new int[]{
-            R.drawable.bat,
-            R.drawable.bear,
             R.drawable.bee,
-            R.drawable.butterfly,
-            R.drawable.cat,
-            R.drawable.deer,
-            R.drawable.dolphin,
-            R.drawable.eagle,
-            R.drawable.horse,
-            R.drawable.elephant,
-            R.drawable.owl,
-            R.drawable.peacock,
-            R.drawable.pig,
-            R.drawable.rat,
-            R.drawable.snake,
-            R.drawable.squirrel
+            R.drawable.bear,
     };
 
-    private static int imageResourceIndex = 0;
+    public static int imageResourceIndex = 0;
 
     static int getImageResource() {
         if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
@@ -51,6 +37,7 @@ public class BuilderManager {
     static SimpleCircleButton.Builder getSimpleCircleButtonBuilder() {
         return new SimpleCircleButton.Builder()
                 .normalImageRes(getImageResource())
+
                 ;
     }
 

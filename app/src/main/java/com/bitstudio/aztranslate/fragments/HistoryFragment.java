@@ -40,6 +40,8 @@ import com.bitstudio.aztranslate.models.TranslationHistory;
 
 import com.bitstudio.aztranslate.R;
 
+import java.io.File;
+
 
 public class HistoryFragment extends Fragment implements RecyclerTranslationHistoryTouchHelper.RecyclerTranslationHistoryTouchHelperListener
 {
@@ -107,7 +109,6 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     {
         super.onActivityCreated(savedInstanceState);
         mappingViewComponentsByID();
-        settupSearchViewTranslationHistoryFilter();
         // Let create a database helper
         translationHistoryDatabaseHelper = new TranslationHistoryDatabaseHelper(getActivity(), null);
         Cursor cursor = translationHistoryDatabaseHelper.queryAllTranslationHistory();
@@ -171,6 +172,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             // make a backup version of removed item for undo purpose
             final TranslationHistory deletedTranslationHistory = MainActivity.translationHistories.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
+            final int items = translationHistoryAdapter.getItemCount();
             if (direction == ItemTouchHelper.LEFT)
             {
                 // remove the translation history from recycler view
@@ -187,6 +189,21 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                         // undo is selected, let's restore the deleted item
                         translationHistoryAdapter.restoreTranslationHistory(deletedTranslationHistory, deletedIndex);
                         translationHistoryDatabaseHelper.insertNewTranslationHis(deletedTranslationHistory.getScreenshotPath(), deletedTranslationHistory.getXmlDataPath(), String.valueOf(deletedTranslationHistory.getTranslationUNIXTime()), deletedTranslationHistory.getTranslationSouceLanguage(), deletedTranslationHistory.getTranslationDestinationLanguage());
+                    }
+                });
+                snackbarUndo.addCallback(new Snackbar.Callback()
+                {
+
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event)
+                    {
+                        if (translationHistoryAdapter.getItemCount() < items)
+                        {
+                            File screenshot = new File(deletedTranslationHistory.getScreenshotPath());
+                            screenshot.delete();
+                            File xml = new File(deletedTranslationHistory.getXmlDataPath());
+                            xml.delete();
+                        }
                     }
                 });
                 snackbarUndo.setActionTextColor(Color.RED);
@@ -225,7 +242,7 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
     {
         translationHistoryRecyclerView = getActivity().findViewById(R.id.listViewHistory);
         buttonDeleteAllHistory = getActivity().findViewById(R.id.buttonDeleteAllHis);
-        searchViewTranslationHistory = getActivity().findViewById(R.id.searchViewHistory);
+        //searchViewTranslationHistory = getActivity().findViewById(R.id.searchViewHistory);
         buttonDeleteAllHistory.setOnClickListener(new View.OnClickListener()
         {
 
@@ -306,10 +323,14 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
             TranslationHistory delTrans = translationHistoryAdapter.getTranslationHistoryAt(0);
             translationHistoryAdapter.removeTranslationHistory(0);
             translationHistoryDatabaseHelper.deleteTranslationHis(delTrans.getScreenshotPath());
+            File screenshot = new File(delTrans.getScreenshotPath());
+            screenshot.delete();
+            File xml = new File(delTrans.getXmlDataPath());
+            xml.delete();
 
         }
     }
-    public void settupSearchViewTranslationHistoryFilter()
+    /*public void settupSearchViewTranslationHistoryFilter()
     {
         searchViewTranslationHistory.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
@@ -329,7 +350,15 @@ public class HistoryFragment extends Fragment implements RecyclerTranslationHist
                 return false;
             }
         });
-    }
+        searchViewTranslationHistory.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                searchViewTranslationHistory.setIconified(false);
+            }
+        });
+    }*/
     public Dialog createAlertDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

@@ -222,9 +222,14 @@ public class FloatingActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mWindowManager.removeViewImmediate(translateView);
+                        mWindowManager.removeViewImmediate(floatingView);
+                    }
+                });
 
-                mWindowManager.removeViewImmediate(translateView);
-                mWindowManager.removeViewImmediate(floatingView);
                 Intent intent = new Intent(FloatingActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -421,13 +426,13 @@ public class FloatingActivity extends AppCompatActivity {
 
     private void removeWordFromFavorites(String word, String wordTrans)
     {
-        translationHistoryDatabaseHelper.deleteFavouriteWord(word);
+        translationHistoryDatabaseHelper.deleteFavouriteWord(word, Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
     }
 
     private void addWordToFavorites(String word, String wordTrans)
     {
         long unixTime = System.currentTimeMillis() / 1000L;
-        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), "English");
+        translationHistoryDatabaseHelper.insertNewFavouriteWord(word, wordTrans, String.valueOf(unixTime), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
     }
 
     public void showFloatingWidget() {
@@ -470,6 +475,7 @@ public class FloatingActivity extends AppCompatActivity {
     }
 
     public void showTranslateDialog(String translateText) {
+        imTranslateSource.setImageResource(this.getResources().getIdentifier(Setting.Language.recognizeFrom.transSymbol, "drawable", this.getPackageName()));
 
         translateYandexAPI(translateText);
 
@@ -491,7 +497,7 @@ public class FloatingActivity extends AppCompatActivity {
         txtTranslateSource.setText(translateText);
         translateView.setVisibility(View.VISIBLE);
         // Uncheck when hide Translate Dialog, the next time it was showed, we dont have to uncheck the favourite button
-        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase()))
+        if (translationHistoryDatabaseHelper.isDuplicateWord(translateText.toLowerCase(), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name))
             btnTranslateFavorite.setChecked(true);
         else
             btnTranslateFavorite.setChecked(false);
@@ -508,7 +514,7 @@ public class FloatingActivity extends AppCompatActivity {
         imTranslateLoading.play();
         lbTranslateTarget.setVisibility(View.GONE);
         AsyncHttpClient client = new AsyncHttpClient();
-        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + LANG, new AsyncHttpResponseHandler() {
+        RequestHandle requestHandle = client.get(API + "key=" + KEY + "&text=" + translateText.trim() + "&lang=" + Setting.YandexAPI.LANG(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (responseBody != null) {
@@ -608,6 +614,7 @@ public class FloatingActivity extends AppCompatActivity {
 
     //******Projection's methods
     private void startProjection() {
+        floatingView.setAlpha(0);
         canScreenshot = true;
         startActivityForResult(mProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
     }
@@ -641,6 +648,13 @@ public class FloatingActivity extends AppCompatActivity {
     private class ImageAvailableListener implements ImageReader.OnImageAvailableListener {
         @Override
         public void onImageAvailable(ImageReader reader) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    floatingView.setAlpha(1f);
+
+                }
+            });
             Image image = null;
             FileOutputStream fos = null;
             Bitmap bitmap = null;
@@ -677,7 +691,7 @@ public class FloatingActivity extends AppCompatActivity {
                     fos.write(recognizedText.getBytes());
 
                     // save screenshot information to local database
-                    translationHistoryDatabaseHelper.insertNewTranslationHis(screenshotPath,xmlPath, String.valueOf(unixTime), "English", "Vietnamese");
+                    translationHistoryDatabaseHelper.insertNewTranslationHis(screenshotPath,xmlPath, String.valueOf(unixTime), Setting.Language.recognizeFrom.name, Setting.Language.translateTo.name);
                     hOcr.processHTML(recognizedText);
                     Bitmap bitmapReco = hOcr.createBitmap(mWidth + rowPadding / pixelStride, mHeight - Setting.Screen.STATUSBAR_HEIGHT);
 

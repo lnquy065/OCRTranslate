@@ -62,11 +62,11 @@
 
             <ImageView
                 android:id="@+id/imTranslateSource"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:visibility="gone"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_menu_mapmode" />
