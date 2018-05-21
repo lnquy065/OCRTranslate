@@ -70,6 +70,18 @@ public class SystemSettingActivity extends AppCompatActivity implements ColorDia
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.toString().equals(""))
+                {
+                    id_com.setText(0+"");
+                }
+                else
+                {
+                    int compressed = Integer.valueOf(charSequence.toString());
+                    if(compressed>16 || compressed<0)
+                    {
+                        id_com.setText(16+"");
+                    }
+                }
 
             }
 

@@ -166,6 +166,14 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             recoLang = gson.fromJson(recoJSON, LanguageLite.class);
         }
+        while (recoLang.name==null) {
+            recoJSON = settingXML.getString("TRANSLANG", "");
+            if (recoJSON.equals("")) {
+                recoLang = Setting.findLanguageByFileName("eng.traineddata");
+            } else {
+                recoLang = gson.fromJson(recoJSON, LanguageLite.class);
+            }
+        }
         Setting.Language.recognizeFrom = recoLang;
         //Log.d("RECOLANG",String.valueOf( Setting.Language.recognizeFrom.name));
 
@@ -177,7 +185,17 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             transLang = gson.fromJson(transJSON, LanguageLite.class);
         }
+        while (transLang.name==null) {
+            transJSON = settingXML.getString("TRANSLANG", "");
+            if (transJSON.equals("")) {
+                transLang = Setting.findLanguageByFileName("eng.traineddata");
+            } else {
+                transLang = gson.fromJson(transJSON, LanguageLite.class);
+            }
+        }
         Setting.Language.translateTo = transLang;
+
+
 
 
         ocrManager = new OcrManager();

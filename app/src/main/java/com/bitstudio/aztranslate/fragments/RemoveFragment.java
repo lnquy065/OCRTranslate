@@ -90,6 +90,7 @@ public class RemoveFragment extends Fragment {
         for(int i=0;i<listData.length;i++) {
             String ocrF = listData[i];
             LanguageLite l = Setting.findLanguageByFileName(ocrF);
+            if (l==null) continue;
             int imgID =  RemoveFragment.this.getResources().getIdentifier(l.transSymbol, "drawable", this.getContext().getPackageName());
 
             if(l!=null)
