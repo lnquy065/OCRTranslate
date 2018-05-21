@@ -8,7 +8,7 @@ Members | Projects
 -|-
 Luong Ngoc Quy | https://github.com/lnquy065/LiTo
 Thieu Quang Tuan | https://github.com/qtuancr261/LinuxDistrosManagement.git
-Nguyen Dang Khoa |
+Nguyen Dang Khoa | https://github.com/ndk1996/phonebookmanager
 Tran Quoc Huy |
 Nguyen Xuan Hieu |
 Vo Quoc Binh |
