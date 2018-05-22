@@ -10,7 +10,7 @@ Luong Ngoc Quy | https://github.com/lnquy065/LiTo
 Thieu Quang Tuan | https://github.com/qtuancr261/LinuxDistrosManagement.git
 Nguyen Dang Khoa | https://github.com/ndk1996/phonebookmanager
 Tran Quoc Huy |
-Nguyen Xuan Hieu |
+Nguyen Xuan Hieu | https://github.com/NguyenXuanHieu124/Hieu-MidTerm
 Vo Quoc Binh | https://github.com/binhchohub/Thi_Giua_Ky_FireBase
 
 ### About
