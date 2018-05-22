@@ -4,7 +4,7 @@ Translate everything on your screen, camera and file base on Optical Character R
 Document (Vi): https://github.com/lnquy065/OCRTranslate/blob/master/readme/Android-OCRTranslate-Reference.docx
 ### FireBase Account
 #### Username: tranquochuy15091996@gmail.com
-#### Password: https://www.facebook.com/huytran.prince
+#### Password: Contact https://www.facebook.com/huytran.prince
 
 ### Mid-term Exam projects
 Members | Projects
